@@ -1,7 +1,7 @@
 _: {
   imports = [
-    # ./nvim
-    ./neve
+    ./nvim
+    # ./neve
     ./tmux
     # ./helix
   ];

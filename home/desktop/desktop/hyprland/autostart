@@ -12,10 +12,12 @@ $scripts/tools/dynamic &
 # Wallpaper
 swww kill
 swww init
-# swww img ~/Pictures/programmer.gif
+swww img ~/Pictures/programmer.gif
 
 # Dunst (Notifications)
 dunst &
+
+setsid fcitx5
 
 # Cursor
 # hyprctl setcursor "Catppuccin-Mocha-Mauve-Cursors" 24

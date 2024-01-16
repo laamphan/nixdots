@@ -1,7 +1,5 @@
 _: {
   imports = [
-    # ./emacs
-    ./neovide
-    # ./vscode
+    ./vscode
   ];
 }

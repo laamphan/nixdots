@@ -22,10 +22,7 @@ in
     swappy
 
     (writeShellScriptBin "screenshot" ''
-      grim -g "$(slurp)" - | wl-copy
-    '')
-    (writeShellScriptBin "screenshot-edit" ''
-      wl-paste | swappy -f -
+      grim -g "$(slurp)" - | wl-copy && wl-paste | swappy -f -
     '')
   ];
   wayland.windowManager.hyprland = {
@@ -37,8 +34,8 @@ in
     settings = {
       "$mainMod" = "SUPER";
       monitor = [
-        ",highrr,auto,auto"
-        # "DP-3,1920x1080@165,0x0,auto"
+        "eDP-1,1920x1080,0x0,1"
+        ",1920x1080,auto,1"
       ];
 
       xwayland = {
@@ -53,7 +50,7 @@ in
         kb_rules = "";
 
         follow_mouse = 1;
-        repeat_delay = 140;
+        repeat_delay = 600;
         repeat_rate = 30;
         numlock_by_default = 1;
         accel_profile = "flat";
@@ -153,34 +150,34 @@ in
       ];
 
       bind = [
-        "SUPER,Q,killactive,"
-        "SUPER,M,exit,"
-        "SUPER,S,togglefloating,"
-        "SUPER,g,togglegroup"
-        # "SUPER,tab,changegroupactive"
-        # "SUPER,P,pseudo,"
+        "$mainMod,Q,killactive,"
+        "$mainMod,M,exit,"
+        "$mainMod,S,togglefloating,"
+        "$mainMod,g,togglegroup"
+        # "$mainMod,tab,changegroupactive"
+        # "$mainMod,P,pseudo,"
 
         # Vim binds
-        "SUPER,h,movefocus,l"
-        "SUPER,l,movefocus,r"
-        "SUPER,k,movefocus,u"
-        "SUPER,j,movefocus,d"
+        "$mainMod,h,movefocus,l"
+        "$mainMod,l,movefocus,r"
+        "$mainMod,k,movefocus,u"
+        "$mainMod,j,movefocus,d"
 
-        "SUPER,left,movefocus,l"
-        "SUPER,down,movefocus,r"
-        "SUPER,up,movefocus,u"
-        "SUPER,right,movefocus,d"
+        "$mainMod,left,movefocus,l"
+        "$mainMod,down,movefocus,r"
+        "$mainMod,up,movefocus,u"
+        "$mainMod,right,movefocus,d"
 
-        "SUPER,1,workspace,1"
-        "SUPER,2,workspace,2"
-        "SUPER,3,workspace,3"
-        "SUPER,4,workspace,4"
-        "SUPER,5,workspace,5"
-        "SUPER,6,workspace,6"
-        "SUPER,7,workspace,7"
-        "SUPER,8,workspace,8"
-        # "SUPER,9,workspace,9"
-        # "SUPER,0,workspace,10"
+        "$mainMod,1,workspace,1"
+        "$mainMod,2,workspace,2"
+        "$mainMod,3,workspace,3"
+        "$mainMod,4,workspace,4"
+        "$mainMod,5,workspace,5"
+        "$mainMod,6,workspace,6"
+        "$mainMod,7,workspace,7"
+        "$mainMod,8,workspace,8"
+        # "$mainMod,9,workspace,9"
+        # "$mainMod,0,workspace,10"
 
         #CTRL,1,workspace,1
         #CTRL,2,workspace,2
@@ -190,65 +187,62 @@ in
         #CTRL,6,workspace,6
 
         ################################## Move ###########################################
-        "SUPER SHIFT, H, movewindow, l"
-        "SUPER SHIFT, L, movewindow, r"
-        "SUPER SHIFT, K, movewindow, u"
-        "SUPER SHIFT, J, movewindow, d"
-        "SUPER SHIFT, left, movewindow, l"
-        "SUPER SHIFT, right, movewindow, r"
-        "SUPER SHIFT, up, movewindow, u"
-        "SUPER SHIFT, down, movewindow, d"
+        "$mainMod SHIFT, H, movewindow, l"
+        "$mainMod SHIFT, L, movewindow, r"
+        "$mainMod SHIFT, K, movewindow, u"
+        "$mainMod SHIFT, J, movewindow, d"
+        "$mainMod SHIFT, left, movewindow, l"
+        "$mainMod SHIFT, right, movewindow, r"
+        "$mainMod SHIFT, up, movewindow, u"
+        "$mainMod SHIFT, down, movewindow, d"
 
         #---------------------------------------------------------------#
         # Move active window to a workspace with mainMod + ctrl + [0-9] #
         #---------------------------------------------------------------#
-        # "SUPER $mainMod CTRL, 1, movetoworkspace, 1"
-        # "SUPER $mainMod CTRL, 2, movetoworkspace, 2"
-        # "SUPER $mainMod CTRL, 3, movetoworkspace, 3"
-        # "SUPER $mainMod CTRL, 4, movetoworkspace, 4"
-        # "SUPER $mainMod CTRL, 5, movetoworkspace, 5"
-        # "SUPER $mainMod CTRL, 6, movetoworkspace, 6"
-        # "SUPER $mainMod CTRL, 7, movetoworkspace, 7"
-        # "SUPER $mainMod CTRL, 8, movetoworkspace, 8"
-        # "SUPER $mainMod CTRL, 9, movetoworkspace, 9"
-        # "SUPER $mainMod CTRL, 0, movetoworkspace, 10"
-        # "SUPER $mainMod CTRL, left, movetoworkspace, -1"
-        # "SUPER $mainMod CTRL, right, movetoworkspace, +1"
+        # "$mainMod CTRL, 1, movetoworkspace, 1"
+        # "$mainMod CTRL, 2, movetoworkspace, 2"
+        # "$mainMod CTRL, 3, movetoworkspace, 3"
+        # "$mainMod CTRL, 4, movetoworkspace, 4"
+        # "$mainMod CTRL, 5, movetoworkspace, 5"
+        # "$mainMod CTRL, 6, movetoworkspace, 6"
+        # "$mainMod CTRL, 7, movetoworkspace, 7"
+        # "$mainMod CTRL, 8, movetoworkspace, 8"
+        # "$mainMod CTRL, 9, movetoworkspace, 9"
+        # "$mainMod CTRL, 0, movetoworkspace, 10"
+        # "$mainMod CTRL, left, movetoworkspace, -1"
+        # "$mainMod CTRL, right, movetoworkspace, +1"
         # same as above, but doesnt switch to the workspace
-        "SUPER $mainMod SHIFT, 1, movetoworkspacesilent, 1"
-        "SUPER $mainMod SHIFT, 2, movetoworkspacesilent, 2"
-        "SUPER $mainMod SHIFT, 3, movetoworkspacesilent, 3"
-        "SUPER $mainMod SHIFT, 4, movetoworkspacesilent, 4"
-        "SUPER $mainMod SHIFT, 5, movetoworkspacesilent, 5"
-        "SUPER $mainMod SHIFT, 6, movetoworkspacesilent, 6"
-        "SUPER $mainMod SHIFT, 7, movetoworkspacesilent, 7"
-        "SUPER $mainMod SHIFT, 8, movetoworkspacesilent, 8"
-        # "SUPER $mainMod SHIFT, 9, movetoworkspacesilent, 9"
-        # "SUPER $mainMod SHIFT, 0, movetoworkspacesilent, 10"
+        "$mainMod SHIFT, 1, movetoworkspacesilent, 1"
+        "$mainMod SHIFT, 2, movetoworkspacesilent, 2"
+        "$mainMod SHIFT, 3, movetoworkspacesilent, 3"
+        "$mainMod SHIFT, 4, movetoworkspacesilent, 4"
+        "$mainMod SHIFT, 5, movetoworkspacesilent, 5"
+        "$mainMod SHIFT, 6, movetoworkspacesilent, 6"
+        "$mainMod SHIFT, 7, movetoworkspacesilent, 7"
+        "$mainMod SHIFT, 8, movetoworkspacesilent, 8"
+        # "$mainMod SHIFT, 9, movetoworkspacesilent, 9"
+        # "$mainMod SHIFT, 0, movetoworkspacesilent, 10"
 
-        "SUPER,RETURN,exec,wezterm"
-        "SUPER,n,exec,neovide"
-        "SUPER,e,exec,emacsclient -c -a 'emacs'"
-        ",Print,exec,screenshot"
-        "SUPER,Print,exec,screenshot-edit"
-        "SUPER SHIFT,C,exec,wallpaper"
-        "SUPER,space,exec,bemenu-run"
-        "SUPER,z,exec,waybar"
-        # "SUPER,space,exec, tofi-drun --drun-launch=true"
-        # SUPER,space,exec,wofi --show drun -I -s ~/.config/wofi/style.css DP-3
-        # "SUPER SHIFT,V,exec,~/.config/eww/fool_moon/bar/scripts/widgets toggle-clip"
-        # "SUPER SHIFT,C,exec,~/.config/hypr/scripts/wallpaper_picker"
-        # "SUPER,space,exec, tofi-drun --drun-launch=true"
-        # SUPER,space,exec,wofi --show drun -I -s ~/.config/wofi/style.css DP-3
-        # "SUPER SHIFT,V,exec,~/.config/eww/fool_moon/bar/scripts/widgets toggle-clip"
-        # "SUPER SHIFT,C,exec,~/.config/hypr/scripts/wallpaper_picker"
-        # "SUPER $mainMod SHIFT,B,exec, killall -3 eww & sleep 1 && ~/.config/hypr/themes/winter/eww/launch_bar"
+        "$mainMod,T,exec,wezterm"
+        "$mainMod SHIFT,S,exec,screenshot"
+        "$mainMod SHIFT,C,exec,wallpaper"
+        "$mainMod,A,exec,bemenu-run"
+        "$mainMod,z,exec,waybar"
+        # "$mainMod,space,exec, tofi-drun --drun-launch=true"
+        # $mainMod,space,exec,wofi --show drun -I -s ~/.config/wofi/style.css DP-3
+        # "$mainMod SHIFT,V,exec,~/.config/eww/fool_moon/bar/scripts/widgets toggle-clip"
+        # "$mainMod SHIFT,C,exec,~/.config/hypr/scripts/wallpaper_picker"
+        # "$mainMod,space,exec, tofi-drun --drun-launch=true"
+        # $mainMod,space,exec,wofi --show drun -I -s ~/.config/wofi/style.css DP-3
+        # "$mainMod SHIFT,V,exec,~/.config/eww/fool_moon/bar/scripts/widgets toggle-clip"
+        # "$mainMod SHIFT,C,exec,~/.config/hypr/scripts/wallpaper_picker"
+        # "$mainMod SHIFT,B,exec, killall -3 eww & sleep 1 && ~/.config/hypr/themes/winter/eww/launch_bar"
       ];
 
       bindm = [
         # Mouse binds
-        "SUPER,mouse:272,movewindow"
-        "SUPER,mouse:273,resizewindow"
+        "$mainMod,mouse:272,movewindow"
+        "$mainMod,mouse:273,resizewindow"
       ];
 
       # bindle = [

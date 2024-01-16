@@ -4,15 +4,15 @@
     profiles.redyf = {
       search.default = "Google";
       search.force = true;
-      extensions = with pkgs.nur.repos.rycee.firefox-addons; [
-        darkreader
-        decentraleyes
-        clearurls
-        stylus
-        auto-tab-discard
-        vimium
-        ublock-origin
-      ];
+      # extensions = with pkgs.nur.repos.rycee.firefox-addons; [
+      #   darkreader
+      #   decentraleyes
+      #   clearurls
+      #   stylus
+      #   auto-tab-discard
+      #   vimium
+      #   ublock-origin
+      # ];
     };
   };
 

@@ -1,10 +1,10 @@
 _: {
   imports = [
-    ./discord
+    # ./discord
     # ./matrix
     ./obs
-    # ./chrome
-    # ./firefox
-    ./spicetify
+    ./firefox
+    ./chrome
+    # ./spicetify
   ];
 }

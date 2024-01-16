@@ -6,7 +6,7 @@
     terminal = "xterm-256color";
     escapeTime = 500;
     keyMode = "vi";
-    prefix = "C-Space";
+    prefix = "C-b";
     mouse = true;
     extraConfig = ''
       # Shift Alt vim keys to switch windows

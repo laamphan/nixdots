@@ -63,7 +63,7 @@
   };
 
   # Set your time zone.
-  time.timeZone = "America/Bahia";
+  time.timeZone = "Asia/Ho_Chi_Minh";
 
   # Select internationalisation properties.
   i18n = {
@@ -80,6 +80,16 @@
       LC_TIME = "en_US.UTF-8";
     };
   };
+  i18n.inputMethod = {
+    enabled = "fcitx5";
+    fcitx5.addons = with pkgs; [
+      fcitx5-gtk
+      fcitx5-unikey
+      fcitx5-chinese-addons
+      fcitx5-anthy
+      fcitx5-nord
+    ];
+  };
 
   # Enable programs
   programs = {
@@ -93,6 +103,10 @@
       };
     };
   };
+  # programs.nix-ld.enable = true;
+  # programs.nix-ld.libraries = with pkgs; [
+  #   nodejs_20
+  # ];
 
   # Allow unfree packages + use overlays
   nixpkgs = {
@@ -172,6 +186,8 @@
       DEFAULT_BROWSER = "${pkgs.brave}/bin/firefox"; # Set default browser
     };
     systemPackages = with pkgs; [
+      htop
+      killall
       git
       wget
       playerctl
@@ -180,17 +196,17 @@
   };
 
   hardware = {
-    nvidia = {
-      open = false;
-      nvidiaSettings = true;
-      powerManagement.enable = true;
-      modesetting.enable = true;
-      package = config.boot.kernelPackages.nvidiaPackages.stable;
-    };
+    # nvidia = {
+    #   open = false;
+    #   nvidiaSettings = true;
+    #   powerManagement.enable = true;
+    #   modesetting.enable = true;
+    #   package = config.boot.kernelPackages.nvidiaPackages.stable;
+    # };
     opengl = {
       enable = true;
       driSupport32Bit = true;
-      extraPackages = with pkgs; [ nvidia-vaapi-driver ];
+      # extraPackages = with pkgs; [ nvidia-vaapi-driver ];
     };
   };
 
@@ -209,7 +225,9 @@
           enableContribAndExtras = true;
         };
       };
-      videoDrivers = [ "nvidia" ];
+      videoDrivers = [
+        #"nvidia"
+      ];
       layout = "us";
       xkbVariant = "";
       libinput = {
@@ -225,6 +243,10 @@
     logmein-hamachi.enable = false;
     flatpak.enable = false;
   };
+
+  hardware.bluetooth.enable = true; # enables support for Bluetooth
+  hardware.bluetooth.powerOnBoot = true; # powers up the default Bluetooth controller on boot
+  services.blueman.enable = true;
 
   console.keyMap = "us";
 
