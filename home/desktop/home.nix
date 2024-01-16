@@ -1,4 +1,4 @@
-{ ... }: {
+{ pkgs, ... }: {
   home = {
     username = "redyf";
     homeDirectory = "/home/redyf";
@@ -47,7 +47,7 @@
   fonts.fontconfig.enable = true;
 
   xdg.configFile."nvim/" = {
-    source = (pkgs.callPackage ../../packages/nvchad.nix { }).nvchad;
+    source = (pkgs.callPackage ../../packages/nvchad { });
   };
 
   # Add support for .local/bin

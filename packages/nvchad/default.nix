@@ -3,6 +3,9 @@
 , fetchFromGitHub
 , ...
 }:
+let
+  custom = ./custom;
+in
 stdenvNoCC.mkDerivation rec {
   name = "nvchad";
   version = "2.0";
@@ -19,6 +22,8 @@ stdenvNoCC.mkDerivation rec {
   installPhase = ''
     mkdir -p $out
     cp -r ./ $out
+    mkdir -p "$out/lua/custom"
+    cp -a ${custom}/* "$out/lua/custom/"
   '';
 
   meta = with lib; {
