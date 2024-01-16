@@ -23,7 +23,7 @@ stdenvNoCC.mkDerivation rec {
     mkdir -p $out
     cp -r ./ $out
     mkdir -p "$out/lua/custom"
-    cp -a ${custom}/* "$out/lua/custom/"
+    cp -a ${custom}/. "$out/lua/custom/"
   '';
 
   meta = with lib; {
