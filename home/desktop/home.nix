@@ -46,6 +46,10 @@
 
   fonts.fontconfig.enable = true;
 
+  xdg.configFile."nvim/" = {
+    source = (pkgs.callPackage ../../packages/nvchad.nix { }).nvchad;
+  };
+
   # Add support for .local/bin
   home.sessionPath = [
     "$HOME/.local/bin"
