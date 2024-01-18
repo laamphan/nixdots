@@ -49,5 +49,6 @@
     # Audio/Music
     easyeffects
     pavucontrol
+
   ];
 }

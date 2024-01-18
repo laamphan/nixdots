@@ -30,7 +30,7 @@ in
       export PATH="$PATH:/home/redyf/.config/nvim/bin"
       export PATH="$PATH:/home/redyf/.npm-global/bin"
       export GITHUB_TOKEN="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"
-      export WINIT_UNIX_BACKEND=x11 neovide
+      export PATH="$PATH:~/.manabie/bin"
 
       # Autosuggest
       ZSH_AUTOSUGGEST_USE_ASYNC="true"

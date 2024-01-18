@@ -1,7 +1,7 @@
 _: {
   imports = [
     ./api
-    # ./go
+    ./go
     # ./java
     ./rust
     # ./elixir

@@ -11,5 +11,6 @@ _: {
     ./tools
     ./editors
     ./misc.nix
+    ./cloud
   ];
 }

@@ -7,5 +7,6 @@ _: {
     ./zoxide.nix
     ./ripgrep.nix
     ./rm-improved.nix
+    ./gnupg.nix
   ];
 }

@@ -227,7 +227,8 @@ in
         "$mainMod SHIFT,S,exec,screenshot"
         "$mainMod SHIFT,C,exec,wallpaper"
         "$mainMod,A,exec,bemenu-run"
-        "$mainMod,z,exec,waybar"
+        "$mainMod, F, fullscreen"
+        # "$mainMod,z,exec,waybar"
         # "$mainMod,space,exec, tofi-drun --drun-launch=true"
         # $mainMod,space,exec,wofi --show drun -I -s ~/.config/wofi/style.css DP-3
         # "$mainMod SHIFT,V,exec,~/.config/eww/fool_moon/bar/scripts/widgets toggle-clip"

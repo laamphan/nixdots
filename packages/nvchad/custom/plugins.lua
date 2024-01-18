@@ -26,6 +26,8 @@ local plugins = {
         "css-lsp",
         "html-lsp",
         "tailwindcss-language-server",
+        -- Nix
+        "nil"
       },
     },
   },

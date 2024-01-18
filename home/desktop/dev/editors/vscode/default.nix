@@ -1,5 +1,8 @@
 _: {
-  programs.vscode = {
-    enable = true;
+programs.vscode = {
+  enable = true;
+  userSettings = {
+    "window.titleBarStyle" = "custom"; 
+   };
   };
 }

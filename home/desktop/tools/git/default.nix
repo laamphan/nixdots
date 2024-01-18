@@ -10,7 +10,7 @@ _: {
         email = "binh1298@gmail.com";
       };
       url = {
-        "https://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:x-oauth-basic@github.com/" = {
+        "https://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:x-oauth-basic@github.com/" = {
           insteadOf = [
             "git@github.com:"
           ];
@@ -18,7 +18,7 @@ _: {
         "https://" = {
           insteadOf = [ "git://" ];
         };
-        "https://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:x-oauth-basic@github.com/manabie-com" = {
+        "https://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:x-oauth-basic@github.com/manabie-com" = {
           insteadOf = [ "https://github.com/manabie-com" ];
         };
       };
