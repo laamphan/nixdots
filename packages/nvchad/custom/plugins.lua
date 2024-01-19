@@ -69,6 +69,7 @@ local plugins = {
         "yaml",
         "astro",
         "go",
+        "nix",
       },
     },
   },

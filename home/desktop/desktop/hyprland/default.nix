@@ -12,7 +12,7 @@ let
   tokyonight_border = "rgba(7aa2f7ee) rgba(87aaf8ee) 45deg";
   tokyonight_background = "rgba(32344aaa)";
   catppuccin_border = "rgba(b4befeee)";
-  opacity = ".85";
+  opacity = ".95";
   cursor = "macOS-BigSur";
 in
 {
@@ -100,14 +100,14 @@ in
           "md3_decel, 0.05, 0.7, 0.1, 1"
         ];
         animation = [
-          "windowsIn,1,6,md3_decel,slide"
-          "windowsOut,1,6,md3_decel,slide"
-          "windowsMove,1,6,md3_decel,slide"
-          "fade,1,10,md3_decel"
-          "workspaces,1,9,md3_decel,slide"
-          "workspaces, 1, 6, default"
-          "specialWorkspace,1,8,md3_decel,slide"
-          "border,1,10,md3_decel"
+          "windowsIn,1,3,md3_decel,slide"
+          "windowsOut,1,3,md3_decel,slide"
+          "windowsMove,1,3,md3_decel,slide"
+          "fade,1,5,md3_decel"
+          "workspaces,1,4,md3_decel,slide"
+          "workspaces, 1, 3, default"
+          "specialWorkspace,1,4,md3_decel,slide"
+          "border,1,5,md3_decel"
         ];
       };
 
@@ -246,14 +246,14 @@ in
         "$mainMod,mouse:273,resizewindow"
       ];
 
-      # bindle = [
-      #     # Backlight Keys
-      #     ",XF86MonBrightnessUp,exec,light -A 5"
-      #     ",XF86MonBrightnessDown,exec,light -U 5"
-      #     # Volume Keys
-      #     ",XF86AudioRaiseVolume,exec,pactl set-sink-volume @DEFAULT_SINK@ +5%  "
-      #     ",XF86AudioLowerVolume,exec,pactl set-sink-volume @DEFAULT_SINK@ -5%  "
-      # ];
+      bindle = [
+          # Backlight Keys
+          ",XF86MonBrightnessUp,exec,light -A 5"
+          ",XF86MonBrightnessDown,exec,light -U 5"
+          # Volume Keys
+          ",XF86AudioRaiseVolume,exec,pactl set-sink-volume @DEFAULT_SINK@ +5%  "
+          ",XF86AudioLowerVolume,exec,pactl set-sink-volume @DEFAULT_SINK@ -5%  "
+      ];
       # bindl = [
       #     ",switch:on:Lid Switch, exec, swaylock -f -i ~/photos/wallpapers/wallpaper.png"
       #     ",switch:off:Lid Switch, exec, swaylock -f -i ~/photos/wallpapers/wallpaper.png"

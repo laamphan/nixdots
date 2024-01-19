@@ -4,6 +4,19 @@
     homeDirectory = "/home/redyf";
     stateVersion = "22.11";
   };
+  home.file.".vscode/argv.json" = {
+    force = true;
+    text = ''
+      {
+      	// "disable-hardware-acceleration": true,
+      	"enable-crash-reporter": true,
+      	// Unique id used for correlating crash reports sent from this instance.
+      	// Do not edit this value.
+      	"crash-reporter-id": "YOUR_CRASH_ID_HERE",
+        "password-store": "gnome"
+      }
+    '';
+  };
 
   # This value determines the Home Manager release that your
   # configuration is compatible with. This helps avoid breakage

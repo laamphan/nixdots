@@ -29,7 +29,7 @@ in
       export PATH="$PATH:$FORGIT_INSTALL_DIR/bin"
       export PATH="$PATH:/home/redyf/.config/nvim/bin"
       export PATH="$PATH:/home/redyf/.npm-global/bin"
-      export GITHUB_TOKEN="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"
+      export GITHUB_TOKEN=""
       export PATH="$PATH:~/.manabie/bin"
 
       # Autosuggest

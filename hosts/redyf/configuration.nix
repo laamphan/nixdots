@@ -187,11 +187,12 @@
       DEFAULT_BROWSER = "${pkgs.brave}/bin/firefox"; # Set default browser
     };
     systemPackages = with pkgs; [
-      htop
       killall
       git
       wget
       playerctl
+      libsecret
+      dbeaver
       inputs.xdg-portal-hyprland.packages.${system}.xdg-desktop-portal-hyprland
     ];
   };
@@ -243,6 +244,7 @@
     };
     logmein-hamachi.enable = false;
     flatpak.enable = false;
+    gnome.gnome-keyring.enable = true;
   };
 
   hardware.bluetooth.enable = true; # enables support for Bluetooth
