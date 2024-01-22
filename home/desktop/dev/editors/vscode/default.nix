@@ -16,6 +16,12 @@ programs.vscode = {
         version = "59.13.0";
         sha256 = "sha256-YWrNFDXUT4VPiIJYP4qN7OGaQL58k4s/9JSlz0dYwZ4=";
       }
+      {
+        name = "makefile-tools";
+        publisher = "ms-vscode";
+        version = "0.9.2";
+        sha256 = "sha256-6mlm7oSiixuRc/tq0EvIkOfVkoaZem6PqwV95+BQnVU=";
+      }
     ];
   userSettings = {
     "window.titleBarStyle" = "custom"; 

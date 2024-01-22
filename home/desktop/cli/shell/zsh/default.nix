@@ -147,6 +147,7 @@ in
       gi = "git init";
       gp = "git pull";
       gs = "git status";
+      chrome= "setsid google-chrome-stable --gtk-version=4";
     };
 
     oh-my-zsh = {
