@@ -152,7 +152,7 @@ in
       bind = [
         "$mainMod,Q,killactive,"
         "$mainMod,M,exit,"
-        "$mainMod,S,togglefloating,"
+        "$mainMod,W,togglefloating,"
         "$mainMod,g,togglegroup"
         # "$mainMod,tab,changegroupactive"
         # "$mainMod,P,pseudo,"
@@ -226,7 +226,7 @@ in
         "$mainMod,T,exec,wezterm"
         "$mainMod SHIFT,S,exec,screenshot"
         "$mainMod SHIFT,C,exec,wallpaper"
-        "$mainMod,A,exec,bemenu-run"
+        "$mainMod,A,exec,fuzzel"
         "$mainMod, F, fullscreen"
         # "$mainMod,z,exec,waybar"
         # "$mainMod,space,exec, tofi-drun --drun-launch=true"
@@ -254,10 +254,11 @@ in
           ",XF86AudioRaiseVolume,exec,pactl set-sink-volume @DEFAULT_SINK@ +5%  "
           ",XF86AudioLowerVolume,exec,pactl set-sink-volume @DEFAULT_SINK@ -5%  "
       ];
-      # bindl = [
-      #     ",switch:on:Lid Switch, exec, swaylock -f -i ~/photos/wallpapers/wallpaper.png"
-      #     ",switch:off:Lid Switch, exec, swaylock -f -i ~/photos/wallpapers/wallpaper.png"
-      # ];
+      bindl = [
+          ",switch:on:Lid Switch, exec, swaylock -i ~/Pictures/programmer.gif"
+
+          ",switch:off:Lid Switch, exec, swaylock -i ~/Pictures/programmer.gif" 
+      ];
 
       windowrule = [
         # Window rules

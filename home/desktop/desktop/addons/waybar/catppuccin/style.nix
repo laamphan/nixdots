@@ -3,7 +3,7 @@ _: ''
     font-family: Ubuntu Nerd Font;
     font-weight: normal;
     font-size: 14px;
-    min-height: 0;
+    min-height: 24px;
     color: #cdd6f4;
   }
   #window,

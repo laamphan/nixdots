@@ -39,7 +39,7 @@ _: {
     "custom/arch" = {
       format = " 󱄅 ";
       tooltip = false;
-      on-click-release = "bemenu-run";
+      on-click-release = "fuzzel";
     };
 
     "custom/media" = {

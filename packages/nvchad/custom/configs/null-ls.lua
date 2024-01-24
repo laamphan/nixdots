@@ -11,6 +11,7 @@ local sources = {
   formatting.prettierd,
   -- formatting.prettier_eslint,
   diagnostics.shellcheck,
+  formatting.alejandra
 }
 
 null_ls.setup {

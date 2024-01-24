@@ -1,7 +1,8 @@
-{ config
-, pkgs
-, inputs
-, ...
+{
+  config,
+  pkgs,
+  inputs,
+  ...
 }: {
   imports = [
     # Include the results of the hardware scan.
@@ -10,13 +11,13 @@
 
   # Bootloader.
   boot = {
-    kernelModules = [ "v4l2loopback" ]; # Autostart kernel modules on boot
-    extraModulePackages = with config.boot.kernelPackages; [ v4l2loopback ]; # loopback module to make OBS virtual camera work
-    kernelParams = [ "nvidia.NVreg_PreserveVideoMemoryAllocations=1" ];
-    supportedFilesystems = [ "ntfs" ];
+    kernelModules = ["v4l2loopback"]; # Autostart kernel modules on boot
+    extraModulePackages = with config.boot.kernelPackages; [v4l2loopback]; # loopback module to make OBS virtual camera work
+    kernelParams = ["nvidia.NVreg_PreserveVideoMemoryAllocations=1"];
+    supportedFilesystems = ["ntfs"];
     loader = {
       systemd-boot.enable = false;
-      timeout = 10;
+      timeout = 3;
       efi = {
         canTouchEfiVariables = true;
         efiSysMountPoint = "/boot";
@@ -29,12 +30,12 @@
         configurationLimit = 3;
         theme =
           pkgs.fetchFromGitHub
-            {
-              owner = "Lxtharia";
-              repo = "minegrub-theme";
-              rev = "193b3a7c3d432f8c6af10adfb465b781091f56b3";
-              sha256 = "1bvkfmjzbk7pfisvmyw5gjmcqj9dab7gwd5nmvi8gs4vk72bl2ap";
-            };
+          {
+            owner = "Lxtharia";
+            repo = "minegrub-theme";
+            rev = "193b3a7c3d432f8c6af10adfb465b781091f56b3";
+            sha256 = "1bvkfmjzbk7pfisvmyw5gjmcqj9dab7gwd5nmvi8gs4vk72bl2ap";
+          };
       };
     };
   };
@@ -151,9 +152,9 @@
     fontconfig = {
       enable = true;
       defaultFonts = {
-        serif = [ "Times, Noto Serif" ];
-        sansSerif = [ "Helvetica Neue LT Std, Helvetica, Noto Sans" ];
-        monospace = [ "Courier Prime, Courier, Noto Sans Mono" ];
+        serif = ["Times, Noto Serif"];
+        sansSerif = ["Helvetica Neue LT Std, Helvetica, Noto Sans"];
+        monospace = ["Courier Prime, Courier, Noto Sans Mono"];
       };
     };
   };
@@ -273,7 +274,7 @@
         description = "redyf";
         initialPassword = "123456";
         shell = pkgs.zsh;
-        extraGroups = [ "networkmanager" "wheel" "input" "docker" "libvirtd" ];
+        extraGroups = ["networkmanager" "wheel" "input" "docker" "libvirtd"];
       };
     };
   };
@@ -285,12 +286,18 @@
       wheelNeedsPassword = true;
       extraRules = [
         {
-          users = [ "redyf" ];
+          users = ["redyf"];
           keepEnv = true;
           persist = true;
         }
       ];
     };
+    pam.services.swaylock = {
+      text = ''
+        auth include login
+      '';
+    };
+    pam.services.login.enableGnomeKeyring = true;
   };
 
   nix = {
@@ -298,8 +305,8 @@
     extraOptions = "experimental-features = nix-command flakes";
     settings = {
       auto-optimise-store = true;
-      substituters = [ "https://hyprland.cachix.org" ];
-      trusted-public-keys = [ "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc=" ];
+      substituters = ["https://hyprland.cachix.org"];
+      trusted-public-keys = ["hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="];
     };
     gc = {
       automatic = true;

@@ -30,11 +30,12 @@
     # Rice
     swww # Cool wallpapers/gifs transitions
     dunst # Notifications for your system
-    bemenu # Dmenu for wayland
+    fuzzel # Dmenu for wayland
     xfce.thunar # Best GUI file manager
     cmatrix
     onefetch
     nitrogen # Wallpaper utility for X11
+    swaylock
 
     # Screenshot + extra utils
     ffmpeg_6 # A complete, cross-platform solution to record, convert and stream audio and video

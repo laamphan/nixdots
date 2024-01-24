@@ -17,7 +17,6 @@
     nur.url = "github:nix-community/NUR";
     nix-colors.url = "github:misterio77/nix-colors";
     spicetify-nix.url = "github:the-argus/spicetify-nix";
-    Neve.url = "github:redyf/Neve";
 
     # SFMono w/ patches
     sf-mono-liga-src = {
@@ -30,91 +29,93 @@
       flake = false;
     };
 
+    alejandra.url = "github:kamadorueda/alejandra/3.0.0";
+    alejandra.inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  outputs =
-    { self
-    , nixpkgs
-    , hyprland
-    , home-manager
-    , NixOS-WSL
-    , spicetify-nix
-    , ...
-    } @ inputs:
-    let
-      supportedSystems = [ "x86_64-linux" "x86_64-darwin" "aarch64-linux" "aarch64-darwin" ];
+  outputs = {
+    self,
+    nixpkgs,
+    hyprland,
+    home-manager,
+    NixOS-WSL,
+    spicetify-nix,
+    alejandra,
+    ...
+  } @ inputs: let
+    supportedSystems = ["x86_64-linux" "x86_64-darwin" "aarch64-linux" "aarch64-darwin"];
 
-      # Helper function to generate an attrset '{ x86_64-linux = f "x86_64-linux"; ... }'.
-      forAllSystems = nixpkgs.lib.genAttrs supportedSystems;
+    # Helper function to generate an attrset '{ x86_64-linux = f "x86_64-linux"; ... }'.
+    forAllSystems = nixpkgs.lib.genAttrs supportedSystems;
 
-      # Nixpkgs instantiated for supported system types.
-      nixpkgsFor = forAllSystems (system: import nixpkgs { inherit system; });
-    in
-    {
-      nixosConfigurations = {
-        redyf =
-          nixpkgs.lib.nixosSystem
-            {
-              system = "x86_64-linux";
-              specialArgs = {
-                inherit
-                  inputs
-                  hyprland
-                  spicetify-nix
-                  ;
-              };
-              modules = [
-                ./hosts/redyf/configuration.nix
-                home-manager.nixosModules.home-manager
-                {
-                  home-manager = {
-                    useUserPackages = true;
-                    useGlobalPkgs = false;
-                    extraSpecialArgs = { inherit inputs spicetify-nix; };
-                    users.redyf = ./home/desktop/home.nix;
-                  };
-                }
-                hyprland.nixosModules.default
-                { programs.hyprland.enable = true; }
-              ];
-            };
-        wsl = nixpkgs.lib.nixosSystem {
+    # Nixpkgs instantiated for supported system types.
+    nixpkgsFor = forAllSystems (system: import nixpkgs {inherit system;});
+  in {
+    nixosConfigurations = {
+      redyf =
+        nixpkgs.lib.nixosSystem
+        {
           system = "x86_64-linux";
+          specialArgs = {
+            inherit
+              inputs
+              hyprland
+              spicetify-nix
+              ;
+          };
           modules = [
-            { nix.registry.nixpkgs.flake = nixpkgs; }
-            ./hosts/wsl/configuration.nix
+            {
+              environment.systemPackages = [alejandra.defaultPackage."x86_64-linux"];
+            }
+            ./hosts/redyf/configuration.nix
             home-manager.nixosModules.home-manager
             {
               home-manager = {
                 useUserPackages = true;
                 useGlobalPkgs = false;
-                users.red = ./home/wsl/home.nix;
+                extraSpecialArgs = {inherit inputs spicetify-nix;};
+                users.redyf = ./home/desktop/home.nix;
               };
             }
-            NixOS-WSL.nixosModules.wsl
+            hyprland.nixosModules.default
+            {programs.hyprland.enable = true;}
           ];
         };
-        vm = nixpkgs.lib.nixosSystem {
-          system = "x86_64-linux";
-          modules = [
-            ./hosts/vm/configuration.nix
-            home-manager.nixosModules.home-manager
-          ];
-        };
+      wsl = nixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
+        modules = [
+          {nix.registry.nixpkgs.flake = nixpkgs;}
+          ./hosts/wsl/configuration.nix
+          home-manager.nixosModules.home-manager
+          {
+            home-manager = {
+              useUserPackages = true;
+              useGlobalPkgs = false;
+              users.red = ./home/wsl/home.nix;
+            };
+          }
+          NixOS-WSL.nixosModules.wsl
+        ];
       };
-      devShells = forAllSystems (system:
-        let
-          pkgs = nixpkgsFor.${system};
-        in
-        {
-          default = pkgs.mkShell {
-            buildInputs = with pkgs; [
-              git
-              nixpkgs-fmt
-              statix
-            ];
-          };
-        });
-      formatter.x86_64-linux = nixpkgs.legacyPackages.x86_64-linux.nixpkgs-fmt;
+      vm = nixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
+        modules = [
+          ./hosts/vm/configuration.nix
+          home-manager.nixosModules.home-manager
+        ];
+      };
     };
+    devShells = forAllSystems (system: let
+      pkgs = nixpkgsFor.${system};
+    in {
+      default = pkgs.mkShell {
+        buildInputs = with pkgs; [
+          git
+          nixpkgs-fmt
+          statix
+        ];
+      };
+    });
+    formatter.x86_64-linux = nixpkgs.legacyPackages.x86_64-linux.nixpkgs-fmt;
+  };
 }
