@@ -46,6 +46,12 @@
           version = "0.40.1";
           sha256 = "sha256-KeYui/REV9E1HcNWBb0ThD0fOWkMM0AVTyfiE1efhCA=";
         }
+        {
+          name = "vscode-jest-runner";
+          publisher = "firsttris";
+          version = "0.4.72";
+          sha256 = "sha256-1nUpOXdteWsyFYJ2uATCcr1SUbeusmbpa09Bkw9/TZM=";
+        }
       ];
     userSettings = {
       "window.titleBarStyle" = "custom";
