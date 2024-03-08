@@ -7,7 +7,6 @@ local lspconfig = require "lspconfig"
 lspconfig.tsserver.setup {
   on_attach = on_attach,
   capabilities = capabilities,
-
   init_options = {
     preferences = {
       importModuleSpecifierPreference = "non-relative",
@@ -16,6 +15,11 @@ lspconfig.tsserver.setup {
 }
 
 lspconfig.eslint.setup {
+  capabilities = capabilities,
+  on_attach = on_attach,
+}
+
+lspconfig.biome.setup {
   capabilities = capabilities,
   on_attach = on_attach,
 }

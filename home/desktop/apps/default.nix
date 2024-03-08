@@ -5,6 +5,9 @@ _: {
     ./obs
     ./firefox
     ./chrome
+    ./telegram
+    ./obsidian
+    ./google-drive
     # ./spicetify
   ];
 }

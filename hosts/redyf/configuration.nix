@@ -13,7 +13,7 @@
   boot = {
     kernelModules = ["v4l2loopback"]; # Autostart kernel modules on boot
     extraModulePackages = with config.boot.kernelPackages; [v4l2loopback]; # loopback module to make OBS virtual camera work
-    kernelParams = ["nvidia.NVreg_PreserveVideoMemoryAllocations=1"];
+    kernelParams = ["nvidia.NVreg_PreserveVideoMemoryAllocations=0"];
     supportedFilesystems = ["ntfs"];
     loader = {
       systemd-boot.enable = false;
@@ -186,6 +186,10 @@
       NIXOS_OZONE_WL = "1"; # Hint electron apps to use wayland
       # WLR_NO_HARDWARE_CURSORS = "1"; # Fix cursor rendering issue on wlr nvidia.
       DEFAULT_BROWSER = "${pkgs.brave}/bin/firefox"; # Set default browser
+      GTK_IM_MODULE = "fcitx";
+      QT_IM_MODULE = "fcitx";
+      XMODIFIERS = "@im=fcitx";
+      OBSIDIAN_USE_WAYLAND = "1";
     };
     systemPackages = with pkgs; [
       killall
@@ -193,8 +197,18 @@
       wget
       playerctl
       libsecret
+      brightnessctl
       dbeaver
       inputs.xdg-portal-hyprland.packages.${system}.xdg-desktop-portal-hyprland
+      xdg-desktop-portal-gtk
+    ];
+  };
+
+  # For obsidian
+  xdg.portal = {
+    enable = true;
+    extraPortals = with pkgs; [
+      xdg-desktop-portal-gtk
     ];
   };
 
@@ -256,7 +270,6 @@
 
   sound.enable = true;
   hardware.pulseaudio.enable = false;
-  security.rtkit.enable = true;
   services.pipewire = {
     enable = true;
     alsa = {
@@ -298,6 +311,7 @@
       '';
     };
     pam.services.login.enableGnomeKeyring = true;
+    rtkit.enable = true;
   };
 
   nix = {

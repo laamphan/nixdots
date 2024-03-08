@@ -10,6 +10,7 @@ local plugins = {
         "eslint-lsp",
         "prettierd",
         "eslint_d",
+        "biome",
         -- Astro
         "astro-language-server",
         -- Lua

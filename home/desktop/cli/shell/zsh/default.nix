@@ -1,17 +1,16 @@
-{ config
-, pkgs
-, lib
-, ...
-}:
-let
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}: let
   themepkg = pkgs.fetchFromGitHub {
     owner = "catppuccin";
     repo = "zsh-syntax-highlighting";
     rev = "06d519c20798f0ebe275fc3a8101841faaeee8ea";
     sha256 = "sha256-Q7KmwUd9fblprL55W0Sf4g7lRcemnhjh4/v+TacJSfo=";
   };
-in
-{
+in {
   programs.zsh = {
     enable = true;
     dotDir = ".config/zsh";
@@ -29,8 +28,10 @@ in
       export PATH="$PATH:$FORGIT_INSTALL_DIR/bin"
       export PATH="$PATH:/home/redyf/.config/nvim/bin"
       export PATH="$PATH:/home/redyf/.npm-global/bin"
-      export GITHUB_TOKEN=""
+      export GITHUB_TOKEN="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"
       export PATH="$PATH:~/.manabie/bin"
+      # For obsidian
+      export LD_LIBRARY_PATH=$(nix build --print-out-paths --no-link nixpkgs#libGL)/lib
 
       # Autosuggest
       ZSH_AUTOSUGGEST_USE_ASYNC="true"
@@ -117,7 +118,6 @@ in
        zstyle ':completion:*' file-sort modification
        zstyle ':completion:*:exa' sort false
        zstyle ':completion:files' sort false
-
     '';
 
     shellAliases = {
@@ -147,7 +147,8 @@ in
       gi = "git init";
       gp = "git pull";
       gs = "git status";
-      chrome= "setsid google-chrome-stable --gtk-version=4";
+      chrome = "setsid google-chrome-stable --gtk-version=4";
+      obsidian = "setsid obsidian --enable-features=UseOzonePlatform --ozone-platform=wayland --enable-wayland-ime";
     };
 
     oh-my-zsh = {

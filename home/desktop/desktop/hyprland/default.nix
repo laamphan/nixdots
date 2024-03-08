@@ -1,8 +1,8 @@
-{ inputs
-, pkgs
-, ...
-}:
-let
+{
+  inputs,
+  pkgs,
+  ...
+}: let
   hyprland_flake = inputs.hyprland.packages.${pkgs.system}.hyprland;
   fontsize = "12";
   oxocarbon_pink = "ff7eb6";
@@ -14,8 +14,7 @@ let
   catppuccin_border = "rgba(b4befeee)";
   opacity = ".95";
   cursor = "macOS-BigSur";
-in
-{
+in {
   home.packages = with pkgs; [
     grim
     slurp
@@ -227,7 +226,7 @@ in
         "$mainMod SHIFT,S,exec,screenshot"
         "$mainMod SHIFT,C,exec,wallpaper"
         "$mainMod,A,exec,fuzzel"
-        "$mainMod, F, fullscreen"
+        "$mainMod,F,fullscreen"
         # "$mainMod,z,exec,waybar"
         # "$mainMod,space,exec, tofi-drun --drun-launch=true"
         # $mainMod,space,exec,wofi --show drun -I -s ~/.config/wofi/style.css DP-3
@@ -247,17 +246,17 @@ in
       ];
 
       bindle = [
-          # Backlight Keys
-          ",XF86MonBrightnessUp,exec,light -A 5"
-          ",XF86MonBrightnessDown,exec,light -U 5"
-          # Volume Keys
-          ",XF86AudioRaiseVolume,exec,pactl set-sink-volume @DEFAULT_SINK@ +5%  "
-          ",XF86AudioLowerVolume,exec,pactl set-sink-volume @DEFAULT_SINK@ -5%  "
+        # Backlight Keys
+        ",XF86MonBrightnessUp,exec,brightnessctl set 5+"
+        ",XF86MonBrightnessDown,exec,brightnessctl set 5%-"
+        # Volume Keys
+        ",XF86AudioRaiseVolume,exec,pactl set-sink-volume @DEFAULT_SINK@ +5%  "
+        ",XF86AudioLowerVolume,exec,pactl set-sink-volume @DEFAULT_SINK@ -5%  "
       ];
       bindl = [
-          ",switch:on:Lid Switch, exec, swaylock -i ~/Pictures/programmer.gif"
+        ",switch:on:Lid Switch, exec, swaylock -i ~/Pictures/programmer.gif"
 
-          ",switch:off:Lid Switch, exec, swaylock -i ~/Pictures/programmer.gif" 
+        ",switch:off:Lid Switch, exec, swaylock -i ~/Pictures/programmer.gif"
       ];
 
       windowrule = [
@@ -297,10 +296,11 @@ in
     extraConfig = ''
            # source = ~/.config/hypr/themes/catppuccin-macchiato.conf
            # source = ~/.config/hypr/themes/oxocarbon.conf
-           env = LIBVA_DRIVER_NAME,nvidia
            env = XDG_SESSION_TYPE,wayland
-           env = GBM_BACKEND,nvidia-drm
-           env = __GLX_VENDOR_LIBRARY_NAME,nvidia
+
+           # env = LIBVA_DRIVER_NAME,nvidia
+           # env = GBM_BACKEND,nvidia-drm
+           # env = __GLX_VENDOR_LIBRARY_NAME,nvidia
            env = WLR_NO_HARDWARE_CURSORS,1
       #     # will switch to a submap called resize
       #     bind=$mainMod,R,submap,resize

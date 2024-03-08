@@ -1,11 +1,9 @@
-{ inputs, ... }:
-let
+{inputs, ...}: let
   inherit (inputs.nix-colors) colorSchemes;
-  # catppuccin-mocha = (import ./palettes/catppuccin-mocha.nix).colorscheme;
-  catppuccin-macchiato = (import ./palettes/catppuccin-macchiato.nix).colorscheme;
+  catppuccin-mocha = (import ./palettes/catppuccin-mocha.nix).colorscheme;
+  # catppuccin-macchiato = (import ./palettes/catppuccin-macchiato.nix).colorscheme;
   # oxocarbon-dark = (import ./palettes/oxocarbon-dark.nix).colorscheme;
-in
-{
+in {
   imports = [
     inputs.nix-colors.homeManagerModule
     ./gtk.nix
@@ -14,7 +12,7 @@ in
   #colorscheme = colorSchemes.ashes;
 
   # use the self-declared color scheme from palettes directory
-  # colorscheme = catppuccin-mocha;
-  colorscheme = catppuccin-macchiato;
+  colorscheme = catppuccin-mocha;
+  # colorscheme = catppuccin-macchiato;
   # colorscheme = oxocarbon-dark;
 }

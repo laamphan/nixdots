@@ -1,4 +1,4 @@
-{ pkgs, ... }: {
+{pkgs, ...}: {
   home.packages = with pkgs; [
     # TODO: Convert all packages to nix modules
 
@@ -15,6 +15,7 @@
     appimage-run # Run appimage files in the terminal
     polkit_gnome
     networkmanager
+    zip
 
     # Office + PDF readers
     # wpsoffice # MS office alternative for linux
@@ -50,6 +51,5 @@
     # Audio/Music
     easyeffects
     pavucontrol
-
   ];
 }
