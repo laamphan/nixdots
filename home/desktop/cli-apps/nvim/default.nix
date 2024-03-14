@@ -1,8 +1,9 @@
-{ inputs
-, config
-, pkgs
-, system
-, ...
+{
+  inputs,
+  config,
+  pkgs,
+  system,
+  ...
 }: {
   programs.neovim = {
     enable = true;
@@ -13,5 +14,6 @@
     withRuby = false;
     withNodeJs = false;
     withPython3 = false;
+    extraLuaPackages = ps: [ps.magick];
   };
 }

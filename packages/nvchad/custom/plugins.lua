@@ -9,6 +9,7 @@ local plugins = {
         "typescript-language-server",
         "eslint-lsp",
         "prettierd",
+        "prettier",
         "eslint_d",
         "biome",
         -- Astro
@@ -28,7 +29,9 @@ local plugins = {
         "html-lsp",
         "tailwindcss-language-server",
         -- Nix
-        "nil"
+        "nil",
+        -- Apex 
+        "apex-language-server",
       },
     },
   },
@@ -52,6 +55,7 @@ local plugins = {
     "nvim-treesitter/nvim-treesitter",
     opts = {
       ensure_installed = {
+        "apex",
         "bash",
         "html",
         "css",
@@ -159,6 +163,27 @@ local plugins = {
       require("nvim-ts-autotag").setup()
     end,
   },
+  {
+    "3rd/image.nvim",
+    config = function()
+      require("image").setup()
+    end,
+  },
+  {
+    "nvim-tree/nvim-tree.lua",
+    dependencies = { "3rd/image.nvim" },
+  },
 }
 vim.g.copilot_assume_mapped = true
+vim.filetype = on
+
+vim.filetype.add({
+  extension = {
+    cls = 'apex',
+    apex = 'apex',
+    trigger = 'apex',
+    soql = 'soql',
+    sosl = 'sosl',
+  }
+})
 return plugins

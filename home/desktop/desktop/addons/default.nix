@@ -5,8 +5,8 @@ _: {
     # ./wofi
     # ./st
     # ./foot
-    # ./kitty
-    ./wezterm
+    ./kitty
+    # ./wezterm
     ./waybar
   ];
 }

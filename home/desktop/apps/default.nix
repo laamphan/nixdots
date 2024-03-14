@@ -8,6 +8,7 @@ _: {
     ./telegram
     ./obsidian
     ./google-drive
+    ./imagemagick
     # ./spicetify
   ];
 }

@@ -11,7 +11,11 @@ local sources = {
   formatting.prettierd,
   -- formatting.prettier_eslint,
   diagnostics.shellcheck,
-  formatting.alejandra
+  formatting.alejandra,
+  formatting.prettier.with({
+    filetypes = { "apex" },
+    extra_args = { "--plugin=prettier-plugin-apex", "--write" },
+  })
 }
 
 null_ls.setup {

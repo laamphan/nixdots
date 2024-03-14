@@ -222,7 +222,7 @@ in {
         # "$mainMod SHIFT, 9, movetoworkspacesilent, 9"
         # "$mainMod SHIFT, 0, movetoworkspacesilent, 10"
 
-        "$mainMod,T,exec,wezterm"
+        "$mainMod,T,exec,kitty"
         "$mainMod SHIFT,S,exec,screenshot"
         "$mainMod SHIFT,C,exec,wallpaper"
         "$mainMod,A,exec,fuzzel"

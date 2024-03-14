@@ -81,7 +81,7 @@
       "editor.fontFamily" = "JetBrainsMono Nerd Font Mono";
       "extensions.autoUpdate" = true;
       "workbench.statusBar.visible" = true;
-      "terminal.external.linuxExec" = "wezterm";
+      "terminal.external.linuxExec" = "kitty";
       "telemetry.telemetryLevel" = "off";
       "[typescriptreact]" = {
         "editor.defaultFormatter" = "biomejs.biome";
