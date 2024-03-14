@@ -1,4 +1,4 @@
-{ pkgs, ... }: {
+{pkgs, ...}: {
   programs.tmux = {
     enable = true;
     clock24 = true;
@@ -80,6 +80,11 @@
       #+----------------+
       #+--- Bars ---+
       # set -g pane-active-border-style "bg=default fg=blue"
+
+      #+----------------+
+      #+   Image view   +
+      #+----------------+
+      set -gq allow-passthrough on
     '';
     plugins = with pkgs; [
       tmuxPlugins.sensible
