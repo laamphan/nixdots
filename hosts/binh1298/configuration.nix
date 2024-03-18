@@ -16,7 +16,7 @@
     kernelParams = ["nvidia.NVreg_PreserveVideoMemoryAllocations=1"];
     supportedFilesystems = ["ntfs"];
     loader = {
-      systemd-boot.enable = false;
+      systemd-boot.enable = true; # (for UEFI systems only)
       timeout = 3;
       efi = {
         canTouchEfiVariables = true;
