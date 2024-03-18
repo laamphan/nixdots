@@ -28,7 +28,7 @@ in {
       export PATH="$PATH:$FORGIT_INSTALL_DIR/bin"
       export PATH="$PATH:/home/redyf/.config/nvim/bin"
       export PATH="$PATH:/home/redyf/.npm-global/bin"
-      export GITHUB_TOKEN="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"
+      export GITHUB_TOKEN="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"
       export PATH="$PATH:~/.manabie/bin"
       # For obsidian
       export LD_LIBRARY_PATH=$(nix build --print-out-paths --no-link nixpkgs#libGL)/lib
