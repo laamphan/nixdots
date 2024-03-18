@@ -15,10 +15,10 @@
   # italic_font      Berkeley Mono Trial Medium
   # bold_italic_font Berkeley Mono Trial Medium
 
-  font_family      MonoLisa Trial Medium
-  bold_font        MonoLisa Trial Medium
-  italic_font      MonoLisa Trial Medium
-  bold_italic_font MonoLisa Trial Medium
+  # font_family      MonoLisa Trial Medium
+  # bold_font        MonoLisa Trial Medium
+  # italic_font      MonoLisa Trial Medium
+  # bold_italic_font MonoLisa Trial Medium
 
   # font_family      FiraMono Nerd Font Medium
   # bold_font        FiraMono Nerd Font Medium
@@ -35,10 +35,10 @@
   # italic_font      Caskaydia Cove Nerd Font Complete Mono Bold
   # bold_italic_font Caskaydia Cove Nerd Font Complete Mono Bold
 
-  # font_family      JetBrains Mono Bold Nerd Font Complete
-  # bold_font        JetBrains Mono Bold Nerd Font Complete
-  # italic_font      JetBrains Mono Bold Nerd Font Complete
-  # bold_italic_font JetBrains Mono Bold Nerd Font Complete
+  font_family      JetBrains Mono Bold Nerd Font Complete
+  bold_font        JetBrains Mono Bold Nerd Font Complete
+  italic_font      JetBrains Mono Bold Nerd Font Complete
+  bold_italic_font JetBrains Mono Bold Nerd Font Complete
 
   # font_family      Fira Code Bold Nerd Font Complete Mono
   # bold_font        Fira Code Bold Nerd Font Complete Mono

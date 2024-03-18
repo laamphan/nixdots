@@ -24,10 +24,10 @@
       flake = false;
     };
 
-    monolisa = {
-      url = "github:redyf/monolisa";
-      flake = false;
-    };
+    # monolisa = {
+    #   url = "github:redyf/monolisa";
+    #   flake = false;
+    # };
 
     alejandra.url = "github:kamadorueda/alejandra/3.0.0";
     alejandra.inputs.nixpkgs.follows = "nixpkgs";
