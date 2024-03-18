@@ -22,12 +22,12 @@ in {
       export PATH=$PATH:~/.local/bin/
       export PATH=/tmp/lazy-lvim/bin:$PATH
       export PATH="$HOME/.emacs.d/bin:$PATH"
-      export PATH="$PATH:/home/redyf/.nix-profile/bin/elixir"
-      export PATH="$PATH:/home/redyf/.nix-profile/bin/swww"
-      export PATH="$PATH:/home/redyf/.nix-profile/bin/swww-daemon"
+      export PATH="$PATH:/home/binh1298/.nix-profile/bin/elixir"
+      export PATH="$PATH:/home/binh1298/.nix-profile/bin/swww"
+      export PATH="$PATH:/home/binh1298/.nix-profile/bin/swww-daemon"
       export PATH="$PATH:$FORGIT_INSTALL_DIR/bin"
-      export PATH="$PATH:/home/redyf/.config/nvim/bin"
-      export PATH="$PATH:/home/redyf/.npm-global/bin"
+      export PATH="$PATH:/home/binh1298/.config/nvim/bin"
+      export PATH="$PATH:/home/binh1298/.npm-global/bin"
       export GITHUB_TOKEN="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"
       export PATH="$PATH:~/.manabie/bin"
       # For obsidian
@@ -132,7 +132,7 @@ in {
       la = "eza -a";
       mv = "mv -i";
       rip = "rip -i";
-      rebuild = "cd ~/flake && doas nixos-rebuild switch --flake .#redyf";
+      rebuild = "cd ~/flake && doas nixos-rebuild switch --flake .#binh1298";
       postman = "postman --use-gl=desktop";
       insomnia = "insomnia --use-gl=desktop";
       beekeeper-studio = "beekeeper-studio --use-gl=desktop";

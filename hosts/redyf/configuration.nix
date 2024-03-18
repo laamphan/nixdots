@@ -282,10 +282,10 @@
 
   users = {
     users = {
-      redyf = {
+      binh1298 = {
         isNormalUser = true;
-        description = "redyf";
-        initialPassword = "123456";
+        description = "binh1298";
+        initialPassword = "123123";
         shell = pkgs.zsh;
         extraGroups = ["networkmanager" "wheel" "input" "docker" "libvirtd"];
       };
@@ -299,7 +299,7 @@
       wheelNeedsPassword = true;
       extraRules = [
         {
-          users = ["redyf"];
+          users = ["binh1298"];
           keepEnv = true;
           persist = true;
         }

@@ -25,7 +25,7 @@ lspconfig.eslint.setup {
 -- }
 
 lspconfig.apex_ls.setup {
-  apex_jar_path = '/home/redyf/.local/share/nvim/mason/packages/apex-language-server/extension/dist/apex-jorje-lsp.jar',
+  apex_jar_path = '/home/binh1298/.local/share/nvim/mason/packages/apex-language-server/extension/dist/apex-jorje-lsp.jar',
   capabilities = capabilities,
   on_attach = on_attach,
   filetypes = { "apexcode", "apex", "visualforce"},

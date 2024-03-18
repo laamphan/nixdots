@@ -1,5 +1,5 @@
 {
-  description = "Redyf's NixOS config for desktop and WSL";
+  description = "Binh1298's NixOS config for desktop and WSL";
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
@@ -52,7 +52,7 @@
     nixpkgsFor = forAllSystems (system: import nixpkgs {inherit system;});
   in {
     nixosConfigurations = {
-      redyf =
+      binh1298 =
         nixpkgs.lib.nixosSystem
         {
           system = "x86_64-linux";
@@ -67,14 +67,14 @@
             {
               environment.systemPackages = [alejandra.defaultPackage."x86_64-linux"];
             }
-            ./hosts/redyf/configuration.nix
+            ./hosts/binh1298/configuration.nix
             home-manager.nixosModules.home-manager
             {
               home-manager = {
                 useUserPackages = true;
                 useGlobalPkgs = false;
                 extraSpecialArgs = {inherit inputs spicetify-nix;};
-                users.redyf = ./home/desktop/home.nix;
+                users.binh1298 = ./home/desktop/home.nix;
               };
             }
             hyprland.nixosModules.default

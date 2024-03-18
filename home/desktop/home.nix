@@ -1,7 +1,7 @@
 {pkgs, ...}: {
   home = {
-    username = "redyf";
-    homeDirectory = "/home/redyf";
+    username = "binh1298";
+    homeDirectory = "/home/binh1298";
     stateVersion = "22.11";
   };
 
