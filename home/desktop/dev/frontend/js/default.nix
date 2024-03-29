@@ -1,7 +1,14 @@
 {pkgs, ...}: {
+
+  home.file.".npmrc" = {
+    force = true;
+    text = ''
+      prefix=~/.npm-global
+    '';
+  };
   home.packages = with pkgs; [
     # NPM packages
-    # bun
+    bun
     yarn
     # deno
     # nodejs
@@ -10,7 +17,7 @@
     # typescript
     tailwindcss
     # nodePackages.npm # Package manager
-    # nodePackages_latest.pnpm
+    nodePackages_latest.pnpm
     # nodePackages_latest.ts-node
     # nodePackages_latest.prisma
     # nodePackages_latest.dotenv-cli

@@ -33,8 +33,10 @@ in {
     settings = {
       "$mainMod" = "SUPER";
       monitor = [
-        "eDP-1,1920x1080,0x0,1"
-        ",1920x1080,auto,1"
+        # "eDP-1,1920x1080,0x0,1"
+        # ",1920x1080,auto,1"
+        "DP-2,2560x1440@144,0x0,1"
+        "HDMI-A-1,1920x1080@60,2560x0,1"
       ];
 
       xwayland = {
@@ -112,7 +114,7 @@ in {
 
       misc = {
         vfr = true; # misc:no_vfr -> misc:vfr. bool, heavily recommended to leave at default on. Saves on CPU usage.
-        vrr = false; # misc:vrr -> Adaptive sync of your monitor. 0 (off), 1 (on), 2 (fullscreen only). Default 0 to avoid white flashes on select hardware.
+        vrr = true; # misc:vrr -> Adaptive sync of your monitor. 0 (off), 1 (on), 2 (fullscreen only). Default 0 to avoid white flashes on select hardware.
       };
 
       dwindle = {

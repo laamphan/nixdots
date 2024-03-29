@@ -10,7 +10,7 @@ local sources = {
   formatting.stylua,
   formatting.prettierd,
   -- formatting.prettier_eslint,
-  diagnostics.shellcheck,
+  -- diagnostics.shellcheck,
   formatting.alejandra,
   formatting.prettier.with({
     filetypes = { "apex" },

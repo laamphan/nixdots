@@ -7,6 +7,8 @@ _: {
     modules-center = ["hyprland/window"];
     modules-right = [
       "tray"
+      "cpu"
+      "memory"
       "network"
       "battery"
       "pulseaudio"
@@ -68,7 +70,7 @@ _: {
     };
 
     "clock" = {
-      format = "{:󰥔 %R - %d/%m/%Y} ";
+      format = "󰥔 {:%H:%M - %Y/%m/%d}";
       tooltip-format = "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>";
     };
 
@@ -112,7 +114,7 @@ _: {
     };
 
     "pulseaudio" = {
-      format = "{icon}";
+      format = "{icon}{volume}%";
       format-muted = " 󰖁 ";
       format-icons = {
         default = ["  " "  " "  "];

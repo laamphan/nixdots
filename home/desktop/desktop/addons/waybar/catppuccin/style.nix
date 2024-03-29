@@ -7,6 +7,8 @@ _: ''
     color: #cdd6f4;
   }
   #window,
+  #cpu,
+  #memory,
   #clock,
   #tray,
   #pulseaudio,
@@ -25,6 +27,8 @@ _: ''
   padding-left: 5px;
   padding-right: 5px
   }
+  #cpu,
+  #memory,
   #custom-arch,
   #window {
   border: 2px solid #9999CC ;

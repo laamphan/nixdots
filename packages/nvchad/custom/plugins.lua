@@ -32,6 +32,9 @@ local plugins = {
         "nil",
         -- Apex 
         "apex-language-server",
+        -- markdown
+        "md",
+        "mdx",
       },
     },
   },
@@ -184,6 +187,10 @@ vim.filetype.add({
     trigger = 'apex',
     soql = 'soql',
     sosl = 'sosl',
+    mdx = 'markdown',
+
   }
 })
+vim.wo.relativenumber = true
+
 return plugins

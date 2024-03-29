@@ -15,7 +15,7 @@ in {
     enable = true;
     dotDir = ".config/zsh";
     enableCompletion = true;
-    enableAutosuggestions = true;
+    autosuggestion.enable = true;
     syntaxHighlighting.enable = true;
     initExtra = ''
       # Export PATHs for applications
@@ -28,10 +28,12 @@ in {
       export PATH="$PATH:$FORGIT_INSTALL_DIR/bin"
       export PATH="$PATH:/home/binh1298/.config/nvim/bin"
       export PATH="$PATH:/home/binh1298/.npm-global/bin"
-      export GITHUB_TOKEN="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"
+      export PATH="$PATH:/home/binh1298/.pnpm-global"
+      export GITHUB_TOKEN=""
       export PATH="$PATH:~/.manabie/bin"
+      export PNPM_HOME="/home/binh1298/.pnpm-global"
       # For obsidian
-      export LD_LIBRARY_PATH=$(nix build --print-out-paths --no-link nixpkgs#libGL)/lib
+      # export LD_LIBRARY_PATH=$(nix build --print-out-paths --no-link nixpkgs#libGL)/lib
 
       # Autosuggest
       ZSH_AUTOSUGGEST_USE_ASYNC="true"
@@ -147,7 +149,7 @@ in {
       gi = "git init";
       gp = "git pull";
       gs = "git status";
-      chrome = "setsid google-chrome-stable --gtk-version=4";
+      chrome = "setsid google-chrome-stable  --enable-features=UseOzonePlatform --ozone-platform=wayland --enable-wayland-ime";
       obsidian = "setsid obsidian --enable-features=UseOzonePlatform --ozone-platform=wayland --enable-wayland-ime";
     };
 
