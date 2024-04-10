@@ -1,5 +1,5 @@
 {
-  description = "Binh1298's NixOS config for desktop and WSL";
+  description = "binh1298's NixOS config for desktop and WSL";
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
@@ -17,17 +17,13 @@
     nur.url = "github:nix-community/NUR";
     nix-colors.url = "github:misterio77/nix-colors";
     spicetify-nix.url = "github:the-argus/spicetify-nix";
+    neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
 
     # SFMono w/ patches
     sf-mono-liga-src = {
       url = "github:shaunsingh/SFMono-Nerd-Font-Ligaturized";
       flake = false;
     };
-
-    # monolisa = {
-    #   url = "github:redyf/monolisa";
-    #   flake = false;
-    # };
 
     alejandra.url = "github:kamadorueda/alejandra/3.0.0";
     alejandra.inputs.nixpkgs.follows = "nixpkgs";

@@ -1,4 +1,8 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  inputs,
+  ...
+}: {
   home = {
     username = "binh1298";
     homeDirectory = "/home/binh1298";
@@ -41,6 +45,7 @@
       #   url = "https://github.com/nix-community/neovim-nightly-overlay/archive/master.tar.gz";
       # }))
       (import ../../overlays/firefox-overlay.nix)
+      inputs.neovim-nightly-overlay.overlay
     ];
   };
 

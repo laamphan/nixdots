@@ -1,5 +1,4 @@
 {pkgs, ...}: {
-
   home.file.".npmrc" = {
     force = true;
     text = ''
@@ -18,6 +17,7 @@
     tailwindcss
     # nodePackages.npm # Package manager
     nodePackages_latest.pnpm
+    biome
     # nodePackages_latest.ts-node
     # nodePackages_latest.prisma
     # nodePackages_latest.dotenv-cli
