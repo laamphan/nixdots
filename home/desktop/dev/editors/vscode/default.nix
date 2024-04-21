@@ -93,7 +93,7 @@
       };
       "terminal.integrated.shell.linux" = "zsh";
       "[html]" = {
-        "editor.defaultFormatter" = "biomejs.biome";
+        "editor.defaultFormatter" = "esbenp.prettier-vscode";
       };
       "[css]" = {
         "editor.defaultFormatter" = "esbenp.prettier-vscode";

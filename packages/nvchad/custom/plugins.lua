@@ -35,6 +35,8 @@ local plugins = {
         -- markdown
         "md",
         "mdx",
+        -- rust 
+        "rust-analyzer",
       },
     },
   },
@@ -104,14 +106,21 @@ local plugins = {
       { "roobert/tailwindcss-colorizer-cmp.nvim", config = true },
     },
     opts = function(_, opts)
+      -- taiwind
       -- original LazyVim kind icon formatter
       local format_kinds = opts.formatting.format
       opts.formatting.format = function(entry, item)
         format_kinds(entry, item) -- add icons
         return require("tailwindcss-colorizer-cmp").formatter(entry, item)
       end
+      -- conflict with copilot
       opts.mapping["<Tab>"] = nil
       opts.mapping["S-<Tab>"] = nil
+
+      -- rust 
+      local M = require "plugins.configs.cmp"
+      table.insert(M.sources, {name = "crates"})
+      return M
     end,
   },
   {
@@ -176,6 +185,28 @@ local plugins = {
     "nvim-tree/nvim-tree.lua",
     dependencies = { "3rd/image.nvim" },
   },
+
+  {
+    'mrcjkb/rustaceanvim',
+    version = '^4', -- Recommended
+    lazy = false, -- This plugin is already lazy
+  },
+  {
+    "rust-lang/rust.vim", 
+    ft= "rust",
+    init = function () 
+      vim.g.rustfmt_autosave = 1
+    end
+  },
+  {
+    "saecki/crates.nvim",
+    ft = {"rust", "toml"},
+    config = function(_, opts) 
+      local crates = require("crates")
+      crates.setup(opts)
+      crates.show()
+    end,
+  }
 }
 vim.g.copilot_assume_mapped = true
 vim.filetype = on
