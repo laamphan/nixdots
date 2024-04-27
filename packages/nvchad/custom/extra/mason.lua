@@ -1,5 +1,5 @@
 local M = {
-    {
+  {
     "williamboman/mason.nvim",
     opts = {
       ensure_installed = {
@@ -10,6 +10,8 @@ local M = {
         -- "rust-analyzer",
         -- go
         -- "gopls",
+        -- TS / JS
+        -- "biome",
 
         -- TS / JS
         "typescript-language-server",
