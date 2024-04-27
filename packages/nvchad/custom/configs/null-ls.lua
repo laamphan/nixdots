@@ -9,6 +9,9 @@ local diagnostics = null_ls.builtins.diagnostics
 local sources = {
   formatting.stylua,
   formatting.biome,
+  formatting.gofumpt,
+  formatting.goimports_reviser,
+  formatting.golines,
   -- formatting.prettierd,
   -- formatting.prettier_eslint,
   -- diagnostics.shellcheck,
