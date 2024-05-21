@@ -7,6 +7,5 @@ _: {
     # ./foot
     ./kitty
     # ./wezterm
-    ./waybar
   ];
 }
