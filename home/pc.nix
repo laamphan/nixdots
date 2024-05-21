@@ -34,6 +34,7 @@
     ./shared/themes
     ./shared/tools
     ./pc/desktop
+    ./pc/cli
   ];
 
   # Allow unfree packages + use overlays

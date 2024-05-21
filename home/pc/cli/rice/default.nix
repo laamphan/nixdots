@@ -1,6 +1,5 @@
 _: {
   imports = [
-    ./btop
-    ./lazygit
+    ./cava
   ];
 }
