@@ -15,5 +15,11 @@
     # Audio/Music
     easyeffects
     pavucontrol
+
+    polkit
+    polkit_gnome
+
+    appimage-run # Run appimage files in the terminal
+    networkmanager
   ];
 }
