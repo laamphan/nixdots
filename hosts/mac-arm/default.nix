@@ -26,6 +26,7 @@
     NSGlobalDomain.InitialKeyRepeat = 14;
     NSGlobalDomain.KeyRepeat = 1;
   };
+  users.users.binhpham.home = "/Users/binhpham";
 
   # backwards compat; don't change
   system.stateVersion = 4;
