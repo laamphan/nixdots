@@ -32,6 +32,9 @@
       url = "gitlab:rycee/nur-expressions?dir=pkgs/firefox-addons";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    darwin.url = "github:lnl7/nix-darwin";
+    darwin.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs = {
@@ -42,6 +45,7 @@
     NixOS-WSL,
     spicetify-nix,
     alejandra,
+    darwin,
     ...
   } @ inputs: let
     supportedSystems = ["x86_64-linux" "x86_64-darwin" "aarch64-linux" "aarch64-darwin"];
@@ -53,7 +57,23 @@
     nixpkgsFor = forAllSystems (system: import nixpkgs {inherit system;});
   in {
     nixosConfigurations = {
-      binh1298 =
+      binh-mbp = darwin.lib.darwinSystem {
+        system = "aarch64-darwin";
+        pkgs = import nixpkgs {system = "aarch64-darwin";};
+        modules = [
+          ./hosts/mac-arm
+          home-manager.darwinModules.home-manager
+          {
+            home-manager = {
+              useGlobalPkgs = true;
+              useUserPackages = true;
+              users.binhpham.imports = [./home/mac.nix];
+            };
+          }
+        ];
+      };
+
+      binh-pc =
         nixpkgs.lib.nixosSystem
         {
           system = "x86_64-linux";
@@ -75,48 +95,49 @@
                 useUserPackages = true;
                 useGlobalPkgs = false;
                 extraSpecialArgs = {inherit inputs spicetify-nix;};
-                users.binh1298 = ./home/desktop/home.nix;
+                users.binh1298 = ./home/pc.nix;
               };
             }
             hyprland.nixosModules.default
             {programs.hyprland.enable = true;}
           ];
         };
-      wsl = nixpkgs.lib.nixosSystem {
-        system = "x86_64-linux";
-        modules = [
-          {nix.registry.nixpkgs.flake = nixpkgs;}
-          ./hosts/wsl/configuration.nix
-          home-manager.nixosModules.home-manager
-          {
-            home-manager = {
-              useUserPackages = true;
-              useGlobalPkgs = false;
-              users.red = ./home/wsl/home.nix;
-            };
-          }
-          NixOS-WSL.nixosModules.wsl
-        ];
-      };
-      vm = nixpkgs.lib.nixosSystem {
-        system = "x86_64-linux";
-        modules = [
-          ./hosts/vm/configuration.nix
-          home-manager.nixosModules.home-manager
-        ];
-      };
+      # wsl = nixpkgs.lib.nixosSystem {
+      #   system = "x86_64-linux";
+      #   modules = [
+      #     {nix.registry.nixpkgs.flake = nixpkgs;}
+      #     ./hosts/wsl/configuration.nix
+      #     home-manager.nixosModules.home-manager
+      #     {
+      #       home-manager = {
+      #         useUserPackages = true;
+      #         useGlobalPkgs = false;
+      #         users.red = ./home/wsl/home.nix;
+      #       };
+      #     }
+      #     NixOS-WSL.nixosModules.wsl
+      #   ];
+      # };
+      # vm = nixpkgs.lib.nixosSystem {
+      #   system = "x86_64-linux";
+      #   modules = [
+      #     ./hosts/vm/configuration.nix
+      #     home-manager.nixosModules.home-manager
+      #   ];
+      # };
     };
-    devShells = forAllSystems (system: let
-      pkgs = nixpkgsFor.${system};
-    in {
-      default = pkgs.mkShell {
-        buildInputs = with pkgs; [
-          git
-          nixpkgs-fmt
-          statix
-        ];
-      };
-    });
+    # devShells = forAllSystems (system: let
+    #   pkgs = nixpkgsFor.${system};
+    # in {
+    #   default = pkgs.mkShell {
+    #     buildInputs = with pkgs; [
+    #       git
+    #       nixpkgs-fmt
+    #       statix
+    #     ];
+    #   };
+    # });
     formatter.x86_64-linux = nixpkgs.legacyPackages.x86_64-linux.nixpkgs-fmt;
+    darwinPackages = self.darwinConfigurations."HX-VT-WS-A029".pkgs;
   };
 }

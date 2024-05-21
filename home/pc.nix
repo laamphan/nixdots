@@ -25,14 +25,14 @@
 
   # Imports
   imports = [
-    ./apps
-    ./cli
-    ./cli-apps
-    ./desktop
-    ./dev
-    ./system
-    ./themes
-    ./tools
+    ./shared/apps
+    ./shared/cli
+    ./shared/cli-apps
+    ./shared/desktop
+    ./shared/dev
+    ./shared/system
+    ./shared/themes
+    ./shared/tools
   ];
 
   # Allow unfree packages + use overlays
@@ -52,7 +52,7 @@
   fonts.fontconfig.enable = true;
 
   xdg.configFile."nvim/" = {
-    source = pkgs.callPackage ../../packages/nvchad {};
+    source = pkgs.callPackage ../packages/nvchad {};
   };
 
   # Add support for .local/bin
