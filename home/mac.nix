@@ -12,7 +12,7 @@
 
   programs.bat.enable = true;
   programs.bat.config.theme = "TwoDark";
-  home.file.".inputrc".source = ./dotfiles/inputrc;
+  home.file.".inputrc".source = ./mac-arm/dotfiles/inputrc;
 
   xdg.configFile."nvim/" = {
     source = pkgs.callPackage ../packages/nvchad {};

@@ -56,7 +56,7 @@
     # Nixpkgs instantiated for supported system types.
     nixpkgsFor = forAllSystems (system: import nixpkgs {inherit system;});
   in {
-    nixosConfigurations = {
+    darwinConfigurations = {
       binh-mbp = darwin.lib.darwinSystem {
         system = "aarch64-darwin";
         pkgs = import nixpkgs {system = "aarch64-darwin";};
@@ -72,7 +72,8 @@
           }
         ];
       };
-
+    };
+    nixosConfigurations = {
       binh-pc =
         nixpkgs.lib.nixosSystem
         {
