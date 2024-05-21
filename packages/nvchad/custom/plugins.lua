@@ -7,6 +7,9 @@ local plugins = {
   require "custom.extra.others",
   require "custom.extra.go",
   {
+    "tpope/vim-dadbod",
+  },
+  {
     "neovim/nvim-lspconfig",
     dependencies = {
       "nvimtools/none-ls.nvim",

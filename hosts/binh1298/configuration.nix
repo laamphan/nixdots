@@ -27,7 +27,8 @@
         device = "nodev";
         efiSupport = true;
         useOSProber = true;
-	      efiInstallAsRemovable = true;
+        # Change this to true when you have multiple OSes installed
+        efiInstallAsRemovable = true;
         configurationLimit = 3;
         theme =
           pkgs.fetchFromGitHub

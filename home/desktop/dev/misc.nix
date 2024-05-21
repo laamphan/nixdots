@@ -33,6 +33,7 @@
     dunst # Notifications for your system
     fuzzel # Dmenu for wayland
     xfce.thunar # Best GUI file manager
+    polkit
     cmatrix
     onefetch
     nitrogen # Wallpaper utility for X11

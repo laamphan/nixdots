@@ -10,6 +10,7 @@ _: {
     ./obsidian
     ./google-drive
     ./imagemagick
+    ./gimp
     # ./spicetify
   ];
 }

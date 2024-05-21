@@ -14,12 +14,7 @@ lspconfig.tsserver.setup {
   },
 }
 
--- lspconfig.eslint.setup {
---   capabilities = capabilities,
---   on_attach = on_attach,
--- }
-
-lspconfig.biome.setup {
+lspconfig.eslint.setup {
   capabilities = capabilities,
   on_attach = on_attach,
 }
@@ -42,6 +37,10 @@ lspconfig.gopls.setup {
     }
   }
 }
+-- lspconfig.biome.setup {
+--   capabilities = capabilities,
+--   on_attach = on_attach,
+-- }
 
 lspconfig.lua_ls.setup {
   capabilities = capabilities,
