@@ -33,6 +33,7 @@
     ./shared/system
     ./shared/themes
     ./shared/tools
+    ./pc/desktop
   ];
 
   # Allow unfree packages + use overlays
