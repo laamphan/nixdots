@@ -21,10 +21,10 @@
   imports = [
     ./mac-arm/utils
     ./mac-arm/window-managers
-    ./shared/dev
+    ./shared/cli
     ./shared/cli-apps
     ./shared/desktop
-    ./shared/cli
+    ./shared/dev
     ./shared/tools
   ];
 }

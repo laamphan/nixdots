@@ -31,11 +31,11 @@
     ./shared/desktop
     ./shared/dev
     ./shared/system
-    ./shared/themes
     ./shared/tools
-    ./pc/desktop
     ./pc/cli
+    ./pc/desktop
     ./pc/dev/misc.nix
+    ./pc/themes
   ];
 
   # Allow unfree packages + use overlays
