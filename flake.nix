@@ -60,13 +60,17 @@
       binh-mbp = darwin.lib.darwinSystem {
         system = "aarch64-darwin";
         pkgs = import nixpkgs {system = "aarch64-darwin";};
+        specialArgs = {
+          inherit inputs;
+        };
         modules = [
           ./hosts/mac-arm
           home-manager.darwinModules.home-manager
           {
             home-manager = {
-              useGlobalPkgs = true;
+              useGlobalPkgs = false;
               useUserPackages = true;
+              extraSpecialArgs = {inherit inputs;};
               users.binhpham.imports = [./home/mac.nix];
             };
           }
@@ -93,8 +97,8 @@
             home-manager.nixosModules.home-manager
             {
               home-manager = {
-                useUserPackages = true;
                 useGlobalPkgs = false;
+                useUserPackages = true;
                 extraSpecialArgs = {inherit inputs spicetify-nix;};
                 users.binh1298 = ./home/pc.nix;
               };

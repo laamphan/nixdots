@@ -4,5 +4,6 @@ _: {
     # ./neve
     ./tmux
     # ./helix
+    ./yazi
   ];
 }

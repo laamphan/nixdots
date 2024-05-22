@@ -36,6 +36,7 @@
     ./pc/desktop
     ./pc/dev/misc.nix
     ./pc/themes
+    ./pc/apps
   ];
 
   # Allow unfree packages + use overlays

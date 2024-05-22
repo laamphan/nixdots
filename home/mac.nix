@@ -1,4 +1,17 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  inputs,
+  ...
+}: {
+  nixpkgs = {
+    config = {
+      allowUnfree = true;
+    };
+    overlays = [
+      inputs.neovim-nightly-overlay.overlay
+    ];
+  };
+
   home.stateVersion = "22.11";
   home.packages = with pkgs; [
     curl
@@ -21,6 +34,7 @@
   imports = [
     ./mac-arm/utils
     ./mac-arm/window-managers
+    ./shared/apps
     ./shared/cli
     ./shared/cli-apps
     ./shared/desktop

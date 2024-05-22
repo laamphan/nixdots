@@ -8,5 +8,6 @@ _: {
     ./ripgrep.nix
     ./rm-improved.nix
     ./gnupg.nix
+    ./graphviz.nix
   ];
 }
