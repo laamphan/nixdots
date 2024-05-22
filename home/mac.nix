@@ -40,5 +40,6 @@
     ./shared/desktop
     ./shared/dev
     ./shared/tools
+    ./shared/system
   ];
 }

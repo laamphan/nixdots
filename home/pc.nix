@@ -37,6 +37,7 @@
     ./pc/dev/misc.nix
     ./pc/themes
     ./pc/apps
+    ./pc/fcitx5
   ];
 
   # Allow unfree packages + use overlays
