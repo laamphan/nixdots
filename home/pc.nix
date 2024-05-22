@@ -35,6 +35,7 @@
     ./shared/tools
     ./pc/desktop
     ./pc/cli
+    ./pc/dev/misc.nix
   ];
 
   # Allow unfree packages + use overlays
