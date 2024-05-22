@@ -39,7 +39,7 @@
     ./shared/cli-apps
     ./shared/desktop
     ./shared/dev
-    ./shared/tools
+    ./shared/tools/git-token
     ./shared/system
   ];
 }

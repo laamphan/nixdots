@@ -70,7 +70,9 @@
             home-manager = {
               useGlobalPkgs = false;
               useUserPackages = true;
-              extraSpecialArgs = {inherit inputs;};
+              extraSpecialArgs = {
+                inherit inputs;
+              };
               users.binhpham.imports = [./home/mac.nix];
             };
           }
@@ -99,7 +101,9 @@
               home-manager = {
                 useGlobalPkgs = false;
                 useUserPackages = true;
-                extraSpecialArgs = {inherit inputs spicetify-nix;};
+                extraSpecialArgs = {
+                  inherit inputs spicetify-nix;
+                };
                 users.binh1298 = ./home/pc.nix;
               };
             }

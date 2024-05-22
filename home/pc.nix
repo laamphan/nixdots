@@ -31,7 +31,7 @@
     ./shared/desktop
     ./shared/dev
     ./shared/system
-    ./shared/tools
+    ./shared/tools/git-token
     ./pc/cli
     ./pc/desktop
     ./pc/dev/misc.nix
