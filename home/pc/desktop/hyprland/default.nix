@@ -51,8 +51,8 @@ in {
         kb_rules = "";
 
         follow_mouse = 1;
-        repeat_delay = 600;
-        repeat_rate = 30;
+        repeat_delay = 250;
+        repeat_rate = 70;
         numlock_by_default = 1;
         accel_profile = "flat";
         sensitivity = 0;
@@ -252,8 +252,8 @@ in {
         ",XF86MonBrightnessUp,exec,brightnessctl set 5+"
         ",XF86MonBrightnessDown,exec,brightnessctl set 5%-"
         # Volume Keys
-        ",XF86AudioRaiseVolume,exec,pactl set-sink-volume @DEFAULT_SINK@ +5%  "
-        ",XF86AudioLowerVolume,exec,pactl set-sink-volume @DEFAULT_SINK@ -5%  "
+        ",XF86AudioRaiseVolume,exec,amixer -D pipewire sset Master 5%+"
+        ",XF86AudioLowerVolume,exec,amixer -D pipewire sset Master 5%-"
       ];
       bindl = [
         ",switch:on:Lid Switch, exec, swaylock -i ~/Pictures/programmer.gif"

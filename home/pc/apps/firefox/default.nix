@@ -5,19 +5,19 @@
 }: {
   programs.firefox = {
     enable = true;
-    # profiles.binh1298 = {
-    #   search.default = "Google";
-    #   search.force = true;
-    #   extensions = with inputs.firefox-addons.packages.${pkgs.system}; [
-    #     darkreader
-    #     # decentraleyes
-    #     # clearurls
-    #     # stylus
-    #     # auto-tab-discard
-    #     vimium
-    #     ublock-origin
-    #   ];
-    # };
+    profiles.binh1298 = {
+      search.default = "Google";
+      search.force = true;
+      extensions = with inputs.firefox-addons.packages.${pkgs.system}; [
+        darkreader
+        # decentraleyes
+        # clearurls
+        # stylus
+        # auto-tab-discard
+        vimium
+        ublock-origin
+      ];
+    };
   };
 
   # xdg.mimeApps = {
