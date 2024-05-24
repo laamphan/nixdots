@@ -41,7 +41,7 @@
         rust.symbol = "[](red) ";
         dart.symbol = "[](blue) ";
         nodejs.symbol = "[󰎙](#3fdaa4) ";
-        nodejs.symbol = "[󰎙](#7aa2f7) ";
+        # nodejs.symbol = "[󰎙](#7aa2f7) ";
         nodejs.version_format = "v$raw(blue)";
         package.symbol = "📦  ";
 
