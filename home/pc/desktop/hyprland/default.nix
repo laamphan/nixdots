@@ -51,7 +51,7 @@ in {
         kb_rules = "";
 
         follow_mouse = 1;
-        repeat_delay = 250;
+        repeat_delay = 300;
         repeat_rate = 70;
         numlock_by_default = 1;
         accel_profile = "flat";
