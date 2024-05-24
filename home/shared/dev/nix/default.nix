@@ -1,4 +1,4 @@
-{ pkgs, ... }: {
+{pkgs, ...}: {
   home.packages = with pkgs; [
     # Nix Packages
     nil # Nix LSP
@@ -7,5 +7,9 @@
     # Nix utils
     nix-init # Command line tool to generate Nix packages from URLs
     nix-prefetch-git # Script used to obtain source hashes for fetchgit
+
+    #Lua
+    lua-language-server
+    stylua
   ];
 }
