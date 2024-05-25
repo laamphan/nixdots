@@ -11,13 +11,14 @@ lspconfig.tsserver.setup({
 		preferences = {
 			importModuleSpecifierPreference = "non-relative",
 		},
+		server_capabilities = { documentFormattingProvider = false },
 	},
 })
 
-lspconfig.eslint.setup({
-	capabilities = capabilities,
-	on_attach = on_attach,
-})
+-- lspconfig.eslint.setup({
+-- 	capabilities = capabilities,
+-- 	on_attach = on_attach,
+-- })
 
 lspconfig.gopls.setup({
 	capabilities = capabilities,
@@ -37,10 +38,10 @@ lspconfig.gopls.setup({
 		},
 	},
 })
--- lspconfig.biome.setup {
---   capabilities = capabilities,
---   on_attach = on_attach,
--- }
+lspconfig.biome.setup({
+	capabilities = capabilities,
+	on_attach = on_attach,
+})
 
 lspconfig.lua_ls.setup({
 	capabilities = capabilities,
@@ -54,12 +55,7 @@ lspconfig.apex_ls.setup({
 	filetypes = { "apexcode", "apex", "visualforce" },
 })
 
--- lspconfig.nil.setup {
---   capabilities = capabilities,
---   on_attach = on_attach,
--- }
-
--- lspconfig.tailwindcss.setup {
---   capabilities = capabilities,
---   on_attach = on_attach,
--- }
+lspconfig.tailwindcss.setup({
+	capabilities = capabilities,
+	on_attach = on_attach,
+})

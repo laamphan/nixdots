@@ -1,5 +1,3 @@
-local overrides = require("custom.configs.overrides")
-
 local plugins = {
 	require("custom.extra.mason"),
 	require("custom.extra.treesitter"),

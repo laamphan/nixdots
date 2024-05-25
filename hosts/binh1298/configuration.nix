@@ -1,9 +1,4 @@
-{
-  config,
-  pkgs,
-  inputs,
-  ...
-}: {
+{ config, pkgs, inputs, ... }: {
   imports = [
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
@@ -11,10 +6,11 @@
 
   # Bootloader.
   boot = {
-    kernelModules = ["v4l2loopback"]; # Autostart kernel modules on boot
-    extraModulePackages = with config.boot.kernelPackages; [v4l2loopback]; # loopback module to make OBS virtual camera work
-    kernelParams = ["nvidia.NVreg_PreserveVideoMemoryAllocations=1"];
-    supportedFilesystems = ["ntfs"];
+    kernelModules = [ "v4l2loopback" ]; # Autostart kernel modules on boot
+    extraModulePackages = with config.boot.kernelPackages;
+      [ v4l2loopback ]; # loopback module to make OBS virtual camera work
+    kernelParams = [ "nvidia.NVreg_PreserveVideoMemoryAllocations=1" ];
+    supportedFilesystems = [ "ntfs" ];
     loader = {
       systemd-boot.enable = false; # (for UEFI systems only)
       timeout = 3;
@@ -30,14 +26,12 @@
         # Change this to true when you have multiple OSes installed
         efiInstallAsRemovable = true;
         configurationLimit = 3;
-        theme =
-          pkgs.fetchFromGitHub
-          {
-            owner = "Lxtharia";
-            repo = "minegrub-theme";
-            rev = "193b3a7c3d432f8c6af10adfb465b781091f56b3";
-            sha256 = "1bvkfmjzbk7pfisvmyw5gjmcqj9dab7gwd5nmvi8gs4vk72bl2ap";
-          };
+        theme = pkgs.fetchFromGitHub {
+          owner = "Lxtharia";
+          repo = "minegrub-theme";
+          rev = "193b3a7c3d432f8c6af10adfb465b781091f56b3";
+          sha256 = "1bvkfmjzbk7pfisvmyw5gjmcqj9dab7gwd5nmvi8gs4vk72bl2ap";
+        };
       };
     };
   };
@@ -103,9 +97,7 @@
     dconf.enable = true;
     hyprland = {
       enable = true;
-      xwayland = {
-        enable = true;
-      };
+      xwayland = { enable = true; };
     };
   };
   # programs.nix-ld.enable = true;
@@ -115,49 +107,46 @@
 
   # Allow unfree packages + use overlays
   nixpkgs = {
-    config = {
-      allowUnfree = true;
-    };
+    config = { allowUnfree = true; };
     overlays = [
-      (
-        final: prev: {
-          sf-mono-liga-bin = prev.stdenvNoCC.mkDerivation rec {
-            pname = "sf-mono-liga-bin";
-            version = "dev";
-            src = inputs.sf-mono-liga-src;
-            dontConfigure = true;
-            installPhase = ''
-              mkdir -p $out/share/fonts/opentype
-              cp -R $src/*.otf $out/share/fonts/opentype/
-            '';
-          };
-          # monolisa = prev.stdenvNoCC.mkDerivation rec {
-          #   pname = "monolisa";
-          #   version = "dev";
-          #   src = inputs.monolisa;
-          #   dontConfigure = true;
-          #   installPhase = ''
-          #     mkdir -p $out/share/fonts/opentype
-          #     cp -R $src/*.ttf $out/share/fonts/opentype/
-          #   '';
-          # };
-        }
-      )
+      (final: prev: {
+        sf-mono-liga-bin = prev.stdenvNoCC.mkDerivation rec {
+          pname = "sf-mono-liga-bin";
+          version = "dev";
+          src = inputs.sf-mono-liga-src;
+          dontConfigure = true;
+          installPhase = ''
+            mkdir -p $out/share/fonts/opentype
+            cp -R $src/*.otf $out/share/fonts/opentype/
+          '';
+        };
+        # monolisa = prev.stdenvNoCC.mkDerivation rec {
+        #   pname = "monolisa";
+        #   version = "dev";
+        #   src = inputs.monolisa;
+        #   dontConfigure = true;
+        #   installPhase = ''
+        #     mkdir -p $out/share/fonts/opentype
+        #     cp -R $src/*.ttf $out/share/fonts/opentype/
+        #   '';
+        # };
+      })
     ];
   };
 
   fonts = {
     enableDefaultPackages = true;
-    packages = with pkgs; [
-      sf-mono-liga-bin
-      # monolisa
-    ];
+    packages = with pkgs;
+      [
+        sf-mono-liga-bin
+        # monolisa
+      ];
     fontconfig = {
       enable = true;
       defaultFonts = {
-        serif = ["Times, Noto Serif"];
-        sansSerif = ["Helvetica Neue LT Std, Helvetica, Noto Sans"];
-        monospace = ["Courier Prime, Courier, Noto Sans Mono"];
+        serif = [ "Times, Noto Serif" ];
+        sansSerif = [ "Helvetica Neue LT Std, Helvetica, Noto Sans" ];
+        monospace = [ "Courier Prime, Courier, Noto Sans Mono" ];
       };
     };
   };
@@ -178,7 +167,8 @@
       LIBVA_DRIVER_NAME = "nvidia";
       __GLX_VENDOR_LIBRARY_NAME = "nvidia";
       __GL_GSYNC_ALLOWED = "1";
-      __GL_VRR_ALLOWED = "1"; # Controls if Adaptive Sync should be used. Recommended to set as “0” to avoid having problems on some games.
+      __GL_VRR_ALLOWED =
+        "1"; # Controls if Adaptive Sync should be used. Recommended to set as “0” to avoid having problems on some games.
       XCURSOR_THEME = "macOS-BigSur";
       XCURSOR_SIZE = "32";
       QT_AUTO_SCREEN_SCALE_FACTOR = "1";
@@ -201,7 +191,6 @@
       playerctl
       libsecret
       brightnessctl
-      dbeaver
       inputs.xdg-portal-hyprland.packages.${system}.xdg-desktop-portal-hyprland
       xdg-desktop-portal-gtk
     ];
@@ -210,9 +199,7 @@
   # For obsidian
   xdg.portal = {
     enable = true;
-    extraPortals = with pkgs; [
-      xdg-desktop-portal-gtk
-    ];
+    extraPortals = with pkgs; [ xdg-desktop-portal-gtk ];
   };
 
   hardware = {
@@ -226,47 +213,39 @@
     opengl = {
       enable = true;
       driSupport32Bit = true;
-      extraPackages = with pkgs; [nvidia-vaapi-driver];
+      extraPackages = with pkgs; [ nvidia-vaapi-driver ];
     };
   };
 
   services = {
     xserver = {
       enable = true;
-      displayManager = {
-        gdm.enable = true;
-      };
-      desktopManager = {
-        xfce.enable = true;
-      };
+      displayManager = { gdm.enable = true; };
+      desktopManager = { xfce.enable = true; };
       windowManager = {
         xmonad = {
           enable = true;
           enableContribAndExtras = true;
         };
       };
-      videoDrivers = [
-        "nvidia"
-      ];
+      videoDrivers = [ "nvidia" ];
       xkb.layout = "us";
       xkb.variant = "";
-      libinput = {
-        enable = true;
-        mouse = {
-          accelProfile = "flat";
-        };
-        touchpad = {
-          accelProfile = "flat";
-        };
-      };
     };
+    libinput = {
+      enable = true;
+      mouse = { accelProfile = "flat"; };
+      touchpad = { accelProfile = "flat"; };
+    };
+
     logmein-hamachi.enable = false;
     flatpak.enable = false;
     gnome.gnome-keyring.enable = true;
   };
 
   hardware.bluetooth.enable = true; # enables support for Bluetooth
-  hardware.bluetooth.powerOnBoot = true; # powers up the default Bluetooth controller on boot
+  hardware.bluetooth.powerOnBoot =
+    true; # powers up the default Bluetooth controller on boot
   services.blueman.enable = true;
 
   console.keyMap = "us";
@@ -290,7 +269,7 @@
         description = "binh1298";
         initialPassword = "123123";
         shell = pkgs.zsh;
-        extraGroups = ["networkmanager" "wheel" "input" "docker" "libvirtd"];
+        extraGroups = [ "networkmanager" "wheel" "input" "docker" "libvirtd" ];
       };
     };
   };
@@ -300,13 +279,11 @@
     doas = {
       enable = true;
       wheelNeedsPassword = true;
-      extraRules = [
-        {
-          users = ["binh1298"];
-          keepEnv = true;
-          persist = true;
-        }
-      ];
+      extraRules = [{
+        users = [ "binh1298" ];
+        keepEnv = true;
+        persist = true;
+      }];
     };
     pam.services.swaylock = {
       text = ''
@@ -322,8 +299,10 @@
     extraOptions = "experimental-features = nix-command flakes";
     settings = {
       auto-optimise-store = true;
-      substituters = ["https://hyprland.cachix.org"];
-      trusted-public-keys = ["hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="];
+      substituters = [ "https://hyprland.cachix.org" ];
+      trusted-public-keys = [
+        "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="
+      ];
     };
     gc = {
       automatic = true;

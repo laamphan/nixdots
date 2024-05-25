@@ -1,8 +1,5 @@
-{
-  inputs,
-  pkgs,
-  ...
-}: let
+{ inputs, pkgs, ... }:
+let
   hyprland_flake = inputs.hyprland.packages.${pkgs.system}.hyprland;
   fontsize = "12";
   oxocarbon_pink = "ff7eb6";
@@ -27,9 +24,7 @@ in {
   wayland.windowManager.hyprland = {
     enable = true;
     package = pkgs.hyprland;
-    xwayland = {
-      enable = true;
-    };
+    xwayland = { enable = true; };
     settings = {
       "$mainMod" = "SUPER";
       monitor = [
@@ -39,9 +34,7 @@ in {
         "HDMI-A-1,1920x1080@60,2560x0,1"
       ];
 
-      xwayland = {
-        force_zero_scaling = true;
-      };
+      xwayland = { force_zero_scaling = true; };
 
       input = {
         kb_layout = "us";
@@ -57,9 +50,7 @@ in {
         accel_profile = "flat";
         sensitivity = 0;
         force_no_accel = 1;
-        touchpad = {
-          natural_scroll = 1;
-        };
+        touchpad = { natural_scroll = 1; };
       };
 
       general = {
@@ -69,7 +60,8 @@ in {
         "col.active_border" = "${catppuccin_border}";
         "col.inactive_border" = "${tokyonight_background}";
         layout = "dwindle";
-        apply_sens_to_raw = 1; # whether to apply the sensitivity to raw input (e.g. used by games where you aim using your mouse)
+        apply_sens_to_raw =
+          1; # whether to apply the sensitivity to raw input (e.g. used by games where you aim using your mouse)
       };
 
       decoration = {
@@ -86,7 +78,7 @@ in {
           passes = 3;
           new_optimizations = true;
           ignore_opacity = true;
-          noise = 0.0117;
+          noise = 1.17e-2;
           contrast = 1.5;
           brightness = 1;
           xray = true;
@@ -113,8 +105,10 @@ in {
       };
 
       misc = {
-        vfr = true; # misc:no_vfr -> misc:vfr. bool, heavily recommended to leave at default on. Saves on CPU usage.
-        vrr = true; # misc:vrr -> Adaptive sync of your monitor. 0 (off), 1 (on), 2 (fullscreen only). Default 0 to avoid white flashes on select hardware.
+        vfr =
+          true; # misc:no_vfr -> misc:vfr. bool, heavily recommended to leave at default on. Saves on CPU usage.
+        vrr =
+          true; # misc:vrr -> Adaptive sync of your monitor. 0 (off), 1 (on), 2 (fullscreen only). Default 0 to avoid white flashes on select hardware.
       };
 
       dwindle = {
@@ -136,12 +130,11 @@ in {
         no_gaps_when_only = false;
       };
 
-      gestures = {
-        workspace_swipe = false;
-      };
+      gestures = { workspace_swipe = false; };
 
       debug = {
-        damage_tracking = 2; # leave it on 2 (full) unless you hate your GPU and want to make it suffer!
+        damage_tracking =
+          2; # leave it on 2 (full) unless you hate your GPU and want to make it suffer!
       };
 
       exec-once = [
@@ -224,7 +217,7 @@ in {
         # "$mainMod SHIFT, 9, movetoworkspacesilent, 9"
         # "$mainMod SHIFT, 0, movetoworkspacesilent, 10"
 
-        "$mainMod,T,exec,kitty"
+        "$mainMod,T,exec,wezterm"
         "$mainMod SHIFT,S,exec,screenshot"
         "$mainMod SHIFT,C,exec,wallpaper"
         "$mainMod,A,exec,fuzzel"

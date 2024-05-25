@@ -11,9 +11,9 @@ local sources = {
 	formatting.gofumpt,
 	formatting.goimports_reviser,
 	formatting.golines,
-	-- formatting.biome,
+	formatting.biome,
 	-- formatting.prettierd,
-	formatting.prettier,
+	-- formatting.prettier,
 	-- formatting.prettier_eslint,
 	-- diagnostics.shellcheck,
 	formatting.alejandra,
@@ -24,17 +24,20 @@ local sources = {
 }
 
 null_ls.setup({
-	debug = true,
-	sources = sources,
 	on_attach = function(client, bufnr)
 		if client.supports_method("textDocument/formatting") then
 			vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
 			vim.api.nvim_create_autocmd("BufWritePre", {
 				group = augroup,
 				buffer = bufnr,
-
 				callback = function()
-					vim.lsp.buf.format({ async = false })
+					vim.lsp.buf.format({
+						async = true,
+						bufnr = bufnr,
+						filter = function(client)
+							return client.name == "null-ls"
+						end,
+					})
 				end,
 			})
 		end
