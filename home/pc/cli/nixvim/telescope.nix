@@ -5,61 +5,71 @@ _: {
       extensions.ui-select.enable = true;
       extensions.media-files.enable = true;
       extensions.frecency.enable = true;
-      settings.defaults = {
-        style = "borderless";
-        vimgrepArguments = [
-          "rg"
-          "-L"
-          "--color=never"
-          "--no-heading"
-          "--with-filename"
-          "--line-number"
-          "--column"
-          "--smart-case"
-        ];
-        promptPrefix = "   ";
-        selectionCaret = "  ";
-        entryPrefix = "  ";
-        initialMode = "insert";
-        selectionStrategy = "reset";
-        sortingStrategy = "ascending";
-        layoutStrategy = "horizontal";
-        layoutConfig = {
-          horizontal = {
-            promptPosition = "top";
-            previewWidth = 0.55;
-            resultsWidth = 0.8;
+      settings = {
+        defaults = {
+          style = "borderless";
+          vimgrep_arguments = [
+            "rg"
+            "-L"
+            "--color=never"
+            "--no-heading"
+            "--with-filename"
+            "--line-number"
+            "--column"
+            "--smart-case"
+          ];
+          prompt_prefix = "   ";
+          selection_caret = "  ";
+          entry_prefix = "  ";
+          initial_mode = "insert";
+          selection_strategy = "reset";
+          sorting_strategy = "ascending";
+          layout_strategy = "horizontal";
+          layout_config = {
+            horizontal = {
+              prompt_position = "top";
+              preview_width = 0.55;
+              results_width = 0.8;
+            };
+            vertical = { mirror = false; };
+            width = 0.87;
+            height = 0.8;
+            preview_cutoff = 120;
           };
-          vertical = { mirror = false; };
-          width = 0.87;
-          height = 0.8;
-          previewCutoff = 120;
+          file_sorter = {
+            __raw = ''
+              require("telescope.sorters").get_fuzzy_file
+            '';
+          };
+          file_ignore_patterns = [ "node_modules" ];
+          generic_sorter = {
+            __raw = ''
+              require("telescope.sorters").get_generic_fuzzy_sorter
+            '';
+          };
+          path_display = [ "truncate" ];
+          winblend = 0;
+          border = [ ];
+          borderchars = [ "─" "│" "─" "│" "╭" "╮" "╯" "╰" ];
+          color_devicons = true;
+          set_env = { COLORTERM = "truecolor"; };
+          file_previewer = {
+            __raw = ''
+              require("telescope.previewers").vim_buffer_cat.new
+            '';
+          };
+          grep_previewer = {
+            __raw = ''require("telescope.previewers").vim_buffer_vimgrep.new'';
+          };
+          qflist_previewer = {
+            __raw = ''require("telescope.previewers").vim_buffer_qflist.new'';
+          };
+          buffer_previewer_maker = {
+            __raw = ''
+              require("telescope.previewers").buffer_previewer_maker
+            '';
+          };
         };
-        fileSorter = ''
-          require("telescope.sorters").get_fuzzy_file
-        '';
-        fileIgnorePatterns = [ "node_modules" ];
-        genericSorter = ''
-          require("telescope.sorters").get_generic_fuzzy_sorter
-        '';
-        pathDisplay = [ "truncate" ];
-        winblend = 0;
-        border = [ ];
-        borderchars = [ "─" "│" "─" "│" "╭" "╮" "╯" "╰" ];
-        colorDevicons = true;
-        setEnv = { COLORTERM = "truecolor"; };
-        filePreviewer = ''
-          require("telescope.previewers").vim_buffer_cat.new
-        '';
-        grepPreviewer = ''
-          require("telescope.previewers").vim_buffer_vimgrep.new
-        '';
-        qflistPreviewer = ''
-          require("telescope.previewers").vim_buffer_qflist.new
-        '';
-        bufferPreviewerMaker = ''
-          require("telescope.previewers").buffer_previewer_maker
-        '';
       };
     };
     keymaps = [
@@ -138,6 +148,20 @@ _: {
         key = "<leader>ff";
         options.silent = true;
         options.desc = "telescope find files";
+        action = "<cmd>Telescope find_files <CR>";
+      }
+      {
+        mode = "n";
+        key = "<leader>fr";
+        options.silent = true;
+        options.desc = "telescope find recent files";
+        action = "<cmd>Telescope frecency workspace=CWD <CR>";
+      }
+      {
+        mode = "n";
+        key = "<leader>fi";
+        options.silent = true;
+        options.desc = "telescope find all files";
         action =
           "<cmd>Telescope find_files follow=true no_ignore=true hidden=true<CR>";
       }

@@ -1,5 +1,5 @@
 { pkgs, ... }: {
-  home.packages = with pkgs; [ nixfmt ];
+  home.packages = with pkgs; [ nixfmt-classic ];
 
   programs.nixvim = {
     plugins.conform-nvim = {
@@ -13,13 +13,18 @@
         # Conform will run multiple formatters sequentially
         python = [ "isort" "black" ];
         # Use a sub-list to run only the first available formatter
-        javascript = [[ "biome" "prettierd" "prettier" ]];
-        typescript = [[ "biome" "prettierd" "prettier" ]];
-        tsx = [[ "biome" "prettierd" "prettier" ]];
-        jsx = [[ "biome" "prettierd" "prettier" ]];
-        typescriptreact = [[ "biome" "prettierd" "prettier" ]];
-        javascriptreact = [[ "biome" "prettierd" "prettier" ]];
-        nix = [ "nixfmt" ];
+        javascript = [[ "" "prettierd" "prettier" ]];
+        typescript =
+          [[ "/etc/profiles/per-user/$USER/bin/biome" "prettierd" "prettier" ]];
+        tsx =
+          [[ "/etc/profiles/per-user/$USER/bin/biome" "prettierd" "prettier" ]];
+        jsx =
+          [[ "/etc/profiles/per-user/$USER/bin/biome" "prettierd" "prettier" ]];
+        typescriptreact =
+          [[ "/etc/profiles/per-user/$USER/bin/biome" "prettierd" "prettier" ]];
+        javascriptreact =
+          [[ "/etc/profiles/per-user/$USER/bin/biome" "prettierd" "prettier" ]];
+        nix = [ "nixfmt-classic" ];
         golang = [ "gofumt" "goimports_reviser" "golines" ];
         # Use the "*" filetype to run formatters on all filetypes.
         # "*" = ["codespell"];
@@ -38,7 +43,7 @@
           #lua
           ''
             function()
-              require("conform").format({ bufnr = args.buf , lsp_fallback = true})
+              require("conform").format({ lsp_fallback = true })
             end
           '';
       }
