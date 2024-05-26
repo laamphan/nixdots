@@ -1,5 +1,8 @@
-{ inputs, pkgs, ... }:
-let
+{
+  inputs,
+  pkgs,
+  ...
+}: let
   hyprland_flake = inputs.hyprland.packages.${pkgs.system}.hyprland;
   fontsize = "12";
   oxocarbon_pink = "ff7eb6";
@@ -24,7 +27,7 @@ in {
   wayland.windowManager.hyprland = {
     enable = true;
     package = pkgs.hyprland;
-    xwayland = { enable = true; };
+    xwayland = {enable = true;};
     settings = {
       "$mainMod" = "SUPER";
       monitor = [
@@ -34,7 +37,7 @@ in {
         "HDMI-A-1,1920x1080@60,2560x0,1"
       ];
 
-      xwayland = { force_zero_scaling = true; };
+      xwayland = {force_zero_scaling = true;};
 
       input = {
         kb_layout = "us";
@@ -50,7 +53,7 @@ in {
         accel_profile = "flat";
         sensitivity = 0;
         force_no_accel = 1;
-        touchpad = { natural_scroll = 1; };
+        touchpad = {natural_scroll = 1;};
       };
 
       general = {
@@ -93,8 +96,8 @@ in {
           "md3_decel, 0.05, 0.7, 0.1, 1"
         ];
         animation = [
-          "windowsIn,1,3,md3_decel,slide"
-          "windowsOut,1,3,md3_decel,slide"
+          "windowsIn,1,1,md3_decel,slide"
+          "windowsOut,1,1,md3_decel,slide"
           "windowsMove,1,3,md3_decel,slide"
           "fade,1,5,md3_decel"
           "workspaces,1,4,md3_decel,slide"
@@ -130,7 +133,7 @@ in {
         no_gaps_when_only = false;
       };
 
-      gestures = { workspace_swipe = false; };
+      gestures = {workspace_swipe = false;};
 
       debug = {
         damage_tracking =

@@ -1,4 +1,8 @@
-{ inputs, pkgs, ... }: {
+{
+  inputs,
+  pkgs,
+  ...
+}: {
   imports = [
     inputs.nixvim.homeManagerModules.nixvim
     ./cmp.nix
@@ -11,33 +15,55 @@
     ./which-key.nix
     ./barbar.nix
   ];
+  home.packages = with pkgs; [prettierd eslint_d shellcheck];
+  #TODO: CSV
   programs.nixvim = {
     enable = true;
-    extraPlugins = with pkgs.vimPlugins; [
-      base46
-      nvchad
-      nvchad-ui
-      plenary-nvim
-      nvim-web-devicons
-    ];
     plugins = {
-      copilot-lua.enable = true;
+      image.enable = true;
+      markdown-preview.enable = true;
+      copilot-lua = {
+        enable = true;
+        suggestion = {
+          enabled = true;
+          autoTrigger = true;
+          keymap = {
+            accept = "<Tab>";
+          };
+        };
+      };
       indent-blankline.enable = true;
       nvim-colorizer = {
         enable = true;
         userDefaultOptions.tailwind = true;
       };
       comment.enable = true;
-      gitsigns.enable = true;
+      gitsigns = {
+        enable = true;
+        settings = {
+          current_line_blame = true;
+        };
+      };
       telescope.enable = true;
       treesitter.enable = true;
       luasnip.enable = true;
       lualine.enable = true;
+      tmux-navigator.enable = true;
       nvim-autopairs.enable = true;
     };
+    extraPlugins = with pkgs.vimPlugins; [
+      base46
+      nvchad
+      nvchad-ui
+      plenary-nvim
+      nvim-web-devicons
+      vim-dadbod-ui
+      vim-dadbod-completion
+      vim-dadbod
+    ];
 
     extraConfigLua =
-      #Lua 
+      #Lua
       ''
         local map = vim.keymap.set
 
@@ -93,7 +119,7 @@
       smartindent = true;
       tabstop = 2;
       softtabstop = 2;
-      fillchars = { eob = " "; };
+      fillchars = {eob = " ";};
       ignorecase = true;
       smartcase = true;
       mouse = "a";
@@ -131,8 +157,8 @@
           treesitter = true;
         };
         styles = {
-          booleans = [ "bold" "italic" ];
-          conditionals = [ "bold" ];
+          booleans = ["bold" "italic"];
+          conditionals = ["bold"];
         };
         term_colors = true;
       };
@@ -189,6 +215,5 @@
         action = "<cmd> lua vim.lsp.buf.hover()<CR>";
       }
     ];
-
   };
 }

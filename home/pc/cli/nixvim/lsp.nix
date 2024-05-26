@@ -10,19 +10,22 @@ _: {
               preferences = {
                 importModuleSpecifierPreference = "non-relative";
               };
+              server_capabilities = {documentFormattingProvider = false;};
             };
             settings = {
               preferences = {
                 importModuleSpecifierPreference = "non-relative";
               };
+              server_capabilities = {documentFormattingProvider = false;};
             };
           };
           gopls = {
             enable = true;
-            cmd = [ "gopls" ];
-            filetypes = [ "go" "gomod" "gowork" "gotmpl" ];
-            rootDir = ''
-              require("lspconfig").util.root_pattern("go.work", "go.mod", ".git")'';
+            cmd = ["gopls"];
+            filetypes = ["go" "gomod" "gowork" "gotmpl"];
+            rootDir =
+              #lua
+              ''require("lspconfig").util.root_pattern("go.work", "go.mod", ".git")'';
             settings = {
               gopls = {
                 completeUnimported = true;
@@ -43,6 +46,7 @@ _: {
           bashls.enable = true;
           yamlls.enable = true;
           nil_ls.enable = true;
+          #TODO: Apex, cucumber
         };
       };
     };

@@ -19,14 +19,14 @@ local M = {
 				-- TS / JS
 				-- "typescript-language-server",
 				-- "eslint-lsp",
-				"prettierd",
+				-- "prettierd",
 				"prettier",
-				"eslint_d",
+				-- "eslint_d",
 				-- Astro
 				-- "astro-language-server",
 				-- Bash
 				-- "bash-language-server",
-				"shellcheck",
+				-- "shellcheck",
 				-- YAML
 				-- "yaml-language-server",
 				-- Cucumber
@@ -37,9 +37,6 @@ local M = {
 				-- "tailwindcss-language-server",
 				-- Apex
 				"apex-language-server",
-				-- markdown
-				"md",
-				"mdx",
 			},
 		},
 	},
