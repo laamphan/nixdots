@@ -1,9 +1,4 @@
-{
-  config,
-  pkgs,
-  lib,
-  ...
-}: let
+{pkgs, ...}: let
   themepkg = pkgs.fetchFromGitHub {
     owner = "catppuccin";
     repo = "zsh-syntax-highlighting";
@@ -134,7 +129,7 @@ in {
       la = "eza -a";
       mv = "mv -i";
       rip = "rip -i";
-      rebuild = "cd ~/flake && doas nixos-rebuild switch --flake .#binh1298";
+      rebuild = "cd ~/nixos && doas nixos-rebuild switch --flake .#binh1298";
       postman = "postman --use-gl=desktop";
       insomnia = "insomnia --use-gl=desktop";
       beekeeper-studio = "beekeeper-studio --use-gl=desktop";
@@ -177,16 +172,6 @@ in {
         };
       }
       {
-        name = "fast-syntax-highlighting";
-        file = "fast-syntax-highlighting.plugin.zsh";
-        src = fetchFromGitHub {
-          owner = "zdharma-continuum";
-          repo = "fast-syntax-highlighting";
-          rev = "13d7b4e63468307b6dcb2dadf6150818f242cbff";
-          sha256 = "0ghzqg1xfvqh9z23aga7aafrpxbp9bpy1r8vk4avi6b80p3iwsq2";
-        };
-      }
-      {
         name = "zsh-autopair";
         file = "zsh-autopair.plugin.zsh";
         src = fetchFromGitHub {
@@ -209,7 +194,9 @@ in {
       {
         name = "ctp-zsh-syntax-highlighting";
         src = themepkg;
-        file = themepkg + "/themes/catppuccin_mocha-zsh-syntax-highlighting.zsh";
+        file =
+          themepkg
+          + "/themes/catppuccin_mocha-zsh-syntax-highlighting.zsh";
       }
     ];
   };

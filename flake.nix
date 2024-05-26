@@ -11,22 +11,17 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
     hyprland.url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
     waybar-hyprland.url = "github:Alexays/Waybar";
     xdg-portal-hyprland.url = "github:hyprwm/xdg-desktop-portal-hyprland";
+
     nur.url = "github:nix-community/NUR";
     nix-colors.url = "github:misterio77/nix-colors";
     spicetify-nix.url = "github:the-argus/spicetify-nix";
-    neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
     nixvim = {
       url = "github:nix-community/nixvim";
       inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    # SFMono w/ patches
-    sf-mono-liga-src = {
-      url = "github:shaunsingh/SFMono-Nerd-Font-Ligaturized";
-      flake = false;
     };
 
     alejandra.url = "github:kamadorueda/alejandra/3.0.0";
@@ -39,6 +34,7 @@
 
     darwin.url = "github:lnl7/nix-darwin";
     darwin.inputs.nixpkgs.follows = "nixpkgs";
+    neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
   };
 
   outputs = {
@@ -51,22 +47,12 @@
     alejandra,
     darwin,
     ...
-  } @ inputs: let
-    supportedSystems = ["x86_64-linux" "x86_64-darwin" "aarch64-linux" "aarch64-darwin"];
-
-    # Helper function to generate an attrset '{ x86_64-linux = f "x86_64-linux"; ... }'.
-    forAllSystems = nixpkgs.lib.genAttrs supportedSystems;
-
-    # Nixpkgs instantiated for supported system types.
-    nixpkgsFor = forAllSystems (system: import nixpkgs {inherit system;});
-  in {
+  } @ inputs: {
     darwinConfigurations = {
       binh-mbp = darwin.lib.darwinSystem {
         system = "aarch64-darwin";
         pkgs = import nixpkgs {system = "aarch64-darwin";};
-        specialArgs = {
-          inherit inputs;
-        };
+        specialArgs = {inherit inputs;};
         modules = [
           ./hosts/mac-arm
           home-manager.darwinModules.home-manager
@@ -74,9 +60,7 @@
             home-manager = {
               useGlobalPkgs = false;
               useUserPackages = true;
-              extraSpecialArgs = {
-                inherit inputs;
-              };
+              extraSpecialArgs = {inherit inputs;};
               users.binhpham.imports = [./home/mac.nix];
             };
           }
@@ -84,72 +68,28 @@
       };
     };
     nixosConfigurations = {
-      binh-pc =
-        nixpkgs.lib.nixosSystem
-        {
-          system = "x86_64-linux";
-          specialArgs = {
-            inherit
-              inputs
-              hyprland
-              spicetify-nix
-              ;
-          };
-          modules = [
-            {
-              environment.systemPackages = [alejandra.defaultPackage."x86_64-linux"];
-            }
-            ./hosts/binh1298/configuration.nix
-            home-manager.nixosModules.home-manager
-            {
-              home-manager = {
-                useGlobalPkgs = false;
-                useUserPackages = true;
-                extraSpecialArgs = {
-                  inherit inputs spicetify-nix;
-                };
-                users.binh1298 = ./home/pc.nix;
-              };
-            }
-            hyprland.nixosModules.default
-            {programs.hyprland.enable = true;}
-          ];
-        };
-      # wsl = nixpkgs.lib.nixosSystem {
-      #   system = "x86_64-linux";
-      #   modules = [
-      #     {nix.registry.nixpkgs.flake = nixpkgs;}
-      #     ./hosts/wsl/configuration.nix
-      #     home-manager.nixosModules.home-manager
-      #     {
-      #       home-manager = {
-      #         useUserPackages = true;
-      #         useGlobalPkgs = false;
-      #         users.red = ./home/wsl/home.nix;
-      #       };
-      #     }
-      #     NixOS-WSL.nixosModules.wsl
-      #   ];
-      # };
-      # vm = nixpkgs.lib.nixosSystem {
-      #   system = "x86_64-linux";
-      #   modules = [
-      #     ./hosts/vm/configuration.nix
-      #     home-manager.nixosModules.home-manager
-      #   ];
-      # };
+      binh-pc = nixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
+        specialArgs = {inherit inputs hyprland spicetify-nix;};
+        modules = [
+          {
+            environment.systemPackages = [alejandra.defaultPackage."x86_64-linux"];
+          }
+          ./hosts/binh1298/configuration.nix
+          home-manager.nixosModules.home-manager
+          {
+            home-manager = {
+              useGlobalPkgs = false;
+              useUserPackages = true;
+              extraSpecialArgs = {inherit inputs spicetify-nix;};
+              users.binh1298 = ./home/pc.nix;
+            };
+          }
+          hyprland.nixosModules.default
+          {programs.hyprland.enable = true;}
+        ];
+      };
     };
-    # devShells = forAllSystems (system: let
-    #   pkgs = nixpkgsFor.${system};
-    # in {
-    #   default = pkgs.mkShell {
-    #     buildInputs = with pkgs; [
-    #       git
-    #       nixpkgs-fmt
-    #       statix
-    #     ];
-    #   };
-    # });
     formatter.x86_64-linux = nixpkgs.legacyPackages.x86_64-linux.nixpkgs-fmt;
     darwinPackages = self.darwinConfigurations."HX-VT-WS-A029".pkgs;
   };

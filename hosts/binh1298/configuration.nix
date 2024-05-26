@@ -53,7 +53,6 @@
     # avoid checking if IP is already taken to boot a few seconds faster
     dhcpcd.extraConfig = "noarp";
     hostName = "nixos"; # Define your hostname.
-    # wireless.enable = true;  # Enables wireless support via wpa_supplicant.
     # Configure network proxy if necessary
     # proxy.default = "http://user:password@proxy:port/";
     # proxy.noProxy = "127.0.0.1,localhost,internal.domain";
@@ -100,47 +99,12 @@
       xwayland = { enable = true; };
     };
   };
-  # programs.nix-ld.enable = true;
-  # programs.nix-ld.libraries = with pkgs; [
-  #   nodejs_20
-  # ];
 
   # Allow unfree packages + use overlays
-  nixpkgs = {
-    config = { allowUnfree = true; };
-    overlays = [
-      (final: prev: {
-        sf-mono-liga-bin = prev.stdenvNoCC.mkDerivation rec {
-          pname = "sf-mono-liga-bin";
-          version = "dev";
-          src = inputs.sf-mono-liga-src;
-          dontConfigure = true;
-          installPhase = ''
-            mkdir -p $out/share/fonts/opentype
-            cp -R $src/*.otf $out/share/fonts/opentype/
-          '';
-        };
-        # monolisa = prev.stdenvNoCC.mkDerivation rec {
-        #   pname = "monolisa";
-        #   version = "dev";
-        #   src = inputs.monolisa;
-        #   dontConfigure = true;
-        #   installPhase = ''
-        #     mkdir -p $out/share/fonts/opentype
-        #     cp -R $src/*.ttf $out/share/fonts/opentype/
-        #   '';
-        # };
-      })
-    ];
-  };
+  nixpkgs = { config = { allowUnfree = true; }; };
 
   fonts = {
     enableDefaultPackages = true;
-    packages = with pkgs;
-      [
-        sf-mono-liga-bin
-        # monolisa
-      ];
     fontconfig = {
       enable = true;
       defaultFonts = {

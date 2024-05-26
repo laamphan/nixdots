@@ -21,6 +21,7 @@
       nvim-web-devicons
     ];
     plugins = {
+      copilot-lua.enable = true;
       indent-blankline.enable = true;
       nvim-colorizer = {
         enable = true;

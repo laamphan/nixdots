@@ -24,7 +24,7 @@
           [[ "/etc/profiles/per-user/$USER/bin/biome" "prettierd" "prettier" ]];
         javascriptreact =
           [[ "/etc/profiles/per-user/$USER/bin/biome" "prettierd" "prettier" ]];
-        nix = [ "nixfmt-classic" ];
+        nix = [[ "alejandra" "nixfmt-classic" ]];
         golang = [ "gofumt" "goimports_reviser" "golines" ];
         # Use the "*" filetype to run formatters on all filetypes.
         # "*" = ["codespell"];
