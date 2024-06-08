@@ -15,6 +15,8 @@
 
     # Screenshot + extra utils
     ffmpeg_6 # A complete, cross-platform solution to record, convert and stream audio and video
+    scrcpy
+    android-tools
 
     # Gaming
     # gnutls
