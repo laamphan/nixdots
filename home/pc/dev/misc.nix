@@ -21,5 +21,6 @@
 
     appimage-run # Run appimage files in the terminal
     networkmanager
+    droidcam
   ];
 }

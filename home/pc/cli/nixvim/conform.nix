@@ -13,21 +13,22 @@
         # Conform will run multiple formatters sequentially
         python = ["isort" "black"];
         # Use a sub-list to run only the first available formatter
-        javascript = [["/etc/profiles/per-user/$USER/bin/biome" "prettierd" "prettier"]];
-        typescript = [["/etc/profiles/per-user/$USER/bin/biome" "prettierd" "prettier"]];
-        tsx = [["/etc/profiles/per-user/$USER/bin/biome" "prettierd" "prettier"]];
-        jsx = [["/etc/profiles/per-user/$USER/bin/biome" "prettierd" "prettier"]];
-        typescriptreact = [["/etc/profiles/per-user/$USER/bin/biome" "prettierd" "prettier" "rustywind"]];
-        javascriptreact = [["/etc/profiles/per-user/$USER/bin/biome" "prettierd" "prettier"]];
+        javascript = [["biome" "prettierd" "prettier"]];
+        typescript = [["biome" "prettierd" "prettier"]];
+        tsx = [["biome" "prettierd" "prettier"]];
+        jsx = [["biome" "prettierd" "prettier"]];
+        typescriptreact = [["biome" "prettierd" "prettier" "rustywind"]];
+        javascriptreact = [["biome" "prettierd" "prettier"]];
         nix = [["alejandra"]];
         golang = ["gofumt" "goimports_reviser" "golines"];
         rust = [["rustfmt"]];
-        yaml = [["prettierd"]];
+        # yaml = [["prettierd"]];
         json = [["biome" "prettierd"]];
         sql = [["sqlfmt"]];
         html = [["biome" "prettierd"]];
         css = [["biome" "prettierd"]];
         markdown = [["prettierd"]];
+        graphql = [["biome" "prettierd"]];
 
         # Use the "*" filetype to run formatters on all filetypes.
         # "*" = ["codespell"];

@@ -10,7 +10,6 @@ _: {
         extraOptions = {
           select = {
             enable = true;
-            # Automatically jump forward to textobj, similar to targets.vim
             lookahead = true;
             keymaps = {
               # You can use the capture groups defined in textobjects.scm
@@ -49,8 +48,8 @@ _: {
           };
           swap = {
             enable = true;
-            swap_next = { "<leader>a" = "@parameter.inner"; };
-            swap_previous = { "<leader>A" = "@parameter.inner"; };
+            swap_next = {"<leader>a" = "@parameter.inner";};
+            swap_previous = {"<leader>A" = "@parameter.inner";};
           };
         };
       };

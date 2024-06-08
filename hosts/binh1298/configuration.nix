@@ -1,4 +1,9 @@
-{ config, pkgs, inputs, ... }: {
+{
+  config,
+  pkgs,
+  inputs,
+  ...
+}: {
   imports = [
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
@@ -6,11 +11,13 @@
 
   # Bootloader.
   boot = {
-    kernelModules = [ "v4l2loopback" ]; # Autostart kernel modules on boot
-    extraModulePackages = with config.boot.kernelPackages;
-      [ v4l2loopback ]; # loopback module to make OBS virtual camera work
-    kernelParams = [ "nvidia.NVreg_PreserveVideoMemoryAllocations=1" ];
-    supportedFilesystems = [ "ntfs" ];
+    kernelModules = ["v4l2loopback"]; # Autostart kernel modules on boot
+    extraModulePackages = [pkgs.linuxPackages.v4l2loopback]; # loopback module to make OBS virtual camera work
+    extraModprobeConfig = ''
+      options v4l2loopback devices=1 video_nr=1 card_label="OBS Cam" exclusive_caps=1
+    '';
+    kernelParams = ["nvidia.NVreg_PreserveVideoMemoryAllocations=1"];
+    supportedFilesystems = ["ntfs"];
     loader = {
       systemd-boot.enable = false; # (for UEFI systems only)
       timeout = 3;
@@ -96,21 +103,21 @@
     dconf.enable = true;
     hyprland = {
       enable = true;
-      xwayland = { enable = true; };
+      xwayland = {enable = true;};
     };
   };
 
   # Allow unfree packages + use overlays
-  nixpkgs = { config = { allowUnfree = true; }; };
+  nixpkgs = {config = {allowUnfree = true;};};
 
   fonts = {
     enableDefaultPackages = true;
     fontconfig = {
       enable = true;
       defaultFonts = {
-        serif = [ "Times, Noto Serif" ];
-        sansSerif = [ "Helvetica Neue LT Std, Helvetica, Noto Sans" ];
-        monospace = [ "Courier Prime, Courier, Noto Sans Mono" ];
+        serif = ["Times, Noto Serif"];
+        sansSerif = ["Helvetica Neue LT Std, Helvetica, Noto Sans"];
+        monospace = ["Courier Prime, Courier, Noto Sans Mono"];
       };
     };
   };
@@ -131,8 +138,7 @@
       LIBVA_DRIVER_NAME = "nvidia";
       __GLX_VENDOR_LIBRARY_NAME = "nvidia";
       __GL_GSYNC_ALLOWED = "1";
-      __GL_VRR_ALLOWED =
-        "1"; # Controls if Adaptive Sync should be used. Recommended to set as “0” to avoid having problems on some games.
+      __GL_VRR_ALLOWED = "1"; # Controls if Adaptive Sync should be used. Recommended to set as “0” to avoid having problems on some games.
       XCURSOR_THEME = "macOS-BigSur";
       XCURSOR_SIZE = "32";
       QT_AUTO_SCREEN_SCALE_FACTOR = "1";
@@ -149,6 +155,7 @@
       OBSIDIAN_USE_WAYLAND = "1";
     };
     systemPackages = with pkgs; [
+      v4l-utils
       killall
       git
       wget
@@ -163,7 +170,7 @@
   # For obsidian
   xdg.portal = {
     enable = true;
-    extraPortals = with pkgs; [ xdg-desktop-portal-gtk ];
+    extraPortals = with pkgs; [xdg-desktop-portal-gtk];
   };
 
   hardware = {
@@ -177,29 +184,29 @@
     opengl = {
       enable = true;
       driSupport32Bit = true;
-      extraPackages = with pkgs; [ nvidia-vaapi-driver ];
+      extraPackages = with pkgs; [nvidia-vaapi-driver];
     };
   };
 
   services = {
     xserver = {
       enable = true;
-      displayManager = { gdm.enable = true; };
-      desktopManager = { xfce.enable = true; };
+      displayManager = {gdm.enable = true;};
+      desktopManager = {xfce.enable = true;};
       windowManager = {
         xmonad = {
           enable = true;
           enableContribAndExtras = true;
         };
       };
-      videoDrivers = [ "nvidia" ];
+      videoDrivers = ["nvidia"];
       xkb.layout = "us";
       xkb.variant = "";
     };
     libinput = {
       enable = true;
-      mouse = { accelProfile = "flat"; };
-      touchpad = { accelProfile = "flat"; };
+      mouse = {accelProfile = "flat";};
+      touchpad = {accelProfile = "flat";};
     };
 
     logmein-hamachi.enable = false;
@@ -233,7 +240,7 @@
         description = "binh1298";
         initialPassword = "123123";
         shell = pkgs.zsh;
-        extraGroups = [ "networkmanager" "wheel" "input" "docker" "libvirtd" ];
+        extraGroups = ["networkmanager" "wheel" "input" "docker" "libvirtd"];
       };
     };
   };
@@ -243,11 +250,13 @@
     doas = {
       enable = true;
       wheelNeedsPassword = true;
-      extraRules = [{
-        users = [ "binh1298" ];
-        keepEnv = true;
-        persist = true;
-      }];
+      extraRules = [
+        {
+          users = ["binh1298"];
+          keepEnv = true;
+          persist = true;
+        }
+      ];
     };
     pam.services.swaylock = {
       text = ''
@@ -256,6 +265,7 @@
     };
     pam.services.login.enableGnomeKeyring = true;
     rtkit.enable = true;
+    polkit.enable = true; # For obs virtual cam
   };
 
   nix = {
@@ -263,7 +273,7 @@
     extraOptions = "experimental-features = nix-command flakes";
     settings = {
       auto-optimise-store = true;
-      substituters = [ "https://hyprland.cachix.org" ];
+      substituters = ["https://hyprland.cachix.org"];
       trusted-public-keys = [
         "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="
       ];

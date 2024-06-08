@@ -16,7 +16,7 @@
     ./barbar.nix
   ];
   home.packages = with pkgs; [prettierd eslint_d shellcheck];
-  #TODO: CSV
+  #TODO: CSV, tailwind colorizer
   programs.nixvim = {
     enable = true;
     plugins = {
@@ -213,6 +213,15 @@
         options.silent = true;
         options.desc = "hover";
         action = "<cmd> lua vim.lsp.buf.hover()<CR>";
+      }
+      {
+        mode = "n";
+        key = "<leader>fl";
+        options.silent = true;
+        options.desc = "Floating diagnostics";
+        action = ''
+          <cmd>lua vim.diagnostic.open_float(nil, { focus = false, scope = 'cursor' })<CR>
+        '';
       }
     ];
   };

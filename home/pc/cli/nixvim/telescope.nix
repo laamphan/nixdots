@@ -4,7 +4,7 @@ _: {
       enable = true;
       extensions.ui-select.enable = true;
       extensions.media-files.enable = true;
-      extensions.frecency.enable = true;
+      # extensions.frecency.enable = true;
       settings = {
         defaults = {
           style = "borderless";
@@ -31,7 +31,7 @@ _: {
               preview_width = 0.55;
               results_width = 0.8;
             };
-            vertical = { mirror = false; };
+            vertical = {mirror = false;};
             width = 0.87;
             height = 0.8;
             preview_cutoff = 120;
@@ -41,18 +41,18 @@ _: {
               require("telescope.sorters").get_fuzzy_file
             '';
           };
-          file_ignore_patterns = [ "node_modules" ];
+          file_ignore_patterns = ["node_modules"];
           generic_sorter = {
             __raw = ''
               require("telescope.sorters").get_generic_fuzzy_sorter
             '';
           };
-          path_display = [ "truncate" ];
+          path_display = ["truncate"];
           winblend = 0;
-          border = [ ];
-          borderchars = [ "─" "│" "─" "│" "╭" "╮" "╯" "╰" ];
+          border = [];
+          borderchars = ["─" "│" "─" "│" "╭" "╮" "╯" "╰"];
           color_devicons = true;
-          set_env = { COLORTERM = "truecolor"; };
+          set_env = {COLORTERM = "truecolor";};
           file_previewer = {
             __raw = ''
               require("telescope.previewers").vim_buffer_cat.new
@@ -162,8 +162,7 @@ _: {
         key = "<leader>fi";
         options.silent = true;
         options.desc = "telescope find all files";
-        action =
-          "<cmd>Telescope find_files follow=true no_ignore=true hidden=true<CR>";
+        action = "<cmd>Telescope find_files follow=true no_ignore=true hidden=true<CR>";
       }
       {
         mode = "n";
@@ -182,18 +181,6 @@ _: {
         key = "<leader>fad";
         action = "<cmd> Telescope lsp_definitions <CR>";
         options.desc = "Find all definitions";
-      }
-      {
-        mode = "n";
-        key = "<leader>fdf";
-        action = "<cmd> Telescope dir find_files<CR>";
-        options.desc = "Find files in directory";
-      }
-      {
-        mode = "n";
-        key = "<leader>fdw";
-        action = "<cmd> Telescope dir live_grep<CR>";
-        options.desc = "Find words in directory";
       }
     ];
   };
