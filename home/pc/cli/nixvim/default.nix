@@ -28,7 +28,7 @@
           enabled = true;
           autoTrigger = true;
           keymap = {
-            accept = "<Tab>";
+            accept = "<M-CR>";
           };
         };
       };

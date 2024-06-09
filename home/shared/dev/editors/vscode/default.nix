@@ -42,6 +42,7 @@
         ms-kubernetes-tools.vscode-kubernetes-tools
         vscodevim.vim
         bradlc.vscode-tailwindcss
+        mechatroner.rainbow-csv
       ]
       ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
         {

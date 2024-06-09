@@ -1,6 +1,6 @@
 _: {
   programs.nixvim = {
-    plugins = { barbar.enable = true; };
+    plugins = {barbar.enable = true;};
     keymaps = [
       {
         mode = "n";
@@ -23,20 +23,20 @@ _: {
       # Re-order to previous/next
       {
         mode = "n";
-        key = "C-<PageUp>";
-        action = "<Cmd>BufferPrevious<CR>";
+        key = "<C-PageUp>";
+        action = "<Cmd>BufferMoveNext<CR>";
         options = {
           silent = true;
-          desc = "Go to previous buffer";
+          desc = "Move to next buffer";
         };
       }
       {
         mode = "n";
-        key = "C-<PageDown>";
-        action = "<Cmd>BufferNext<CR>";
+        key = "<C-PageDown>";
+        action = "<Cmd>BufferMovePrevious<CR>";
         options = {
           silent = true;
-          desc = "Go to next buffer";
+          desc = "Go to previous buffer";
         };
       }
       # Goto buffer in position...
