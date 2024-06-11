@@ -26,6 +26,7 @@ _: {
             {name = "luasnip";}
             {name = "cmdline";}
             {name = "nvim_lua";}
+            {name = "vim-dadbod-completion";}
           ];
 
           mapping = {

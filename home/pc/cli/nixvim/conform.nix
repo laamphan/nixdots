@@ -20,7 +20,8 @@
         typescriptreact = [["biome-check" "prettierd" "prettier" "rustywind"]];
         javascriptreact = [["biome-check" "prettierd" "prettier"]];
         nix = [["alejandra"]];
-        golang = ["gofumt" "goimports_reviser" "golines"];
+        # golang = ["gofumt" "goimports_reviser" "golines"];
+        golang = ["gofumt" "goimports_reviser"];
         rust = [["rustfmt"]];
         # yaml = [["prettierd"]];
         json = [["biome-check" "prettierd"]];

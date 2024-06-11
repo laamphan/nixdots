@@ -87,6 +87,7 @@
       set -gq allow-passthrough on
     '';
     plugins = with pkgs; [
+      tmuxPlugins.resurrect
       tmuxPlugins.sensible
       tmuxPlugins.vim-tmux-navigator
       tmuxPlugins.catppuccin
