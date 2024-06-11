@@ -9,6 +9,8 @@
     prefix = "C-b";
     mouse = true;
     extraConfig = ''
+      set -g @resurrect-processes '"~nvim->nvim"'
+
       # Shift Alt vim keys to switch windows
       # bind -n M-H previous-window
       # bind -n M-L next-window
