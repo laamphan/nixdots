@@ -77,6 +77,33 @@
         }
       ];
     userSettings = {
+      # "[typescriptreact]" = {
+      #   "editor.defaultFormatter" = "biomejs.biome";
+      # };
+      # "[javascript]" = {
+      #   "editor.defaultFormatter" = "biomejs.biome";
+      # };
+      # "[json]" = {
+      #   "editor.defaultFormatter" = "biomejs.biome";
+      # };
+      "[typescriptreact]" = {
+        "editor.defaultFormatter" = "esbenp.prettier-vscode";
+      };
+      "[javascript]" = {
+        "editor.defaultFormatter" = "esbenp.prettier-vscode";
+      };
+      "[json]" = {
+        "editor.defaultFormatter" = "esbenp.prettier-vscode";
+      };
+      "[html]" = {
+        "editor.defaultFormatter" = "esbenp.prettier-vscode";
+      };
+      "[css]" = {
+        "editor.defaultFormatter" = "esbenp.prettier-vscode";
+      };
+      "[xml]" = {
+        "editor.defaultFormatter" = "redhat.vscode-xml";
+      };
       "window.titleBarStyle" = "custom";
       "editor.fontSize" = 12;
       "editor.fontFamily" = "JetBrainsMono Nerd Font Mono";
@@ -84,28 +111,10 @@
       "workbench.statusBar.visible" = true;
       "terminal.external.linuxExec" = "kitty";
       "telemetry.telemetryLevel" = "off";
-      "[typescriptreact]" = {
-        "editor.defaultFormatter" = "biomejs.biome";
-      };
       "editor.lineNumbers" = "relative";
       "vim.useSystemClipboard" = true;
-      "[javascript]" = {
-        "editor.defaultFormatter" = "biomejs.biome";
-      };
       "terminal.integrated.shell.linux" = "zsh";
-      "[html]" = {
-        "editor.defaultFormatter" = "esbenp.prettier-vscode";
-      };
-      "[css]" = {
-        "editor.defaultFormatter" = "esbenp.prettier-vscode";
-      };
       "editor.formatOnSave" = true;
-      "[json]" = {
-        "editor.defaultFormatter" = "biomejs.biome";
-      };
-      "[xml]" = {
-        "editor.defaultFormatter" = "redhat.vscode-xml";
-      };
       "terminal.integrated.scrollback" = 100000;
     };
   };

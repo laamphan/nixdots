@@ -23,7 +23,7 @@ _: {
             {name = "nvim_lsp";}
             {name = "path";}
             {name = "buffer";}
-            {name = "luasnip";}
+            # {name = "luasnip";}
             {name = "cmdline";}
             {name = "nvim_lua";}
             {name = "vim-dadbod-completion";}

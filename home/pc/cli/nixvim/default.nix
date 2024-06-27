@@ -15,7 +15,7 @@
     ./which-key.nix
     ./barbar.nix
   ];
-  home.packages = with pkgs; [prettierd eslint_d shellcheck];
+  home.packages = with pkgs; [prettierd eslint_d shellcheck rustywind];
   #TODO: CSV, tailwind colorizer
   programs.nixvim = {
     enable = true;

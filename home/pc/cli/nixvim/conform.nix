@@ -5,7 +5,7 @@
     plugins.conform-nvim = {
       enable = true;
       formatOnSave = {
-        timeoutMs = 500;
+        timeoutMs = 2500;
         lspFallback = true;
       };
       formattersByFt = {
@@ -13,23 +13,23 @@
         # Conform will run multiple formatters sequentially
         python = ["isort" "black"];
         # Use a sub-list to run only the first available formatter
-        javascript = [["biome-check" "prettierd" "prettier"]];
-        typescript = [["biome-check" "prettierd" "prettier"]];
-        tsx = [["biome-check" "prettierd" "prettier"]];
-        jsx = [["biome-check" "prettierd" "prettier"]];
-        typescriptreact = [["biome-check" "prettierd" "prettier" "rustywind"]];
-        javascriptreact = [["biome-check" "prettierd" "prettier"]];
+        javascript = [["biome-check" "prettier"]];
+        typescript = [["biome-check" "prettier"]];
+        tsx = ["biome-check" "prettier" "rustywind"];
+        jsx = ["biome-check" "prettier" "rustywind"];
+        typescriptreact = ["biome-check" "prettier" "rustywind"];
+        javascriptreact = ["biome-check" "prettier" "rustywind"];
         nix = [["alejandra"]];
         # golang = ["gofumt" "goimports_reviser" "golines"];
         golang = ["gofumt" "goimports_reviser"];
         rust = [["rustfmt"]];
-        # yaml = [["prettierd"]];
-        json = [["biome-check" "prettierd"]];
+        # yaml = [["prettier"]];
+        json = [["biome-check" "prettier"]];
         sql = [["sqlfmt"]];
-        html = [["biome-check" "prettierd"]];
-        css = [["biome-check" "prettierd"]];
-        markdown = [["prettierd"]];
-        graphql = [["biome-check" "prettierd"]];
+        html = [["biome-check" "prettier"]];
+        css = [["biome-check" "prettier"]];
+        markdown = [["prettier"]];
+        graphql = [["biome-check" "prettier"]];
 
         # Use the "*" filetype to run formatters on all filetypes.
         # "*" = ["codespell"];
