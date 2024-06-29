@@ -222,7 +222,7 @@
         options.silent = true;
         options.desc = "Floating diagnostics";
         action = ''
-          <cmd>lua vim.diagnostic.open_float(nil, { focus = false, scope = 'cursor' })<CR>
+          <cmd>lua vim.diagnostic.open_float(nil, { focus = false, scope = 'cursor' })
         '';
       }
     ];
