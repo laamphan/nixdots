@@ -9,6 +9,7 @@
   home.packages = with pkgs; [
     curl
     less
+    util-linux
   ];
   home.sessionVariables = {
     PAGER = "less";
@@ -20,9 +21,9 @@
   programs.bat.config.theme = "TwoDark";
   home.file.".inputrc".source = ./mac-arm/dotfiles/inputrc;
 
-  xdg.configFile."nvim/" = {
-    source = pkgs.callPackage ../packages/nvchad {};
-  };
+  # xdg.configFile."nvim/" = {
+  #   source = pkgs.callPackage ../packages/nvchad {};
+  # };
 
   imports = [
     ./mac-arm/utils
@@ -34,5 +35,6 @@
     ./shared/dev
     ./shared/tools/git-token
     ./shared/system
+    ./pc/cli/nixvim/default.nix
   ];
 }

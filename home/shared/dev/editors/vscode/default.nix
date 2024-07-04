@@ -28,7 +28,7 @@
   programs.vscode = {
     enable = true;
     # package = pkgs.vscodium;
-    package = pkgs.vscode.fhs;
+    # package = pkgs.vscode.fhs;
     extensions = with pkgs.vscode-extensions;
       [
         dbaeumer.vscode-eslint
