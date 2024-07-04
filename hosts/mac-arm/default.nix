@@ -26,7 +26,7 @@
     NSGlobalDomain.InitialKeyRepeat = 14;
     NSGlobalDomain.KeyRepeat = 1;
   };
-  users.users.binhpham.home = "/Users/binhpham";
+  users.users.lap16096.home = "/Users/lap16096";
 
   # backwards compat; don't change
   system.stateVersion = 4;

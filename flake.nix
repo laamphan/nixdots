@@ -34,7 +34,6 @@
 
     darwin.url = "github:lnl7/nix-darwin";
     darwin.inputs.nixpkgs.follows = "nixpkgs";
-    neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
   };
 
   outputs = {
@@ -61,7 +60,7 @@
               useGlobalPkgs = false;
               useUserPackages = true;
               extraSpecialArgs = {inherit inputs;};
-              users.binhpham.imports = [./home/mac.nix];
+              users.lap16096.imports = [./home/mac.nix];
             };
           }
         ];

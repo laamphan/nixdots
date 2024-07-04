@@ -1,15 +1,8 @@
-{
-  pkgs,
-  inputs,
-  ...
-}: {
+{pkgs, ...}: {
   nixpkgs = {
     config = {
       allowUnfree = true;
     };
-    overlays = [
-      inputs.neovim-nightly-overlay.overlay
-    ];
   };
 
   home.stateVersion = "22.11";
