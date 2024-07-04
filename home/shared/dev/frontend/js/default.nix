@@ -22,7 +22,7 @@
     # nodePackages_latest.ts-node
     # nodePackages_latest.prisma
     # nodePackages_latest.dotenv-cli
-    nodePackages_latest.prettier
+    # nodePackages_latest.prettier
     # nodePackages_latest.tailwindcss
     # nodePackages_latest.live-server # Live server
   ];

@@ -1,4 +1,10 @@
 _: {
+  home.file.".gitignore" = {
+    force = true;
+    text = ''
+      server exited unexpectedly
+    '';
+  };
   programs.git = {
     enable = true;
     extraConfig = {
@@ -14,6 +20,7 @@ _: {
       url."https://:x-oauth-basic@github.com/manabie-com".insteadOf = "https://github.com/manabie-com";
 
       core.editor = "nvim";
+      core.excludesfile = "~/.gitignore";
       pull.rebase = false;
     };
   };

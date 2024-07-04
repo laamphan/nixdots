@@ -124,9 +124,8 @@
 
   # Enables docker in rootless mode
   virtualisation = {
-    docker.rootless = {
+    docker = {
       enable = true;
-      setSocketVariable = true;
     };
     # Enables virtualization for virt-manager
     libvirtd.enable = true;
