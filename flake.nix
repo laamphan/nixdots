@@ -61,6 +61,7 @@
               useUserPackages = true;
               extraSpecialArgs = {inherit inputs;};
               users.lap16096.imports = [./home/mac.nix];
+              backupFileExtension = "backup";
             };
           }
         ];

@@ -19,6 +19,7 @@ in
 
     preferLocalBuild = true;
 
+    # remember to rm -rf .config/nvim .local/share/nvim .cache/nvim when reinstalling on mac
     installPhase = ''
       mkdir -p $out
       cp -r ./ $out

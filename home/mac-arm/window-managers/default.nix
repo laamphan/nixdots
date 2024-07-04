@@ -31,10 +31,10 @@
     force = true;
     text = ''
       # change window focus within space
-      alt - j : yabai -m window --focus south
-      alt - k : yabai -m window --focus north
-      alt - h : yabai -m window --focus west
-      alt - l : yabai -m window --focus east
+      alt - j : yabai -m window --focus south || yabai -m display --focus south
+      alt - k : yabai -m window --focus north || yabai -m display --focus north
+      alt - h : yabai -m window --focus west || yabai -m display --focus west
+      alt - l : yabai -m window --focus east || yabai -m display --focus east
       #change focus between external displays (left and right)
       alt - s: yabai -m display --focus west
       alt - g: yabai -m display --focus east

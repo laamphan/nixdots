@@ -4,10 +4,10 @@
   programs.nixvim = {
     plugins.conform-nvim = {
       enable = true;
-      formatOnSave = {
-        timeoutMs = 2500;
-        lspFallback = true;
-      };
+      # formatOnSave = {
+      #   timeoutMs = 2500;
+      #   lspFallback = true;
+      # };
       formattersByFt = {
         lua = ["stylua"];
         # Conform will run multiple formatters sequentially
@@ -20,8 +20,7 @@
         typescriptreact = ["biome-check" "prettier" "rustywind"];
         javascriptreact = ["biome-check" "prettier" "rustywind"];
         nix = [["alejandra"]];
-        # golang = ["gofumt" "goimports_reviser" "golines"];
-        golang = ["gofumt" "goimports_reviser"];
+        go = ["gofmt" "gofumt" "goimports_reviser" "golines"];
         rust = [["rustfmt"]];
         # yaml = [["prettier"]];
         json = [["biome-check" "prettier"]];
