@@ -9,5 +9,6 @@
     gotests
     impl
     iferr
+    air
   ];
 }
