@@ -108,7 +108,6 @@
         ];
       };
     };
-    };
     formatter.x86_64-linux = nixpkgs.legacyPackages.x86_64-linux.nixpkgs-fmt;
     darwinPackages = self.darwinConfigurations."HX-VT-WS-A029".pkgs;
   };
