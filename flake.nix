@@ -90,6 +90,25 @@
         ];
       };
     };
+    wslConfigurations = {
+      binh-wsl = NixOS-WSL.configurations."nixos-unstable".nixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
+        specialArgs = {inherit inputs;};
+        modules = [
+          ./hosts/binh1298/configuration.nix
+          home-manager.nixosModules.home-manager
+          {
+            home-manager = {
+              useGlobalPkgs = false;
+              useUserPackages = true;
+              extraSpecialArgs = {inherit inputs;};
+              users.binh1298 = ./home/wsl.nix;
+            };
+          }
+        ];
+      };
+    };
+    };
     formatter.x86_64-linux = nixpkgs.legacyPackages.x86_64-linux.nixpkgs-fmt;
     darwinPackages = self.darwinConfigurations."HX-VT-WS-A029".pkgs;
   };
