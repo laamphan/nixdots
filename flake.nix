@@ -89,9 +89,7 @@
           {programs.hyprland.enable = true;}
         ];
       };
-    };
-    wslConfigurations = {
-      binh-wsl = NixOS-WSL.configurations."nixos-unstable".nixpkgs.lib.nixosSystem {
+      binh-wsl = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         specialArgs = {inherit inputs;};
         modules = [
