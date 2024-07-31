@@ -93,7 +93,7 @@
         system = "x86_64-linux";
         specialArgs = {inherit inputs;};
         modules = [
-          ./hosts/wsl/default.nix
+          # ./hosts/wsl/default.nix
           home-manager.nixosModules.home-manager
           {
             home-manager = {

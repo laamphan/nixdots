@@ -1,9 +1,11 @@
 {pkgs, ...}: {
+  boot.supportedFilesystems = ["ntfs"];
+
   users = {
     users = {
       BinhWSL = {
         isNormalUser = true;
-        description = "binh1298";
+        description = "BinhWSL";
         initialPassword = "123123";
         shell = pkgs.zsh;
         extraGroups = ["networkmanager" "wheel" "input" "docker" "libvirtd"];
