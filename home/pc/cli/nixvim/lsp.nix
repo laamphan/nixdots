@@ -9,12 +9,14 @@ _: {
             extraOptions = {
               preferences = {
                 importModuleSpecifierPreference = "non-relative";
+                import_module_specifier_preference = "non-relative";
               };
               server_capabilities = {documentFormattingProvider = false;};
             };
             settings = {
               preferences = {
                 importModuleSpecifierPreference = "non-relative";
+                import_module_specifier_preference = "non-relative";
               };
               server_capabilities = {documentFormattingProvider = false;};
             };

@@ -5,5 +5,6 @@ _: {
     ./obs
     ./firefox
     ./chrome
+    ./blender
   ];
 }
