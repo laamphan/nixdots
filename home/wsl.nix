@@ -4,8 +4,8 @@
   ...
 }: {
   home = {
-    username = "binh1298";
-    homeDirectory = "/home/binh1298";
+    username = "binh-wsl";
+    homeDirectory = "/home/binh-wsl";
     stateVersion = "22.11";
   };
 
@@ -37,7 +37,6 @@
     ./pc/dev/misc.nix
     ./pc/themes
     ./pc/apps
-    ./pc/fcitx5
   ];
 
   # Allow unfree packages + use overlays
