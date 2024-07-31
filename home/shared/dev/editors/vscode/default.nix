@@ -75,6 +75,12 @@
           version = "2.1.2";
           sha256 = "sha256-bPAig5KK6hYxyAyt48Mfi2dEf50/hNiNngX7bTzIKcQ=";
         }
+        {
+          name = "mongodb-vscode";
+          publisher = "mongodb";
+          version = "1.6.0";
+          sha256 = "sha256-XZykYkIwu4rx9guYpIOPU4OPUpi437u98KP+YfbSMBs=";
+        }
       ];
     userSettings = {
       # "[typescriptreact]" = {

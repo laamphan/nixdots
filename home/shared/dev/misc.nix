@@ -24,5 +24,6 @@
     # minecraft
     # grapejuice
     # libpulseaudio
+    libiconv
   ];
 }

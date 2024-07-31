@@ -78,6 +78,9 @@
       ctrl + alt - q : yabai --stop-service
       ctrl + alt - s : yabai --start-service
       ctrl + alt - r : yabai --restart-service
+      cmd - h [
+        "alacritty" : skhd -k "ctrl - b" && skhd -k "h"
+      ]
     '';
   };
   home.packages = with pkgs; [

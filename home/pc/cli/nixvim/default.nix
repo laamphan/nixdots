@@ -30,7 +30,7 @@
           enabled = true;
           autoTrigger = true;
           keymap = {
-            accept = "<M-CR>";
+            accept = "<C-A>";
           };
         };
       };
@@ -52,7 +52,7 @@
       lualine.enable = true;
       tmux-navigator.enable = true;
       nvim-autopairs.enable = true;
-      auto-session.enable = true;
+      # auto-session.enable = true;
     };
     extraPlugins = with pkgs.vimPlugins; [
       base46
@@ -96,6 +96,7 @@
         end, {
           desc = "Re-enable autoformat-on-save",
         })
+
         -- RENAMER
         local map = vim.keymap.set
 

@@ -10,8 +10,8 @@
     bun
     yarn
     # deno
-    # nodejs
-    nodejs-18_x
+    nodejs
+    # nodejs-18_x
     # node2nix
     # typescript
     tailwindcss
