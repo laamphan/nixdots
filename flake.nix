@@ -39,12 +39,11 @@
     with inputs; let
       secrets = builtins.fromJSON (builtins.readFile "${self}/secrets.json");
 
-      homeManagerDefaults = args: specialArgs: {
+      homeManagerDefaults = specialArgs: {
         home-manager.useGlobalPkgs = false;
         home-manager.useUserPackages = true;
         home-manager.backupFileExtension = "hm-backup";
         home-manager.extraSpecialArgs = specialArgs;
-        home-manager.users = args;
       };
 
       macUserName = "lap16096";
@@ -64,31 +63,40 @@
           modules = [
             ./hosts/mac-arm
             home-manager.darwinModules.home-manager
-            (homeManagerDefaults {${username} = ./home/mac.nix;} specialArgs)
+            (homeManagerDefaults specialArgs)
           ];
         };
       };
-      nixosConfigurations = let
-        username = pcUserName;
-        specialArgs = {inherit inputs username secrets;};
-      in {
-        binh-pc = nixpkgs.lib.nixosSystem {
-          system = "x86_64-linux";
-          specialArgs = specialArgs;
-          modules = [
-            {
-              environment.systemPackages = [alejandra.defaultPackage."x86_64-linux"];
-            }
-            ./hosts/binh1298/configuration.nix
-            home-manager.nixosModules.home-manager
-            (homeManagerDefaults {
-                ${username} = ./home/pc.nix;
-              }
-              specialArgs)
-            hyprland.nixosModules.default
-            {programs.hyprland.enable = true;}
-          ];
-        };
+      nixosConfigurations = {
+        binh-pc = let
+          username = pcUserName;
+          specialArgs = {inherit inputs username secrets;};
+        in
+          nixpkgs.lib.nixosSystem {
+            system = "x86_64-linux";
+            specialArgs = specialArgs;
+            modules = [
+              ./hosts/binh1298/configuration.nix
+              home-manager.nixosModules.home-manager
+              (homeManagerDefaults specialArgs)
+              hyprland.nixosModules.default
+              {programs.hyprland.enable = true;}
+            ];
+          };
+        binh-wsl = let
+          username = wslUserName;
+          specialArgs = {inherit inputs username secrets;};
+        in
+          nixpkgs.lib.nixosSystem {
+            system = "x86_64-linux";
+            specialArgs = specialArgs;
+            modules = [
+              NixOS-WSL.nixosModules.wsl
+              ./hosts/wsl/default.nix
+              home-manager.nixosModules.home-manager
+              (homeManagerDefaults specialArgs)
+            ];
+          };
       };
     };
 }

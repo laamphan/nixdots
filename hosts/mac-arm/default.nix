@@ -31,6 +31,11 @@
     NSGlobalDomain.KeyRepeat = 1;
   };
   users.users.${username}.home = "/Users/${username}";
+  home-manager.users.${username} = {
+    imports = [
+      ../../home/mac.nix
+    ];
+  };
 
   # backwards compat; don't change
   system.stateVersion = 4;

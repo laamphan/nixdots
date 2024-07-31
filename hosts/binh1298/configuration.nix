@@ -10,6 +10,12 @@
     ./hardware-configuration.nix
   ];
 
+  home-manager.users.${username} = {
+    imports = [
+      ../../home/pc.nix
+    ];
+  };
+
   # Bootloader.
   boot = {
     kernelModules = ["v4l2loopback"]; # Autostart kernel modules on boot
@@ -164,6 +170,7 @@
       brightnessctl
       inputs.xdg-portal-hyprland.packages.${system}.xdg-desktop-portal-hyprland
       xdg-desktop-portal-gtk
+      alejandra
     ];
   };
 

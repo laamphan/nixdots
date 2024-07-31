@@ -1,29 +1,13 @@
-{
-  pkgs,
-  inputs,
-  ...
-}: {
+{username, ...}: {
   home = {
-    username = "BinhWSL";
-    homeDirectory = "/home/BinhWSL";
-    stateVersion = "22.11";
+    username = "${username}";
+    homeDirectory = "/home/${username}";
+    sessionVariables.EDITOR = "nvim";
+    sessionVariables.SHELL = "/etc/profiles/per-user/${username}/bin/zsh";
   };
 
-  # This value determines the Home Manager release that your
-  # configuration is compatible with. This helps avoid breakage
-  # when a new Home Manager release introduces backwards
-  # incompatible changes.
-  #
-  # You can update Home Manager without changing this value. See
-  # the Home Manager release notes for a list of state version
-  # changes in each release.
+  programs.home-manager.enable = true;
 
-  # Let Home Manager install and manage itself.
-  programs = {
-    home-manager.enable = true;
-  };
-
-  # Imports
   imports = [
     ./shared/cli
     ./shared/cli-apps
@@ -34,14 +18,12 @@
     ./pc/themes
   ];
 
-  # Allow unfree packages + use overlays
   nixpkgs = {
     config = {
       allowUnfree = true;
     };
     overlays = [
       # (import ../../overlays/firefox-overlay.nix)
-      # inputs.neovim-nightly-overlay.overlay
     ];
   };
 
@@ -51,8 +33,5 @@
   #   source = pkgs.callPackage ../packages/nvchad {};
   # };
 
-  # Add support for .local/bin
-  home.sessionPath = [
-    "$HOME/.local/bin"
-  ];
+  home.sessionPath = ["$HOME/.local/bin"];
 }
