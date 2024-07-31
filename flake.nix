@@ -100,7 +100,7 @@
               useGlobalPkgs = false;
               useUserPackages = true;
               extraSpecialArgs = {inherit inputs;};
-              users.binh1298 = ./home/wsl.nix;
+              users.BinhWSL = ./home/wsl.nix;
             };
           }
         ];
