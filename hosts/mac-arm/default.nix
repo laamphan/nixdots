@@ -1,4 +1,8 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  username,
+  ...
+}: {
   programs.zsh.enable = true;
   environment = {
     shells = with pkgs; [bash zsh];
@@ -26,7 +30,7 @@
     NSGlobalDomain.InitialKeyRepeat = 14;
     NSGlobalDomain.KeyRepeat = 1;
   };
-  users.users.lap16096.home = "/Users/lap16096";
+  users.users.${username}.home = "/Users/${username}";
 
   # backwards compat; don't change
   system.stateVersion = 4;

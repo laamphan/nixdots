@@ -1,11 +1,12 @@
 {
   pkgs,
   inputs,
+  username,
   ...
 }: {
   programs.firefox = {
     enable = true;
-    profiles.binh1298 = {
+    profiles.${username} = {
       search.default = "Google";
       search.force = true;
       extensions = with inputs.firefox-addons.packages.${pkgs.system}; [

@@ -2,6 +2,7 @@
   config,
   pkgs,
   inputs,
+  username,
   ...
 }: {
   imports = [
@@ -234,9 +235,9 @@
 
   users = {
     users = {
-      binh1298 = {
+      ${username} = {
         isNormalUser = true;
-        description = "binh1298";
+        description = username;
         initialPassword = "123123";
         shell = pkgs.zsh;
         extraGroups = ["networkmanager" "wheel" "input" "docker" "libvirtd"];
@@ -251,7 +252,7 @@
       wheelNeedsPassword = true;
       extraRules = [
         {
-          users = ["binh1298"];
+          users = [username];
           keepEnv = true;
           persist = true;
         }

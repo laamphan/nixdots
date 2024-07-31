@@ -18,7 +18,6 @@
 
     nur.url = "github:nix-community/NUR";
     nix-colors.url = "github:misterio77/nix-colors";
-    spicetify-nix.url = "github:the-argus/spicetify-nix";
     nixvim = {
       url = "github:nix-community/nixvim";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -36,77 +35,60 @@
     darwin.inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  outputs = {
-    self,
-    nixpkgs,
-    hyprland,
-    home-manager,
-    NixOS-WSL,
-    spicetify-nix,
-    alejandra,
-    darwin,
-    ...
-  } @ inputs: {
-    darwinConfigurations = {
-      binh-mbp = darwin.lib.darwinSystem {
-        system = "aarch64-darwin";
-        pkgs = import nixpkgs {system = "aarch64-darwin";};
-        specialArgs = {inherit inputs;};
-        modules = [
-          ./hosts/mac-arm
-          home-manager.darwinModules.home-manager
-          {
-            home-manager = {
-              useGlobalPkgs = false;
-              useUserPackages = true;
-              extraSpecialArgs = {inherit inputs;};
-              users.lap16096.imports = [./home/mac.nix];
-              backupFileExtension = "backup";
-            };
-          }
-        ];
+  outputs = inputs:
+    with inputs; let
+      secrets = builtins.fromJSON (builtins.readFile "${self}/secrets.json");
+
+      homeManagerDefaults = args: specialArgs: {
+        home-manager.useGlobalPkgs = false;
+        home-manager.useUserPackages = true;
+        home-manager.backupFileExtension = "hm-backup";
+        home-manager.extraSpecialArgs = specialArgs;
+        home-manager.users = args;
+      };
+
+      macUserName = "lap16096";
+      pcUserName = "binh1298";
+      wslUserName = "BinhWSL";
+    in {
+      formatter.x86_64-linux = nixpkgs.legacyPackages.x86_64-linux.alejandra;
+      darwinPackages = self.darwinConfigurations."HX-VT-WS-A029".pkgs;
+      darwinConfigurations = let
+        username = macUserName;
+        specialArgs = {inherit inputs username secrets;};
+      in {
+        binh-mbp = darwin.lib.darwinSystem {
+          system = "aarch64-darwin";
+          specialArgs = specialArgs;
+          pkgs = import nixpkgs {system = "aarch64-darwin";};
+          modules = [
+            ./hosts/mac-arm
+            home-manager.darwinModules.home-manager
+            (homeManagerDefaults {${username} = ./home/mac.nix;} specialArgs)
+          ];
+        };
+      };
+      nixosConfigurations = let
+        username = pcUserName;
+        specialArgs = {inherit inputs username secrets;};
+      in {
+        binh-pc = nixpkgs.lib.nixosSystem {
+          system = "x86_64-linux";
+          specialArgs = specialArgs;
+          modules = [
+            {
+              environment.systemPackages = [alejandra.defaultPackage."x86_64-linux"];
+            }
+            ./hosts/binh1298/configuration.nix
+            home-manager.nixosModules.home-manager
+            (homeManagerDefaults {
+                ${username} = ./home/pc.nix;
+              }
+              specialArgs)
+            hyprland.nixosModules.default
+            {programs.hyprland.enable = true;}
+          ];
+        };
       };
     };
-    nixosConfigurations = {
-      binh-pc = nixpkgs.lib.nixosSystem {
-        system = "x86_64-linux";
-        specialArgs = {inherit inputs hyprland spicetify-nix;};
-        modules = [
-          {
-            environment.systemPackages = [alejandra.defaultPackage."x86_64-linux"];
-          }
-          ./hosts/binh1298/configuration.nix
-          home-manager.nixosModules.home-manager
-          {
-            home-manager = {
-              useGlobalPkgs = false;
-              useUserPackages = true;
-              extraSpecialArgs = {inherit inputs spicetify-nix;};
-              users.binh1298 = ./home/pc.nix;
-            };
-          }
-          hyprland.nixosModules.default
-          {programs.hyprland.enable = true;}
-        ];
-      };
-      binh-wsl = nixpkgs.lib.nixosSystem {
-        system = "x86_64-linux";
-        specialArgs = {inherit inputs;};
-        modules = [
-          # ./hosts/wsl/default.nix
-          home-manager.nixosModules.home-manager
-          {
-            home-manager = {
-              useGlobalPkgs = false;
-              useUserPackages = true;
-              extraSpecialArgs = {inherit inputs;};
-              users.BinhWSL = ./home/wsl.nix;
-            };
-          }
-        ];
-      };
-    };
-    formatter.x86_64-linux = nixpkgs.legacyPackages.x86_64-linux.nixpkgs-fmt;
-    darwinPackages = self.darwinConfigurations."HX-VT-WS-A029".pkgs;
-  };
 }

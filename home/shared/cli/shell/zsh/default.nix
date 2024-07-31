@@ -1,4 +1,8 @@
-{pkgs, ...}: let
+{
+  pkgs,
+  secrets,
+  ...
+}: let
   themepkg = pkgs.fetchFromGitHub {
     owner = "catppuccin";
     repo = "zsh-syntax-highlighting";
@@ -24,7 +28,7 @@ in {
       export PATH="$PATH:/$HOME/.config/nvim/bin"
       export PATH="$PATH:/$HOME/.npm-global/bin"
       export PATH="$PATH:/$HOME/pnpm-global"
-      export GITHUB_TOKEN=""
+      export GITHUB_TOKEN="${secrets.github_token}"
       export PATH="$PATH:~/.manabie/bin"
       export PNPM_HOME="/$HOME/.pnpm-global"
       # For obsidian
