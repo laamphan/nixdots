@@ -8,7 +8,5 @@
     experimental-features = nix-command flakes
   '';
 
-  services.nix-daemon.enable = true;
-
-  users.users.binh-wsl.home = "/Users/binh-wsl";
+  users.users.BinhWSL.home = "/home/BinhWSL";
 }

@@ -4,8 +4,8 @@
   ...
 }: {
   home = {
-    username = "binh1298";
-    homeDirectory = "/home/binh1298";
+    username = "BinhWSL";
+    homeDirectory = "/home/BinhWSL";
     stateVersion = "22.11";
   };
 
