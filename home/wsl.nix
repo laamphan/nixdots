@@ -25,18 +25,13 @@
 
   # Imports
   imports = [
-    ./shared/apps
     ./shared/cli
     ./shared/cli-apps
-    ./shared/desktop
     ./shared/dev
     ./shared/system
     ./shared/tools/git-token
     ./pc/cli
-    ./pc/desktop
-    ./pc/dev/misc.nix
     ./pc/themes
-    ./pc/apps
   ];
 
   # Allow unfree packages + use overlays
