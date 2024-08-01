@@ -7,7 +7,7 @@ _: {
       };
       user = {
         name = "Pham Duc Binh";
-        email = "binh.pham@hextrust.com";
+        email = "binh1298@gmail.com";
         signingKey = "";
       };
 
