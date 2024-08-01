@@ -29,6 +29,9 @@ in {
       export PATH="$PATH:/$HOME/.npm-global/bin"
       export PATH="$PATH:/$HOME/pnpm-global"
       export GITHUB_TOKEN="${secrets.github_token}"
+      export GITLAB_USER="${secrets.gitlab_ah_user}"
+      export GITLAB_TOKEN="${secrets.gitlab_ah_token}"
+      export GOPRIVATE="code.vng.vn/*,"
       export PATH="$PATH:~/.manabie/bin"
       export PNPM_HOME="/$HOME/.pnpm-global"
       # For obsidian
