@@ -3,6 +3,7 @@
     force = true;
     text = ''
       server exited unexpectedly
+      .DS_Store
     '';
   };
   programs.git = {
@@ -27,5 +28,6 @@
       core.excludesfile = "~/.gitignore";
       pull.rebase = false;
     };
+    lfs.enable = true;
   };
 }
