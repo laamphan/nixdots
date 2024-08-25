@@ -28,11 +28,6 @@ in {
       export PATH="$PATH:/$HOME/.config/nvim/bin"
       export PATH="$PATH:/$HOME/.npm-global/bin"
       export PATH="$PATH:/$HOME/pnpm-global"
-      export GITHUB_TOKEN="${secrets.github_token}"
-      export GITLAB_USER="${secrets.gitlab_ah_user}"
-      export GITLAB_TOKEN="${secrets.gitlab_ah_token}"
-      export GOPRIVATE="code.vng.vn/*,"
-      export PATH="$PATH:~/.manabie/bin"
       export PNPM_HOME="/$HOME/.pnpm-global"
       # For obsidian
       # export LD_LIBRARY_PATH=$(nix build --print-out-paths --no-link nixpkgs#libGL)/lib
@@ -136,7 +131,7 @@ in {
       la = "eza -a";
       mv = "mv -i";
       rip = "rip -i";
-      rebuild = "cd ~/nixos && doas nixos-rebuild switch --flake .#binh1298";
+      rebuild = "cd ~/nixos && doas nixos-rebuild switch --flake .#w";
       postman = "postman --use-gl=desktop";
       insomnia = "insomnia --use-gl=desktop";
       beekeeper-studio = "beekeeper-studio --use-gl=desktop";
@@ -151,8 +146,10 @@ in {
       gi = "git init";
       gp = "git pull";
       gs = "git status";
+      pn = "pnpm";
       chrome = "setsid google-chrome-stable  --enable-features=UseOzonePlatform --ozone-platform=wayland --enable-wayland-ime";
       obsidian = "setsid obsidian --enable-features=UseOzonePlatform --ozone-platform=wayland --enable-wayland-ime";
+      code = "code --user-data-dir ~/Code/User --extensions-dir ~/Code/Extensions";
     };
 
     oh-my-zsh = {

@@ -6,6 +6,6 @@ _: {
     ./telegram
     ./imagemagick
     ./gimp
-    # ./spicetify
+    #./spicetify
   ];
 }

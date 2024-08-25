@@ -6,8 +6,8 @@ _: {
         defaultBranch = "main";
       };
       user = {
-        name = "Pham Duc Binh";
-        email = "binh1298@gmail.com";
+        name = "laamphan";
+        email = "41721718+laamphan@users.noreply.github.com";
         signingKey = "";
       };
 

@@ -47,7 +47,7 @@ _: {
           cssls.enable = true;
           bashls.enable = true;
           yamlls.enable = true;
-          nil_ls.enable = true;
+          nil-ls.enable = true;
           #TODO: Apex, cucumber
         };
       };

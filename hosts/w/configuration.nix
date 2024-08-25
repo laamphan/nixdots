@@ -23,13 +23,14 @@
     extraModprobeConfig = ''
       options v4l2loopback devices=1 video_nr=1 card_label="OBS Cam" exclusive_caps=1
     '';
-    kernelParams = ["nvidia.NVreg_PreserveVideoMemoryAllocations=1"];
+    # BINH ALO
+    # kernelParams = ["nvidia.NVreg_PreserveVideoMemoryAllocations=1"];
     supportedFilesystems = ["ntfs"];
     loader = {
       systemd-boot.enable = false; # (for UEFI systems only)
       timeout = 3;
       efi = {
-        canTouchEfiVariables = false;
+        canTouchEfiVariables = true;
         efiSysMountPoint = "/boot";
       };
       grub = {
@@ -38,8 +39,8 @@
         efiSupport = true;
         useOSProber = true;
         # Change this to true when you have multiple OSes installed
-        efiInstallAsRemovable = true;
-        configurationLimit = 3;
+        efiInstallAsRemovable = false;
+        configurationLimit = 8;
         theme = pkgs.fetchFromGitHub {
           owner = "Lxtharia";
           repo = "minegrub-theme";
@@ -58,6 +59,11 @@
     '';
   };
 
+  # Power Management
+  powerManagement = {
+    cpuFreqGovernor = "performance";
+  };
+
   # Enable networking
   networking = {
     networkmanager.enable = true;
@@ -73,7 +79,7 @@
   };
 
   # Set your time zone.
-  time.timeZone = "Asia/Ho_Chi_Minh";
+  time.timeZone = "Asia/Bangkok";
 
   # Select internationalisation properties.
   i18n = {
@@ -91,7 +97,8 @@
     };
   };
   i18n.inputMethod = {
-    enabled = "fcitx5";
+    type = "fcitx5";
+    enable = true;
     fcitx5.addons = with pkgs; [
       gtk4
       fcitx5-gtk
@@ -140,11 +147,13 @@
 
   environment = {
     variables = {
-      GBM_BACKEND = "nvidia-drm";
-      LIBVA_DRIVER_NAME = "nvidia";
-      __GLX_VENDOR_LIBRARY_NAME = "nvidia";
-      __GL_GSYNC_ALLOWED = "1";
-      __GL_VRR_ALLOWED = "1"; # Controls if Adaptive Sync should be used. Recommended to set as “0” to avoid having problems on some games.
+      # BINH ALO
+      # GBM_BACKEND = "nvidia-drm";
+      # LIBVA_DRIVER_NAME = "nvidia";
+      # __GLX_VENDOR_LIBRARY_NAME = "nvidia";
+      # __GL_GSYNC_ALLOWED = "1";
+      # __GL_VRR_ALLOWED = "1"; # Controls if Adaptive Sync should be used. Recommended to set as “0” to avoid having problems on some games.
+
       XCURSOR_THEME = "macOS-BigSur";
       XCURSOR_SIZE = "32";
       QT_AUTO_SCREEN_SCALE_FACTOR = "1";
@@ -153,7 +162,7 @@
     };
     sessionVariables = {
       NIXOS_OZONE_WL = "1"; # Hint electron apps to use wayland
-      WLR_NO_HARDWARE_CURSORS = "1"; # Fix cursor rendering issue on wlr nvidia.
+      # WLR_NO_HARDWARE_CURSORS = "1"; # Fix cursor rendering issue on wlr nvidia.
       DEFAULT_BROWSER = "${pkgs.brave}/bin/firefox"; # Set default browser
       # GTK_IM_MODULE = "fcitx";
       QT_IM_MODULE = "fcitx";
@@ -171,7 +180,16 @@
       inputs.xdg-portal-hyprland.packages.${system}.xdg-desktop-portal-hyprland
       xdg-desktop-portal-gtk
       alejandra
+      efibootmgr
+      pinentry-tty
+      vscode
     ];
+  };
+
+  nixpkgs.config = {
+    packageOverrides = pkgs: {
+      vscode = pkgs.vscode;
+    };
   };
 
   # For obsidian
@@ -181,17 +199,17 @@
   };
 
   hardware = {
-    nvidia = {
-      open = false;
-      nvidiaSettings = true;
-      powerManagement.enable = true;
-      modesetting.enable = true;
-      package = config.boot.kernelPackages.nvidiaPackages.stable;
-    };
-    opengl = {
+    # nvidia = {
+    #   open = false;
+    #   nvidiaSettings = true;
+    #   powerManagement.enable = true;
+    #   modesetting.enable = true;
+    #   package = config.boot.kernelPackages.nvidiaPackages.stable;
+    # };
+    graphics = {
       enable = true;
-      driSupport32Bit = true;
-      extraPackages = with pkgs; [nvidia-vaapi-driver];
+      enable32Bit = true;
+      extraPackages = with pkgs; []; #nvidia-vaapi-driver removed
     };
   };
 
@@ -206,7 +224,7 @@
           enableContribAndExtras = true;
         };
       };
-      videoDrivers = ["nvidia"];
+      videoDrivers = ["modesetting"]; # replaced nvidia with this
       xkb.layout = "us";
       xkb.variant = "";
     };
@@ -228,7 +246,7 @@
 
   console.keyMap = "us";
 
-  sound.enable = true;
+  # sound.enable = true;
   hardware.pulseaudio.enable = false;
   services.pipewire = {
     enable = true;

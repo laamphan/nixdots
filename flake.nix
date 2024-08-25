@@ -47,7 +47,7 @@
       };
 
       macUserName = "lap16096";
-      pcUserName = "binh1298";
+      pcUserName = "w";
       wslUserName = "BinhWSL";
     in {
       formatter.x86_64-linux = nixpkgs.legacyPackages.x86_64-linux.alejandra;
@@ -68,7 +68,7 @@
         };
       };
       nixosConfigurations = {
-        binh-pc = let
+        w = let
           username = pcUserName;
           specialArgs = {inherit inputs username secrets;};
         in
@@ -76,7 +76,7 @@
             system = "x86_64-linux";
             specialArgs = specialArgs;
             modules = [
-              ./hosts/binh1298/configuration.nix
+              ./hosts/w/configuration.nix
               home-manager.nixosModules.home-manager
               (homeManagerDefaults specialArgs)
               hyprland.nixosModules.default

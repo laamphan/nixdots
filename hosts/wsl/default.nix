@@ -5,7 +5,7 @@
 }: {
   system.stateVersion = "22.05";
 
-  time.timeZone = "Asia/Ho_Chi_Minh";
+  time.timeZone = "Asia/Bangkok";
 
   networking.hostName = "nixos";
 

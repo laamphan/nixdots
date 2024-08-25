@@ -31,11 +31,9 @@ in {
     settings = {
       "$mainMod" = "SUPER";
       monitor = [
-        # "eDP-1,1920x1080,0x0,1"
-        # ",1920x1080,auto,1"
-        "DP-2,2560x1440@144,0x0,1"
-        "HDMI-A-1,1920x1080@60,2560x0,1"
-        "Unknown-1,disable"
+        "HDMI-A-1,1920x1080,0x0,1"
+        "eDP-1,1920x1080,1920x0,1"
+        # "Unknown-1,disable"
       ];
 
       xwayland = {force_zero_scaling = true;};
@@ -130,7 +128,7 @@ in {
         mfact = 0.5;
         orientation = "right";
         special_scale_factor = 0.8;
-        new_is_master = true;
+        # new_is_master = true;
         no_gaps_when_only = false;
       };
 
@@ -162,9 +160,9 @@ in {
         "$mainMod,j,movefocus,d"
 
         "$mainMod,left,movefocus,l"
-        "$mainMod,down,movefocus,r"
+        "$mainMod,right,movefocus,r"
         "$mainMod,up,movefocus,u"
-        "$mainMod,right,movefocus,d"
+        "$mainMod,down,movefocus,d"
 
         "$mainMod,1,workspace,1"
         "$mainMod,2,workspace,2"
@@ -223,7 +221,7 @@ in {
 
         "$mainMod,T,exec,kitty"
         "$mainMod SHIFT,S,exec,screenshot"
-        "$mainMod SHIFT,C,exec,wallpaper"
+        # "$mainMod SHIFT,C,exec,wallpaper"
         "$mainMod,A,exec,fuzzel"
         "$mainMod,F,fullscreen"
         # "$mainMod,z,exec,waybar"
@@ -246,7 +244,7 @@ in {
 
       bindle = [
         # Backlight Keys
-        ",XF86MonBrightnessUp,exec,brightnessctl set 5+"
+        ",XF86MonBrightnessUp,exec,brightnessctl set 5%+"
         ",XF86MonBrightnessDown,exec,brightnessctl set 5%-"
         # Volume Keys
         ",XF86AudioRaiseVolume,exec,amixer -D pipewire sset Master 5%+"
