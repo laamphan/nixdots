@@ -149,7 +149,7 @@ in {
       pn = "pnpm";
       chrome = "setsid google-chrome-stable  --enable-features=UseOzonePlatform --ozone-platform=wayland --enable-wayland-ime";
       obsidian = "setsid obsidian --enable-features=UseOzonePlatform --ozone-platform=wayland --enable-wayland-ime";
-      code = "code --user-data-dir ~/Code/User --extensions-dir ~/Code/Extensions";
+      code = "code --user-data-dir ~/Code --extensions-dir ~/Code/Extensions";
     };
 
     oh-my-zsh = {
