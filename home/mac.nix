@@ -35,6 +35,6 @@
     ./shared/dev
     ./shared/tools/git-token
     ./shared/system
-    ./pc/cli/nixvim/default.nix
+    ./w/cli/nixvim/default.nix
   ];
 }
