@@ -1,5 +1,5 @@
 let
   pkgs = import <nixpkgs> {};
 in {
-  nvchad = pkgs.callPackage ./nvchad/default.nix {};
+  #   nvchad = pkgs.callPackage ./nvchad/default.nix {};
 }

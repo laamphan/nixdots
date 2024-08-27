@@ -56,8 +56,8 @@
     };
     extraPlugins = with pkgs.vimPlugins; [
       base46
-      nvchad
-      nvchad-ui
+      #   nvchad
+      #   nvchad-ui
       plenary-nvim
       nvim-web-devicons
       vim-dadbod-ui
