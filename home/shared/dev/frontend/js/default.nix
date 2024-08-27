@@ -16,7 +16,8 @@
     # typescript
     tailwindcss
     # nodePackages.npm # Package manager
-    nodePackages_latest.pnpm
+    #nodePackages_latest.pnpm
+    pnpm_8
     biome
     nodePackages."@microsoft/rush"
     # nodePackages_latest.ts-node
