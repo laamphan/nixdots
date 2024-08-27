@@ -111,6 +111,7 @@ in {
           true; # misc:no_vfr -> misc:vfr. bool, heavily recommended to leave at default on. Saves on CPU usage.
         vrr =
           true; # misc:vrr -> Adaptive sync of your monitor. 0 (off), 1 (on), 2 (fullscreen only). Default 0 to avoid white flashes on select hardware.
+        force_default_wallpaper = 0;
       };
 
       dwindle = {
@@ -142,7 +143,13 @@ in {
       exec-once = [
         "easyeffects --gapplication-service" # Starts easyeffects in the background
         "$HOME/.config/hypr/autostart"
-        "exec-once=dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP"
+        "dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP"
+        "hyprctl dispatch moveworkspacetomonitor 2 eDP-1"
+        "hyprctl dispatch moveworkspacetomonitor 1 HDMI-A-1"
+        "hyprctl dispatch workspace 1"
+        "hyprctl setcursor 'macOS-BigSur' 24"
+        "kitty"
+        # "hyprctl dispatch workspace 1,monitor:HDMI-A-1" # Add this line
       ];
 
       bind = [
@@ -251,9 +258,8 @@ in {
         ",XF86AudioLowerVolume,exec,amixer -D pipewire sset Master 5%-"
       ];
       bindl = [
-        ",switch:on:Lid Switch, exec, swaylock -i ~/Pictures/programmer.gif"
-
-        ",switch:off:Lid Switch, exec, swaylock -i ~/Pictures/programmer.gif"
+        ",switch:on:Lid Switch, exec, swaylock -i ~/Downloads/black.jpeg &; systemctl suspend"
+        ",switch:off:Lid Switch, exec, swaylock -i ~/Downloads/black.jpeg &; systemctl suspend"
       ];
 
       windowrule = [
@@ -295,10 +301,13 @@ in {
            # source = ~/.config/hypr/themes/oxocarbon.conf
            env = XDG_SESSION_TYPE,wayland
 
-           env = LIBVA_DRIVER_NAME,nvidia
-           env = GBM_BACKEND,nvidia-drm
-           env = __GLX_VENDOR_LIBRARY_NAME,nvidia
-           env = WLR_NO_HARDWARE_CURSORS,1
+      # -- nvidia start
+      #     env = LIBVA_DRIVER_NAME,nvidia
+      #     env = GBM_BACKEND,nvidia-drm
+      #     env = __GLX_VENDOR_LIBRARY_NAME,nvidia
+      #     env = WLR_NO_HARDWARE_CURSORS,1
+      # -- nvidia stop
+
       #     # will switch to a submap called resize
       #     bind=$mainMod,R,submap,resize
       #
