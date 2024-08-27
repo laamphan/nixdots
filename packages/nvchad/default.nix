@@ -21,10 +21,9 @@ in
 
     # remember to rm -rf .config/nvim .local/share/nvim .cache/nvim when reinstalling on mac
     installPhase = ''
-      mkdir -p $out
-      cp -r ./ $out
-      mkdir -p "$out/lua/custom"
-      cp -r ${custom}/* "$out/lua/custom/"
+      mkdir -p $out/lua/custom
+      cp -r ${custom}/* $out/lua/custom/
+      cp -r ./* $out/
     '';
 
     meta = with lib; {
