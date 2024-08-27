@@ -150,6 +150,7 @@ in {
       chrome = "setsid google-chrome-stable  --enable-features=UseOzonePlatform --ozone-platform=wayland --enable-wayland-ime";
       obsidian = "setsid obsidian --enable-features=UseOzonePlatform --ozone-platform=wayland --enable-wayland-ime";
       code = "code --user-data-dir ~/Code --extensions-dir ~/Code/Extensions";
+      ko = "swaylock -i ~/Downloads/black.jpeg &; systemctl suspend";
     };
 
     oh-my-zsh = {
