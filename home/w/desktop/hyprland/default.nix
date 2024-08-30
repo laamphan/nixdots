@@ -297,15 +297,15 @@ in {
 
     # Submaps
     extraConfig = ''
-           # source = ~/.config/hypr/themes/catppuccin-macchiato.conf
-           # source = ~/.config/hypr/themes/oxocarbon.conf
-           env = XDG_SESSION_TYPE,wayland
+            # source = ~/.config/hypr/themes/catppuccin-macchiato.conf
+            # source = ~/.config/hypr/themes/oxocarbon.conf
+            env = XDG_SESSION_TYPE,wayland
 
       # -- nvidia start
-      #     env = LIBVA_DRIVER_NAME,nvidia
-      #     env = GBM_BACKEND,nvidia-drm
-      #     env = __GLX_VENDOR_LIBRARY_NAME,nvidia
-      #     env = WLR_NO_HARDWARE_CURSORS,1
+            env = LIBVA_DRIVER_NAME,nvidia
+            env = GBM_BACKEND,nvidia-drm
+            env = __GLX_VENDOR_LIBRARY_NAME,nvidia
+            env = WLR_NO_HARDWARE_CURSORS,1
       # -- nvidia stop
 
       #     # will switch to a submap called resize
