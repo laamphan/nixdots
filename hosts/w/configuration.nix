@@ -78,10 +78,9 @@
     # proxy.noProxy = "127.0.0.1,localhost,internal.domain";
     firewall = {
       enable = true;
-      allowedTCPPorts = [ 4242 ];
-      allowedUDPPorts = [ 4242 ];
+      allowedTCPPorts = [4242];
+      allowedUDPPorts = [4242];
     };
-
   };
 
   # Set your time zone.
@@ -190,6 +189,8 @@
       efibootmgr
       pinentry-tty
       vscode
+      dotool
+      lan-mouse
     ];
   };
 

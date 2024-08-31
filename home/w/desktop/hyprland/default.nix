@@ -31,8 +31,8 @@ in {
     settings = {
       "$mainMod" = "SUPER";
       monitor = [
-        "HDMI-A-1,1920x1080,0x0,1"
-        "eDP-1,1920x1080,1920x0,1"
+        "HDMI-A-1,1920x1080,1368x0,1"
+        "eDP-1,1368x768,0x0,1"
         # "Unknown-1,disable"
       ];
 
@@ -149,7 +149,8 @@ in {
         "hyprctl dispatch workspace 1"
         "hyprctl setcursor 'macOS-BigSur' 24"
         "kitty"
-        # "hyprctl dispatch workspace 1,monitor:HDMI-A-1" # Add this line
+        "setsid lan-mouse -f cli -c ~/lan-mouse/config.toml"
+        # "hyprctl dispatch workspace 1,monitor:HDMI-A-1"
       ];
 
       bind = [
@@ -241,6 +242,8 @@ in {
         # "$mainMod SHIFT,V,exec,~/.config/eww/fool_moon/bar/scripts/widgets toggle-clip"
         # "$mainMod SHIFT,C,exec,~/.config/hypr/scripts/wallpaper_picker"
         # "$mainMod SHIFT,B,exec, killall -3 eww & sleep 1 && ~/.config/hypr/themes/winter/eww/launch_bar"
+        "$mainMod CTRL, right, exec, echo 'mouseto 1 1' | dotool"
+        "$mainMod, x, exec, pkill lan-mouse"
       ];
 
       bindm = [

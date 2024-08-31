@@ -151,6 +151,8 @@ in {
       obsidian = "setsid obsidian --enable-features=UseOzonePlatform --ozone-platform=wayland --enable-wayland-ime";
       code = "code --user-data-dir ~/Code --extensions-dir ~/Code/Extensions";
       ko = "swaylock -i ~/Downloads/black.jpeg &; systemctl suspend";
+      lm = "setsid lan-mouse -f cli -c ~/lan-mouse/config.toml";
+      lmk = "pkill lan-mouse";
     };
 
     oh-my-zsh = {
