@@ -62,8 +62,8 @@ in {
         "col.active_border" = "${catppuccin_border}";
         "col.inactive_border" = "${tokyonight_background}";
         layout = "dwindle";
-        apply_sens_to_raw =
-          1; # whether to apply the sensitivity to raw input (e.g. used by games where you aim using your mouse)
+        # apply_sens_to_raw =
+        #  1; # whether to apply the sensitivity to raw input (e.g. used by games where you aim using your mouse)
       };
 
       decoration = {
@@ -149,7 +149,7 @@ in {
         "hyprctl dispatch workspace 1"
         "hyprctl setcursor 'macOS-BigSur' 24"
         "kitty"
-        "setsid lan-mouse -f cli -c ~/lan-mouse/config.toml"
+        "kitty setsid lan-mouse -f cli -c ~/lan-mouse/config.toml"
         # "hyprctl dispatch workspace 1,monitor:HDMI-A-1"
       ];
 
@@ -244,6 +244,7 @@ in {
         # "$mainMod SHIFT,B,exec, killall -3 eww & sleep 1 && ~/.config/hypr/themes/winter/eww/launch_bar"
 
         "$mainMod CTRL, left, exec, echo 'mouseto 0 0' | dotool"
+        "$mainMod, R, exec, pkill lan-mouse; setsid lan-mouse -f cli -c ~/lan-mouse/config.toml"
       ];
 
       bindm = [

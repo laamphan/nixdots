@@ -31,7 +31,7 @@
       timeout = 3;
       efi = {
         canTouchEfiVariables = true;
-        efiSysMountPoint = "/boot";
+        efiSysMountPoint = "/boot/efi";
       };
       grub = {
         enable = true;
@@ -175,6 +175,7 @@
       OBSIDIAN_USE_WAYLAND = "1";
     };
     systemPackages = with pkgs; [
+      hyprutils
       v4l-utils
       killall
       git
@@ -301,7 +302,7 @@
   };
 
   nix = {
-    package = pkgs.nixFlakes;
+    package = pkgs.nixVersions.git;
     extraOptions = "experimental-features = nix-command flakes";
     settings = {
       auto-optimise-store = true;

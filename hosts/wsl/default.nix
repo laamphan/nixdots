@@ -16,7 +16,7 @@
   environment.shells = [pkgs.zsh];
   environment.enableAllTerminfo = true;
   environment = {
-    shells = with pkgs; [bash zsh];
+    # shells = with pkgs; [bash zsh]; already defined elsewhere
     systemPackages = [pkgs.coreutils];
   };
 

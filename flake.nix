@@ -2,19 +2,23 @@
   description = "binh1298's NixOS config for desktop and WSL";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-24.11-darwin";
     NixOS-WSL = {
       url = "github:nix-community/NixOS-WSL";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     home-manager = {
-      url = "github:nix-community/home-manager";
+      url = "github:nix-community/home-manager?ref=release-24.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    hyprland.url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
+    hyprutils = {
+      url = "github:hyprwm/hyprutils?ref=v0.2.6"; # Use the v0.2.6 tag (or a specific commit hash if needed)
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    hyprland.url = "git+https://github.com/hyprwm/Hyprland?submodules=1&ref=nix";
     waybar-hyprland.url = "github:Alexays/Waybar";
-    xdg-portal-hyprland.url = "github:hyprwm/xdg-desktop-portal-hyprland";
+    xdg-portal-hyprland.url = "github:hyprwm/xdg-desktop-portal-hyprland?ref=v1.3.7";
 
     nur.url = "github:nix-community/NUR";
     nix-colors.url = "github:misterio77/nix-colors";
@@ -37,6 +41,22 @@
 
   outputs = inputs:
     with inputs; let
+      hyprutils = nixpkgs.pkgs.callPackage (nixpkgs.fetchFromGitHub {
+        owner = "hyprwm";
+        repo = "hyprutils";
+        rev = "v0.2.6";
+        sha256 = "19alkrkhy5v7bhsf3vpp07nwh7f67lh4glaciir9lgrzcq21na5f";
+      }) {};
+
+      hyprlandWithHyprutils = hyprland.overrideAttrs (oldAttrs: {
+        buildInputs = oldAttrs.buildInputs ++ [hyprutils];
+        pkgConfig =
+          oldAttrs.pkgConfig
+          // {
+            PKG_CONFIG_PATH = "${hyprutils}/lib/pkgconfig";
+          };
+      });
+
       secrets = builtins.fromJSON (builtins.readFile "${self}/secrets.json");
 
       homeManagerDefaults = specialArgs: {

@@ -8,6 +8,12 @@
     username = username;
     homeDirectory = "/home/${username}";
     stateVersion = "22.11";
+    pointerCursor = {
+      gtk.enable = true;
+      package = pkgs.apple-cursor;
+      name = "macOS-BigSur";
+      size = 24;
+    };
   };
 
   programs.home-manager.enable = true;

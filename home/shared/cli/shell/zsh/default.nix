@@ -149,10 +149,11 @@ in {
       pn = "pnpm";
       chrome = "setsid google-chrome-stable  --enable-features=UseOzonePlatform --ozone-platform=wayland --enable-wayland-ime";
       obsidian = "setsid obsidian --enable-features=UseOzonePlatform --ozone-platform=wayland --enable-wayland-ime";
-      code = "code --user-data-dir ~/Code --extensions-dir ~/Code/Extensions";
+      #   code = "code --user-data-dir ~/Code --extensions-dir ~/Code/Extensions";
       ko = "swaylock -i ~/Downloads/black.jpeg &; systemctl suspend";
       lm = "setsid lan-mouse -f cli -c ~/lan-mouse/config.toml";
       lmk = "pkill lan-mouse";
+      lmr = "pkill lan-mouse; setsid lan-mouse -f cli -c ~/lan-mouse/config.toml";
     };
 
     oh-my-zsh = {
