@@ -16,7 +16,11 @@
       url = "github:hyprwm/hyprutils?ref=v0.2.6"; # Use the v0.2.6 tag (or a specific commit hash if needed)
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    hyprland.url = "git+https://github.com/hyprwm/Hyprland?submodules=1&ref=nix";
+    aquamarine = {
+      url = "github:hyprwm/aquamarine?ref=v0.4.5";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    hyprland.url = "git+https://github.com/hyprwm/Hyprland?submodules=1&ref=v0.45.0";
     waybar-hyprland.url = "github:Alexays/Waybar";
     xdg-portal-hyprland.url = "github:hyprwm/xdg-desktop-portal-hyprland?ref=v1.3.7";
 
@@ -46,6 +50,13 @@
         repo = "hyprutils";
         rev = "v0.2.6";
         sha256 = "19alkrkhy5v7bhsf3vpp07nwh7f67lh4glaciir9lgrzcq21na5f";
+      }) {};
+
+      aquamarine = nixpkgs.pkgs.callPackage (nixpkgs.fetchFromGitHub {
+        owner = "hyprwm";
+        repo = "aquamarine";
+        rev = "v0.4.5";
+        sha256 = "10wkyycxwahc0n3xczp7pi63823997qpm8x7z2sfqymda9ckl6d6";
       }) {};
 
       hyprlandWithHyprutils = hyprland.overrideAttrs (oldAttrs: {
