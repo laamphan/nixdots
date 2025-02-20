@@ -244,7 +244,8 @@ in {
         # "$mainMod SHIFT,B,exec, killall -3 eww & sleep 1 && ~/.config/hypr/themes/winter/eww/launch_bar"
 
         "$mainMod CTRL, left, exec, echo 'mouseto 0 0' | dotool"
-        "$mainMod, R, exec, pkill lan-mouse; setsid lan-mouse -f cli -c ~/lan-mouse/config.toml"
+        "$mainMod CTRL, R, exec, pkill lan-mouse; setsid lan-mouse -f cli -c ~/lan-mouse/config.toml"
+        "$mainMod CTRL, R, exec, pkill lan-mouse; setsid lan-mouse -f cli -c ~/lan-mouse/config.toml"
       ];
 
       bindm = [
