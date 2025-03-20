@@ -24,7 +24,10 @@
       options v4l2loopback devices=1 video_nr=1 card_label="OBS Cam" exclusive_caps=1
     '';
     # BINH ALO
-    # kernelParams = ["nvidia.NVreg_PreserveVideoMemoryAllocations=1"];
+    kernelParams = [
+      "nvidia.NVreg_PreserveVideoMemoryAllocations=1"
+      "nvidia-drm.modeset=1"
+    ];
     supportedFilesystems = ["ntfs"];
     loader = {
       systemd-boot.enable = false; # (for UEFI systems only)
@@ -78,8 +81,8 @@
     # proxy.noProxy = "127.0.0.1,localhost,internal.domain";
     firewall = {
       enable = true;
-      allowedTCPPorts = [4242];
-      allowedUDPPorts = [4242];
+      allowedTCPPorts = [80 443 3000 3001 4200 5000 8080];
+      allowedUDPPorts = [80 443 3000 3001 4200 5000 8080];
     };
   };
 
@@ -147,17 +150,17 @@
       enable = true;
     };
     # Enables virtualization for virt-manager
-    libvirtd.enable = true;
+    libvirtd.enable = false;
   };
 
   environment = {
     variables = {
       # BINH ALO
-      # GBM_BACKEND = "nvidia-drm";
-      # LIBVA_DRIVER_NAME = "nvidia";
-      # __GLX_VENDOR_LIBRARY_NAME = "nvidia";
-      # __GL_GSYNC_ALLOWED = "1";
-      # __GL_VRR_ALLOWED = "1"; # Controls if Adaptive Sync should be used. Recommended to set as “0” to avoid having problems on some games.
+      GBM_BACKEND = "nvidia-drm";
+      LIBVA_DRIVER_NAME = "nvidia";
+      __GLX_VENDOR_LIBRARY_NAME = "nvidia";
+      __GL_GSYNC_ALLOWED = "1";
+      __GL_VRR_ALLOWED = "1"; # Controls if Adaptive Sync should be used. Recommended to set as “0” to avoid having problems on some games.
 
       XCURSOR_THEME = "macOS-BigSur";
       XCURSOR_SIZE = "32";
@@ -167,12 +170,15 @@
     };
     sessionVariables = {
       NIXOS_OZONE_WL = "1"; # Hint electron apps to use wayland
-      # WLR_NO_HARDWARE_CURSORS = "1"; # Fix cursor rendering issue on wlr nvidia.
+      WLR_NO_HARDWARE_CURSORS = "1"; # Fix cursor rendering issue on wlr nvidia.
       DEFAULT_BROWSER = "${pkgs.brave}/bin/firefox"; # Set default browser
       # GTK_IM_MODULE = "fcitx";
       QT_IM_MODULE = "fcitx";
       XMODIFIERS = "@im=fcitx";
       OBSIDIAN_USE_WAYLAND = "1";
+      # .NET
+      DOTNET_ROOT = "${pkgs.dotnet-sdk}";
+      DOTNET_CLI_TELEMETRY_OPTOUT = "1";
     };
     systemPackages = with pkgs; [
       hyprutils
@@ -191,6 +197,10 @@
       vscode
       dotool
       lan-mouse
+      thefuck
+      # spotify
+      # .NET SDK (includes runtime)
+      dotnet-sdk
     ];
   };
 
@@ -207,17 +217,17 @@
   };
 
   hardware = {
-    # nvidia = {
-    #   open = false;
-    #   nvidiaSettings = true;
-    #   powerManagement.enable = true;
-    #   modesetting.enable = true;
-    #   package = config.boot.kernelPackages.nvidiaPackages.stable;
-    # };
+    nvidia = {
+      open = false;
+      nvidiaSettings = true;
+      powerManagement.enable = true;
+      modesetting.enable = true;
+      package = config.boot.kernelPackages.nvidiaPackages.stable;
+    };
     graphics = {
       enable = true;
       enable32Bit = true;
-      extraPackages = with pkgs; []; #nvidia-vaapi-driver removed
+      extraPackages = with pkgs; [nvidia-vaapi-driver]; #nvidia-vaapi-driver - remove if not needed
     };
   };
 
@@ -232,7 +242,7 @@
           enableContribAndExtras = true;
         };
       };
-      videoDrivers = ["modesetting"]; # replaced nvidia with this
+      videoDrivers = ["nvidia"]; # replaced nvidia with modesetting if needed
       xkb.layout = "us";
       xkb.variant = "";
     };
@@ -264,6 +274,17 @@
     };
     pulse.enable = true;
     wireplumber.enable = true;
+  };
+
+  services.postgresql = {
+    enable = true;
+    package = pkgs.postgresql_17; # or any other version you prefer
+    dataDir = "/var/lib/postgresql/data";
+    authentication = pkgs.lib.mkOverride 10 ''
+      local all all trust
+      host all all 127.0.0.1/32 trust
+      host all all ::1/128 trust
+    '';
   };
 
   users = {

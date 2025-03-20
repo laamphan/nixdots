@@ -31,9 +31,8 @@ in {
     settings = {
       "$mainMod" = "SUPER";
       monitor = [
-        "HDMI-A-1,1920x1080,0x0,1"
-        "eDP-1,1920x1080,1920x0,1"
-        # "Unknown-1,disable"
+        "DP-1,3840x2160@60,2560x0,1.5" # Left monitor
+        "DP-3,3840x2160@60,0x0,1.5" # Right monitor
       ];
 
       xwayland = {force_zero_scaling = true;};
@@ -243,7 +242,7 @@ in {
         # "$mainMod SHIFT,C,exec,~/.config/hypr/scripts/wallpaper_picker"
         # "$mainMod SHIFT,B,exec, killall -3 eww & sleep 1 && ~/.config/hypr/themes/winter/eww/launch_bar"
 
-        "$mainMod CTRL, left, exec, echo 'mouseto 0 0' | dotool"
+        "$mainMod CTRL, right, exec, echo 'mouseto 1 1' | dotool"
         "$mainMod CTRL, R, exec, pkill lan-mouse; setsid lan-mouse -f cli -c ~/lan-mouse/config.toml"
         "$mainMod CTRL, R, exec, pkill lan-mouse; setsid lan-mouse -f cli -c ~/lan-mouse/config.toml"
       ];
@@ -307,10 +306,10 @@ in {
            env = XDG_SESSION_TYPE,wayland
 
       # -- nvidia start
-      #     env = LIBVA_DRIVER_NAME,nvidia
-      #     env = GBM_BACKEND,nvidia-drm
-      #     env = __GLX_VENDOR_LIBRARY_NAME,nvidia
-      #     env = WLR_NO_HARDWARE_CURSORS,1
+          env = LIBVA_DRIVER_NAME,nvidia
+          env = GBM_BACKEND,nvidia-drm
+          env = __GLX_VENDOR_LIBRARY_NAME,nvidia
+          env = WLR_NO_HARDWARE_CURSORS,1
       # -- nvidia stop
 
       #     # will switch to a submap called resize

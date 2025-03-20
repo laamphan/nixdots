@@ -20,7 +20,7 @@
       url = "github:hyprwm/aquamarine?ref=v0.4.5";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    hyprland.url = "git+https://github.com/hyprwm/Hyprland?submodules=1&ref=v0.45.0";
+    hyprland.url = "git+https://github.com/hyprwm/Hyprland?submodules=1&rev=a425fbebe4cf4238e48a42f724ef2208959d66cf";
     waybar-hyprland.url = "github:Alexays/Waybar";
     xdg-portal-hyprland.url = "github:hyprwm/xdg-desktop-portal-hyprland?ref=v1.3.7";
 
@@ -41,6 +41,7 @@
 
     darwin.url = "github:lnl7/nix-darwin";
     darwin.inputs.nixpkgs.follows = "nixpkgs";
+    spicetify-nix.url = "github:Gerg-L/spicetify-nix";
   };
 
   outputs = inputs:
@@ -101,7 +102,7 @@
       nixosConfigurations = {
         w = let
           username = pcUserName;
-          specialArgs = {inherit inputs username secrets;};
+          specialArgs = {inherit inputs username secrets spicetify-nix;};
         in
           nixpkgs.lib.nixosSystem {
             system = "x86_64-linux";
