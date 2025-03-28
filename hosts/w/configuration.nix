@@ -181,7 +181,6 @@
       DOTNET_CLI_TELEMETRY_OPTOUT = "1";
     };
     systemPackages = with pkgs; [
-      hyprutils
       v4l-utils
       killall
       git
@@ -198,15 +197,13 @@
       dotool
       lan-mouse
       thefuck
-      # spotify
-      # .NET SDK (includes runtime)
       dotnet-sdk
     ];
   };
 
   nixpkgs.config = {
     packageOverrides = pkgs: {
-      vscode = pkgs.vscode;
+      # vscode = pkgs.vscode;
     };
   };
 
@@ -265,7 +262,7 @@
   console.keyMap = "us";
 
   # sound.enable = true;
-  hardware.pulseaudio.enable = false;
+  services.pulseaudio.enable = false;
   services.pipewire = {
     enable = true;
     alsa = {
@@ -323,7 +320,7 @@
   };
 
   nix = {
-    package = pkgs.nixVersions.git;
+    package = pkgs.nixVersions.latest;
     extraOptions = "experimental-features = nix-command flakes";
     settings = {
       auto-optimise-store = true;

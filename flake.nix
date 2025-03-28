@@ -1,25 +1,20 @@
 {
-  description = "binh1298's NixOS config for desktop and WSL";
+  description = "laamphan's flake";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-24.11-darwin";
+    nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
     NixOS-WSL = {
       url = "github:nix-community/NixOS-WSL";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     home-manager = {
-      url = "github:nix-community/home-manager?ref=release-24.11";
+      url = "github:nix-community/home-manager/master";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
-    hyprutils = {
-      url = "github:hyprwm/hyprutils?ref=v0.2.6"; # Use the v0.2.6 tag (or a specific commit hash if needed)
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-    aquamarine = {
-      url = "github:hyprwm/aquamarine?ref=v0.4.5";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    # aquamarine = {
+    #   url = "github:hyprwm/aquamarine?ref=v0.4.5";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    # };
     hyprland.url = "git+https://github.com/hyprwm/Hyprland?submodules=1&rev=a425fbebe4cf4238e48a42f724ef2208959d66cf";
     waybar-hyprland.url = "github:Alexays/Waybar";
     xdg-portal-hyprland.url = "github:hyprwm/xdg-desktop-portal-hyprland?ref=v1.3.7";
