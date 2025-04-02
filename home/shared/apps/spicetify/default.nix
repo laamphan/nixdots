@@ -18,6 +18,9 @@ in {
   # configure spicetify :)
   programs.spicetify = {
     enable = true;
+    enabledCustomApps = with spicePkgs.apps; [
+      lyricsPlus
+    ];
     enabledExtensions = with spicePkgs.extensions; [
       adblock
       hidePodcasts

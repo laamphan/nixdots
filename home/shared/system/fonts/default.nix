@@ -17,5 +17,6 @@
     pkgs.nerd-fonts.fira-mono
     pkgs.nerd-fonts.jetbrains-mono
     pkgs.nerd-fonts.ubuntu
+    pkgs.helvetica-neue-lt-std
   ];
 }

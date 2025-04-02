@@ -7,10 +7,10 @@ _: {
     ./databases
     # ./mobile
     ./low-level
-    ./gamedev
+    # ./gamedev
     ./tools
     ./editors
     ./misc.nix
-    ./cloud
+    # ./cloud
   ];
 }

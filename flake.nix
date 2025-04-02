@@ -1,6 +1,18 @@
 {
   description = "laamphan's flake";
 
+  # TODO add cuda cache source https://www.youtube.com/watch?v=5T52jNXzqIU
+  # https://app.cachix.org/cache/cuda-maintainers
+
+  nixConfig = {
+    extra-substituters = [
+      "https://cuda-maintainers.cachix.org"
+    ];
+    extra-trusted-public-keys = [
+      "cuda-maintainers.cachix.org-1:0dq3bujKpuEPMCX6U4WylrUDZ9JyUG0VpVZa7CNfq5E="
+    ];
+  };
+
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
     NixOS-WSL = {
@@ -47,22 +59,6 @@
         rev = "v0.2.6";
         sha256 = "19alkrkhy5v7bhsf3vpp07nwh7f67lh4glaciir9lgrzcq21na5f";
       }) {};
-
-      aquamarine = nixpkgs.pkgs.callPackage (nixpkgs.fetchFromGitHub {
-        owner = "hyprwm";
-        repo = "aquamarine";
-        rev = "v0.4.5";
-        sha256 = "10wkyycxwahc0n3xczp7pi63823997qpm8x7z2sfqymda9ckl6d6";
-      }) {};
-
-      hyprlandWithHyprutils = hyprland.overrideAttrs (oldAttrs: {
-        buildInputs = oldAttrs.buildInputs ++ [hyprutils];
-        pkgConfig =
-          oldAttrs.pkgConfig
-          // {
-            PKG_CONFIG_PATH = "${hyprutils}/lib/pkgconfig";
-          };
-      });
 
       secrets = builtins.fromJSON (builtins.readFile "${self}/secrets.json");
 

@@ -1,6 +1,7 @@
-{ config
-, pkgs
-, ...
+{
+  config,
+  pkgs,
+  ...
 }: {
   programs.btop = {
     enable = true;
@@ -8,6 +9,7 @@
       color_theme = "catppuccin_macchiato";
       vim_keys = true;
       rounded_corners = true;
+      cudaSupport = true;
     };
   };
   xdg = {

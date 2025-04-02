@@ -13,7 +13,7 @@
   tokyonight_background = "rgba(32344aaa)";
   catppuccin_border = "rgba(b4befeee)";
   opacity = ".95";
-  cursor = "macOS-BigSur";
+  cursor = "material-cursors";
 in {
   home.packages = with pkgs; [
     grim
@@ -66,7 +66,7 @@ in {
       };
 
       decoration = {
-        rounding = 12;
+        rounding = 0;
         # shadow_ignore_window = true;
         # drop_shadow = false;
         # shadow_range = 20;

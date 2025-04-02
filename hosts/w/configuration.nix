@@ -23,7 +23,7 @@
     extraModprobeConfig = ''
       options v4l2loopback devices=1 video_nr=1 card_label="OBS Cam" exclusive_caps=1
     '';
-    # BINH ALO
+    kernelPackages = pkgs.linuxPackages_latest;
     kernelParams = [
       "nvidia.NVreg_PreserveVideoMemoryAllocations=1"
       "nvidia-drm.modeset=1"
@@ -130,7 +130,14 @@
   };
 
   # Allow unfree packages + use overlays
-  nixpkgs = {config = {allowUnfree = true;};};
+  nixpkgs = {
+    config = {
+      allowUnfree = true;
+      allowUnfreePredicate = pkg:
+        builtins.elem (pkgs.lib.getName pkg) ["cuda_cccl" "cuda_cudart" "cuda_nvcc" "libcublas" "nvidia-settings" "nvidia-x11"];
+      nvidia.acceptLicense = true;
+    };
+  };
 
   fonts = {
     enableDefaultPackages = true;
@@ -150,7 +157,7 @@
       enable = true;
     };
     # Enables virtualization for virt-manager
-    libvirtd.enable = false;
+    libvirtd.enable = true;
   };
 
   environment = {
@@ -160,10 +167,10 @@
       LIBVA_DRIVER_NAME = "nvidia";
       __GLX_VENDOR_LIBRARY_NAME = "nvidia";
       __GL_GSYNC_ALLOWED = "1";
-      __GL_VRR_ALLOWED = "1"; # Controls if Adaptive Sync should be used. Recommended to set as “0” to avoid having problems on some games.
+      __GL_VRR_ALLOWED = "0"; # Controls if Adaptive Sync should be used. Recommended to set as “0” to avoid having problems on some games.
 
-      XCURSOR_THEME = "macOS-BigSur";
-      XCURSOR_SIZE = "32";
+      XCURSOR_THEME = "material-cursors";
+      XCURSOR_SIZE = "24";
       QT_AUTO_SCREEN_SCALE_FACTOR = "1";
       QT_WAYLAND_DISABLE_WINDOWDECORATION = "1";
       EDITOR = "nvim";
@@ -198,6 +205,9 @@
       lan-mouse
       thefuck
       dotnet-sdk
+
+      figma-linux
+      cloudflare-warp
     ];
   };
 
@@ -217,9 +227,9 @@
     nvidia = {
       open = false;
       nvidiaSettings = true;
-      powerManagement.enable = true;
+      powerManagement.enable = false;
       modesetting.enable = true;
-      package = config.boot.kernelPackages.nvidiaPackages.stable;
+      package = config.boot.kernelPackages.nvidiaPackages.latest;
     };
     graphics = {
       enable = true;
@@ -252,6 +262,13 @@
     logmein-hamachi.enable = false;
     flatpak.enable = false;
     gnome.gnome-keyring.enable = true;
+
+    ollama = {
+      enable = true;
+      acceleration = "cuda";
+    };
+
+    open-webui.enable = true;
   };
 
   hardware.bluetooth.enable = true; # enables support for Bluetooth
@@ -282,6 +299,11 @@
       host all all 127.0.0.1/32 trust
       host all all ::1/128 trust
     '';
+  };
+
+  services.cloudflare-warp = {
+    enable = true;
+    # mode = "warp";
   };
 
   users = {

@@ -5,28 +5,33 @@
   ...
 }: let
   custom = ./custom;
-in {}
-#   stdenvNoCC.mkDerivation rec {
-#     name = "nvchad";
-#     version = "2.0";
-#     src = fetchFromGitHub {
-#       owner = "NvChad";
-#       repo = "NvChad";
-#       rev = "refs/heads/v${version}";
-#       sha256 = "3gH3VIXKeWDlFowfsxffRcjOa7Yjoy+COfX0sVNDc24=";
-#     };
-#     preferLocalBuild = true;
-#     # remember to rm -rf .config/nvim .local/share/nvim .cache/nvim when reinstalling on mac
-#     installPhase = ''
-#       mkdir -p $out/lua/custom
-#       cp -r ${custom}/* $out/lua/custom/
-#       cp -r ./* $out/
-#     '';
-#     meta = with lib; {
-#       description = "NvChad";
-#       homepage = "https://github.com/NvChad/NvChad";
-#       platforms = platforms.all;
-#       license = licenses.gpl3;
-#     };
-#   }
+in
+  stdenvNoCC.mkDerivation rec {
+    name = "nvchad";
+    version = "2.5";
 
+    src = fetchFromGitHub {
+      owner = "binh1298";
+      repo = "starter";
+      rev = "main";
+      sha256 = "ZAATYOfkuyggRL4/vFaYE1ooGI+bhjRylJoiltuoEpQ=";
+    };
+
+    preferLocalBuild = true;
+
+    # remember to rm -rf .config/nvim .local/share/nvim .cache/nvim when reinstalling on mac
+    # rm -rf ~/.config/nvim
+    # rm -rf ~/.local/share/nvim
+    # rm -rf ~/.cache/nvim
+    installPhase = ''
+      mkdir -p $out
+      cp -r ./ $out
+    '';
+
+    meta = with lib; {
+      description = "NvChad";
+      homepage = "https://github.com/NvChad/starter";
+      platforms = platforms.all;
+      license = licenses.gpl3;
+    };
+  }
