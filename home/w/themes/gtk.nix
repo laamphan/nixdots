@@ -1,4 +1,10 @@
-{pkgs, ...}: {
+{
+  inputs,
+  pkgs,
+  ...
+}: {
+  imports = [inputs.catppuccin.homeModules.catppuccin];
+
   gtk = {
     enable = true;
     cursorTheme = {
@@ -17,6 +23,14 @@
     #   };
     # };
 
+    catppuccin = {
+      enable = true;
+      flavor = "mocha";
+      accent = "blue";
+      size = "compact";
+      tweaks = ["rimless"];
+    };
+
     # iconTheme = {
     #   name = "Papirus-Dark";
     #   package = pkgs.papirus-folders;
@@ -27,10 +41,10 @@
     #   package = pkgs.papirus-icon-theme;
     # };
 
-    theme = {
-      name = "whitesur-gtk-theme";
-      package = pkgs.whitesur-gtk-theme;
-    };
+    # theme = {
+    #   name = "whitesur-gtk-theme";
+    #   package = pkgs.whitesur-gtk-theme;
+    # };
 
     iconTheme = {
       name = "WhiteSur";
