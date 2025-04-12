@@ -1,4 +1,10 @@
-{ pkgs, ... }: {
+{
+  inputs,
+  pkgs,
+  ...
+}: {
+  imports = [inputs.catppuccin.homeModules.catppuccin];
+
   gtk = {
     enable = true;
     cursorTheme = {
@@ -7,20 +13,20 @@
       size = 32; # Affects gtk applications as the name suggests
     };
 
-    theme = {
-      name = "Catppuccin-Macchiato-Compact-Blue-dark";
-      package = pkgs.catppuccin-gtk.override {
-        size = "compact";
-        accents = [ "blue" ];
-        # tweaks = ["rimless" "black"]; # You can also specify multiple tweaks here
-        variant = "macchiato";
-      };
-    };
+    # theme = {
+    #   name = "Catppuccin-Macchiato-Compact-Blue-dark";
+    #   package = pkgs.catppuccin-gtk.override {
+    #     size = "compact";
+    #     accents = [ "blue" ];
+    #     # tweaks = ["rimless" "black"]; # You can also specify multiple tweaks here
+    #     variant = "macchiato";
+    #   };
+    # };
 
-    iconTheme = {
-      name = "Papirus-Dark";
-      package = pkgs.papirus-folders;
-    };
+    # iconTheme = {
+    #   name = "Papirus-Dark";
+    #   package = pkgs.papirus-folders;
+    # };
 
     # iconTheme = {
     #   name = "Papirus-Dark";
@@ -36,5 +42,13 @@
     #   name = "WhiteSur";
     #   package = pkgs.whitesur-icon-theme;
     # };
+  };
+
+  catppuccin.gtk = {
+    enable = true;
+    flavor = "mocha";
+    accent = "blue";
+    size = "compact";
+    tweaks = ["rimless"];
   };
 }

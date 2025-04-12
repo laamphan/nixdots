@@ -16,7 +16,7 @@
   environment.shells = [pkgs.zsh];
   environment.enableAllTerminfo = true;
   environment = {
-    shells = with pkgs; [bash zsh];
+    # shells = with pkgs; [bash zsh];
     systemPackages = [pkgs.coreutils];
   };
 
@@ -74,7 +74,7 @@
       "/nix/var/nix/profiles/per-user/root/channels"
     ];
 
-    package = pkgs.nixFlakes;
+    package = pkgs.nixVersions.latest;
     extraOptions = ''experimental-features = nix-command flakes'';
 
     gc = {

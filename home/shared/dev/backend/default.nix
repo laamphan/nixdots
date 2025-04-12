@@ -2,10 +2,10 @@ _: {
   imports = [
     ./api
     ./go
-    ./java
-    ./rust
+    # ./java
+    # ./rust
     # ./elixir
     ./python
-    ./clojure
+    # ./clojure
   ];
 }

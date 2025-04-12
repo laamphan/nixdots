@@ -1,10 +1,10 @@
 _: {
   imports = [
-    ./google-drive
-    ./obsidian
-    ./obs
+    # ./google-drive
+    #./obsidian
+    #./obs
     ./firefox
     ./chrome
-    ./blender
+    #./blender
   ];
 }

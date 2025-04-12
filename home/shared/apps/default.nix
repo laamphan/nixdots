@@ -4,8 +4,8 @@ _: {
     # ./matrix
     # ./edge
     ./telegram
-    ./imagemagick
-    ./gimp
+    # ./imagemagick
+    # ./gimp
     #./spicetify
   ];
 }

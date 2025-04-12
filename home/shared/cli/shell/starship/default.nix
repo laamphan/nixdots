@@ -1,6 +1,6 @@
 {pkgs, ...}: {
   programs.starship = let
-    flavour = "macchiato"; # One of `latte`, `frappe`, `macchiato`, or `mocha`
+    flavour = "macchiato"; # One of latte, frappe, macchiato, or mocha
   in {
     enable = true;
     enableZshIntegration = true;
@@ -84,7 +84,7 @@
           owner = "catppuccin";
           repo = "starship";
           rev = "HEAD";
-          sha256 = "sha256-t/Hmd2dzBn0AbLUlbL8CBt19/we8spY5nMP0Z+VPMXA=";
+          sha256 = "sha256-1w0TJdQP5lb9jCrCmhPlSexf0PkAlcz8GBDEsRjPRns=";
         }
         + /themes/${flavour}.toml));
   };

@@ -1,9 +1,8 @@
 {pkgs, ...}: {
   home.packages = with pkgs; [
-    peek # Animated GIF screen recorder
-    traceroute # Tool to access the X clipboard from a console application
+    #peek # Animated GIF screen recorder
+    #traceroute # Tool to access the X clipboard from a console application
     xfce.thunar # Best GUI file manager
-    swaylock
     wl-clipboard # Enables copy/paste on wayland
     # Office + PDF readers
     # wpsoffice # MS office alternative for linux
@@ -21,8 +20,8 @@
 
     appimage-run # Run appimage files in the terminal
     networkmanager
-    droidcam
+    #droidcam
 
-    dbeaver-bin
+    #dbeaver-bin
   ];
 }

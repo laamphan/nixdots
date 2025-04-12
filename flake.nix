@@ -2,7 +2,7 @@
   description = "binh1298's NixOS config for desktop and WSL";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
     NixOS-WSL = {
       url = "github:nix-community/NixOS-WSL";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -11,10 +11,9 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
-    hyprland.url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
+    hyprland.url = "git+https://github.com/hyprwm/Hyprland?submodules=1&rev=a425fbebe4cf4238e48a42f724ef2208959d66cf";
     waybar-hyprland.url = "github:Alexays/Waybar";
-    xdg-portal-hyprland.url = "github:hyprwm/xdg-desktop-portal-hyprland";
+    xdg-portal-hyprland.url = "github:hyprwm/xdg-desktop-portal-hyprland?ref=v1.3.7";
 
     nur.url = "github:nix-community/NUR";
     nix-colors.url = "github:misterio77/nix-colors";
@@ -31,8 +30,9 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    darwin.url = "github:lnl7/nix-darwin";
-    darwin.inputs.nixpkgs.follows = "nixpkgs";
+    #darwin.url = "github:lnl7/nix-darwin";
+    #darwin.inputs.nixpkgs.follows = "nixpkgs";
+    catppuccin.url = "github:catppuccin/nix";
   };
 
   outputs = inputs:
@@ -45,7 +45,6 @@
         home-manager.backupFileExtension = "hm-backup";
         home-manager.extraSpecialArgs = specialArgs;
       };
-
       macUserName = "lap16096";
       pcUserName = "w";
       wslUserName = "BinhWSL";

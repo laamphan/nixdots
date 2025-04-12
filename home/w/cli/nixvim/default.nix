@@ -52,6 +52,7 @@
       lualine.enable = true;
       tmux-navigator.enable = true;
       nvim-autopairs.enable = true;
+      web-devicons.enable = true;
       # auto-session.enable = true;
     };
     extraPlugins = with pkgs.vimPlugins; [

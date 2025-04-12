@@ -24,14 +24,14 @@
       options v4l2loopback devices=1 video_nr=1 card_label="OBS Cam" exclusive_caps=1
     '';
     # NVIDIA - comment next line if no NVIDIA GPU
-    kernelParams = ["nvidia.NVreg_PreserveVideoMemoryAllocations=1"];
+    # kernelParams = ["nvidia.NVreg_PreserveVideoMemoryAllocations=1"];
     supportedFilesystems = ["ntfs"];
     loader = {
       systemd-boot.enable = false; # (for UEFI systems only)
       timeout = 3;
       efi = {
         canTouchEfiVariables = true;
-        efiSysMountPoint = "/boot";
+        efiSysMountPoint = "/boot/efi";
       };
       grub = {
         enable = true;
@@ -53,7 +53,12 @@
 
   # Change systemd stop job timeout in NixOS configuration (Default = 90s)
   systemd = {
-    services.NetworkManager-wait-online.enable = false;
+    services = {
+      NetworkManager-wait-online.enable = false;
+      "getty@tty1".enable = false;
+      "autovt@tty1".enable = false;
+    };
+
     extraConfig = ''
       DefaultTimeoutStopSec=10s
     '';
@@ -85,6 +90,7 @@
 
   # Set your time zone.
   time.timeZone = "Asia/Bangkok";
+  time. hardwareClockInLocalTime = true;
 
   # Select internationalisation properties.
   i18n = {
@@ -153,11 +159,12 @@
   environment = {
     variables = {
       # NVIDIA
-      GBM_BACKEND = "nvidia-drm";
-      LIBVA_DRIVER_NAME = "nvidia";
-      __GLX_VENDOR_LIBRARY_NAME = "nvidia";
-      __GL_GSYNC_ALLOWED = "1";
-      __GL_VRR_ALLOWED = "0"; # Controls if Adaptive Sync should be used. Recommended to set as “0” to avoid having problems on some games. # already set to 0 from 1
+      # GBM_BACKEND = "nvidia-drm";
+      # VDPAU_DRIVER = "nvidia";
+      # LIBVA_DRIVER_NAME = "vdpau";
+      # __GLX_VENDOR_LIBRARY_NAME = "nvidia";
+      # __GL_GSYNC_ALLOWED = "1";
+      # __GL_VRR_ALLOWED = "0"; # Controls if Adaptive Sync should be used. Recommended to set as “0” to avoid having problems on some games. # already set to 0 from 1
       # NVIDIA_END
 
       XCURSOR_THEME = "macOS-BigSur";
@@ -168,7 +175,7 @@
     };
     sessionVariables = {
       NIXOS_OZONE_WL = "1"; # Hint electron apps to use wayland
-      WLR_NO_HARDWARE_CURSORS = "1"; # Fix cursor rendering issue on wlr nvidia.
+      # WLR_NO_HARDWARE_CURSORS = "1"; # Fix cursor rendering issue on wlr nvidia.
       DEFAULT_BROWSER = "${pkgs.brave}/bin/firefox"; # Set default browser
       # GTK_IM_MODULE = "fcitx";
       QT_IM_MODULE = "fcitx";
@@ -176,6 +183,7 @@
       OBSIDIAN_USE_WAYLAND = "1";
     };
     systemPackages = with pkgs; [
+      hyprutils
       v4l-utils
       killall
       git
@@ -191,6 +199,12 @@
       vscode
       dotool
       lan-mouse
+      lshw
+      gparted
+      libva
+      libvdpau
+      libva-vdpau-driver
+      vaapiVdpau
     ];
   };
 
@@ -207,24 +221,40 @@
   };
 
   hardware = {
-    nvidia = {
-      open = false;
-      nvidiaSettings = true;
-      powerManagement.enable = true;
-      modesetting.enable = true;
-      package = config.boot.kernelPackages.nvidiaPackages.stable;
-    };
+    # nvidia = {
+    #   modesetting.enable = true;
+    #   # NVIDIA power management. Enable if crashes after waking up
+    #   powerManagement.enable = true;
+    #   open = false;
+    #   nvidiaSettings = true;
+    #   package = config.boot.kernelPackages.nvidiaPackages.stable;
+    #   prime = {
+    #     intelBusId = "PCI:0:2:0";
+    #     nvidiaBusId = "PCI:4:0:0";
+    #   };
+    # };
     graphics = {
       enable = true;
       enable32Bit = true;
-      extraPackages = with pkgs; [nvidia-vaapi-driver]; #nvidia-vaapi-driver removed
+      extraPackages = with pkgs; []; #nvidia-vaapi-driver removed
+      # extraPackages = with pkgs; [nvidia-vaapi-driver];
     };
   };
 
   services = {
+    displayManager = {
+      autoLogin = {
+        enable = true;
+        user = "w";
+      };
+    };
     xserver = {
       enable = true;
-      displayManager = {gdm.enable = true;};
+      displayManager = {
+        gdm = {
+          enable = true;
+        };
+      };
       desktopManager = {xfce.enable = true;};
       windowManager = {
         xmonad = {
@@ -232,7 +262,8 @@
           enableContribAndExtras = true;
         };
       };
-      videoDrivers = ["nvidia"]; # replace nvidia with modesetting if no nvidia
+      videoDrivers = ["modesetting"]; # replace nvidia with modesetting if no nvidia
+      # videoDrivers = ["nvidia"]; # replace nvidia with modesetting if no nvidia
       xkb.layout = "us";
       xkb.variant = "";
     };
@@ -302,7 +333,7 @@
   };
 
   nix = {
-    package = pkgs.nixFlakes;
+    package = pkgs.nixVersions.latest;
     extraOptions = "experimental-features = nix-command flakes";
     settings = {
       auto-optimise-store = true;
