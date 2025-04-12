@@ -78,8 +78,8 @@
     # proxy.noProxy = "127.0.0.1,localhost,internal.domain";
     firewall = {
       enable = true;
-      allowedTCPPorts = [4242];
-      allowedUDPPorts = [4242];
+      allowedTCPPorts = [80 443 3000 3001 4200 5000 8080];
+      allowedUDPPorts = [80 443 3000 3001 4200 5000 8080];
     };
   };
 
@@ -173,6 +173,9 @@
       QT_IM_MODULE = "fcitx";
       XMODIFIERS = "@im=fcitx";
       OBSIDIAN_USE_WAYLAND = "1";
+      # .NET
+      DOTNET_ROOT = "${pkgs.dotnet-sdk}";
+      DOTNET_CLI_TELEMETRY_OPTOUT = "1";
     };
     systemPackages = with pkgs; [
       hyprutils
@@ -191,12 +194,14 @@
       vscode
       dotool
       lan-mouse
+      dotnet-sdk
+      thefuck
     ];
   };
 
   nixpkgs.config = {
     packageOverrides = pkgs: {
-      vscode = pkgs.vscode;
+      # vscode = pkgs.vscode;
     };
   };
 
@@ -255,7 +260,7 @@
   console.keyMap = "us";
 
   # sound.enable = true;
-  hardware.pulseaudio.enable = false;
+  services.pulseaudio.enable = false;
   services.pipewire = {
     enable = true;
     alsa = {
@@ -264,6 +269,17 @@
     };
     pulse.enable = true;
     wireplumber.enable = true;
+  };
+
+  services.postgresql = {
+    enable = true;
+    package = pkgs.postgresql_17; # or any other version you prefer
+    dataDir = "/var/lib/postgresql/data";
+    authentication = pkgs.lib.mkOverride 10 ''
+      local all all trust
+      host all all 127.0.0.1/32 trust
+      host all all ::1/128 trust
+    '';
   };
 
   users = {
@@ -302,7 +318,7 @@
   };
 
   nix = {
-    package = pkgs.nixVersions.git;
+    package = pkgs.nixVersions.latest;
     extraOptions = "experimental-features = nix-command flakes";
     settings = {
       auto-optimise-store = true;

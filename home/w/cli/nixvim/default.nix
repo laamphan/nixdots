@@ -26,7 +26,7 @@
       markdown-preview.enable = true;
       copilot-lua = {
         enable = true;
-        suggestion = {
+        settings.suggestion = {
           enabled = true;
           autoTrigger = true;
           keymap = {
@@ -35,10 +35,11 @@
         };
       };
       indent-blankline.enable = true;
-      nvim-colorizer = {
+      colorizer = {
         enable = true;
-        userDefaultOptions.tailwind = true;
+        settings.user_default_options.tailwind = true;
       };
+      # nvim-colorizer.userDefaultOptions.tailwind = true;
       comment.enable = true;
       gitsigns = {
         enable = true;

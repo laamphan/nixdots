@@ -6,8 +6,8 @@ _: {
         defaultBranch = "main";
       };
       user = {
-        name = "laamphan";
-        email = "41721718+laamphan@users.noreply.github.com";
+        name = "lamphan-pcs";
+        email = "191198669+lamphan-pcs@users.noreply.github.com";
         signingKey = "";
       };
 

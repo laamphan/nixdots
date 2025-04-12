@@ -1,6 +1,6 @@
 {pkgs, ...}: {
   home.packages = with pkgs; [
-    peek # Animated GIF screen recorder
+    # peek # Animated GIF screen recorder
     traceroute # Tool to access the X clipboard from a console application
     xfce.thunar # Best GUI file manager
     swaylock
@@ -21,7 +21,7 @@
 
     appimage-run # Run appimage files in the terminal
     networkmanager
-    droidcam
+    # droidcam
 
     dbeaver-bin
   ];

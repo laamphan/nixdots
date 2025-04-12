@@ -1,26 +1,18 @@
 {
-  description = "binh1298's NixOS config for desktop and WSL";
+  description = "laamphan's flake";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-24.11-darwin";
+    nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
     NixOS-WSL = {
       url = "github:nix-community/NixOS-WSL";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     home-manager = {
-      url = "github:nix-community/home-manager?ref=release-24.11";
+      url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    hyprutils = {
-      url = "github:hyprwm/hyprutils?ref=v0.2.6"; # Use the v0.2.6 tag (or a specific commit hash if needed)
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-    aquamarine = {
-      url = "github:hyprwm/aquamarine?ref=v0.4.5";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-    hyprland.url = "git+https://github.com/hyprwm/Hyprland?submodules=1&ref=v0.45.0";
+    hyprland.url = "git+https://github.com/hyprwm/Hyprland?submodules=1&rev=a425fbebe4cf4238e48a42f724ef2208959d66cf";
     waybar-hyprland.url = "github:Alexays/Waybar";
     xdg-portal-hyprland.url = "github:hyprwm/xdg-desktop-portal-hyprland?ref=v1.3.7";
 
@@ -41,6 +33,8 @@
 
     darwin.url = "github:lnl7/nix-darwin";
     darwin.inputs.nixpkgs.follows = "nixpkgs";
+    spicetify-nix.url = "github:Gerg-L/spicetify-nix";
+    catppuccin.url = "github:catppuccin/nix";
   };
 
   outputs = inputs:
@@ -51,22 +45,6 @@
         rev = "v0.2.6";
         sha256 = "19alkrkhy5v7bhsf3vpp07nwh7f67lh4glaciir9lgrzcq21na5f";
       }) {};
-
-      aquamarine = nixpkgs.pkgs.callPackage (nixpkgs.fetchFromGitHub {
-        owner = "hyprwm";
-        repo = "aquamarine";
-        rev = "v0.4.5";
-        sha256 = "10wkyycxwahc0n3xczp7pi63823997qpm8x7z2sfqymda9ckl6d6";
-      }) {};
-
-      hyprlandWithHyprutils = hyprland.overrideAttrs (oldAttrs: {
-        buildInputs = oldAttrs.buildInputs ++ [hyprutils];
-        pkgConfig =
-          oldAttrs.pkgConfig
-          // {
-            PKG_CONFIG_PATH = "${hyprutils}/lib/pkgconfig";
-          };
-      });
 
       secrets = builtins.fromJSON (builtins.readFile "${self}/secrets.json");
 
@@ -101,7 +79,7 @@
       nixosConfigurations = {
         w = let
           username = pcUserName;
-          specialArgs = {inherit inputs username secrets;};
+          specialArgs = {inherit inputs username secrets spicetify-nix;};
         in
           nixpkgs.lib.nixosSystem {
             system = "x86_64-linux";

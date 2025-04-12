@@ -67,7 +67,7 @@ in {
       };
 
       decoration = {
-        rounding = 12;
+        # rounding = 12;
         # shadow_ignore_window = true;
         # drop_shadow = false;
         # shadow_range = 20;
@@ -245,7 +245,6 @@ in {
 
         "$mainMod CTRL, left, exec, echo 'mouseto 0 0' | dotool"
         "$mainMod CTRL, R, exec, pkill lan-mouse; setsid lan-mouse -f cli -c ~/lan-mouse/config.toml"
-        "$mainMod CTRL, R, exec, pkill lan-mouse; setsid lan-mouse -f cli -c ~/lan-mouse/config.toml"
       ];
 
       bindm = [
@@ -271,9 +270,9 @@ in {
         # Window rules
         "tile,title:^(kitty)$"
         "float,title:^(fly_is_kitty)$"
-        "tile,^(Spotify)$"
+        # "tile,^(Spotify)$"
         # "tile,^(neovide)$"
-        "tile,^(wps)$"
+        # "tile,^(wps)$"
       ];
 
       windowrulev2 = [

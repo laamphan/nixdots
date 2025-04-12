@@ -117,6 +117,8 @@ in {
        zstyle ':completion:*' file-sort modification
        zstyle ':completion:*:exa' sort false
        zstyle ':completion:files' sort false
+
+       eval "$(thefuck --alias)"
     '';
 
     shellAliases = {
