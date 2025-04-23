@@ -24,25 +24,25 @@
       options v4l2loopback devices=1 video_nr=1 card_label="OBS Cam" exclusive_caps=1
     '';
     # kernelPackages = pkgs.linuxPackages_latest;
-    kernelParams = [
-      "nvidia.NVreg_PreserveVideoMemoryAllocations=1"
-      "nvidia-drm.modeset=1"
-    ];
+    # kernelParams = [
+    #   "nvidia.NVreg_PreserveVideoMemoryAllocations=1"
+    #   "nvidia-drm.modeset=1"
+    # ];
     supportedFilesystems = ["ntfs"];
     loader = {
       systemd-boot.enable = false; # (for UEFI systems only)
       timeout = 3;
-      efi = {
-        canTouchEfiVariables = true;
-        efiSysMountPoint = "/boot/efi";
-      };
+      # efi = {
+      #   canTouchEfiVariables = true;
+      #   efiSysMountPoint = "/boot/efi";
+      # };
       grub = {
         enable = true;
-        device = "nodev";
-        efiSupport = true;
+        device = "/dev/sda";
+        efiSupport = false;
         useOSProber = true;
         # Change this to true when you have multiple OSes installed
-        efiInstallAsRemovable = false;
+        #efiInstallAsRemovable = false;
         configurationLimit = 8;
         theme = pkgs.fetchFromGitHub {
           owner = "Lxtharia";
@@ -163,11 +163,11 @@
   environment = {
     variables = {
       # BINH ALO
-      GBM_BACKEND = "nvidia-drm";
-      LIBVA_DRIVER_NAME = "nvidia";
-      __GLX_VENDOR_LIBRARY_NAME = "nvidia";
-      __GL_GSYNC_ALLOWED = "1";
-      __GL_VRR_ALLOWED = "0"; # Controls if Adaptive Sync should be used. Recommended to set as “0” to avoid having problems on some games.
+      # GBM_BACKEND = "nvidia-drm";
+      # LIBVA_DRIVER_NAME = "nvidia";
+      # __GLX_VENDOR_LIBRARY_NAME = "nvidia";
+      # __GL_GSYNC_ALLOWED = "1";
+      # __GL_VRR_ALLOWED = "0"; # Controls if Adaptive Sync should be used. Recommended to set as “0” to avoid having problems on some games.
 
       XCURSOR_THEME = "material-cursors";
       XCURSOR_SIZE = "24";
@@ -177,7 +177,7 @@
     };
     sessionVariables = {
       NIXOS_OZONE_WL = "1"; # Hint electron apps to use wayland
-      WLR_NO_HARDWARE_CURSORS = "1"; # Fix cursor rendering issue on wlr nvidia.
+      # WLR_NO_HARDWARE_CURSORS = "1"; # Fix cursor rendering issue on wlr nvidia.
       DEFAULT_BROWSER = "${pkgs.brave}/bin/firefox"; # Set default browser
       # GTK_IM_MODULE = "fcitx";
       QT_IM_MODULE = "fcitx";
@@ -198,7 +198,7 @@
       inputs.xdg-portal-hyprland.packages.${system}.xdg-desktop-portal-hyprland
       xdg-desktop-portal-gtk
       alejandra
-      efibootmgr
+      #efibootmgr
       pinentry-tty
       vscode
       dotool
@@ -224,17 +224,17 @@
   };
 
   hardware = {
-    nvidia = {
-      open = false;
-      nvidiaSettings = true;
-      powerManagement.enable = false;
-      modesetting.enable = true;
-      package = config.boot.kernelPackages.nvidiaPackages.latest;
-    };
+    # nvidia = {
+    #   open = false;
+    #   nvidiaSettings = true;
+    #   powerManagement.enable = false;
+    #   modesetting.enable = true;
+    #   package = config.boot.kernelPackages.nvidiaPackages.latest;
+    # };
     graphics = {
       enable = true;
       enable32Bit = true;
-      extraPackages = with pkgs; [nvidia-vaapi-driver]; #nvidia-vaapi-driver - remove if not needed
+      extraPackages = with pkgs; []; #nvidia-vaapi-driver - remove if not needed
     };
   };
 
@@ -249,7 +249,7 @@
           enableContribAndExtras = true;
         };
       };
-      videoDrivers = ["nvidia"]; # replaced nvidia with modesetting if needed
+      videoDrivers = ["modesetting"]; # replaced nvidia with modesetting if needed
       xkb.layout = "us";
       xkb.variant = "";
     };
@@ -263,12 +263,13 @@
     flatpak.enable = false;
     gnome.gnome-keyring.enable = true;
 
-    ollama = {
-      enable = true;
-      acceleration = "cuda";
-    };
+    #ollama
+    # ollama = {
+    #   enable = true;
+    #   acceleration = "cuda";
+    # };
 
-    open-webui.enable = true;
+    # open-webui.enable = true;
   };
 
   hardware.bluetooth.enable = true; # enables support for Bluetooth
