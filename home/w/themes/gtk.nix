@@ -7,48 +7,18 @@
 
   gtk = {
     enable = true;
+
     cursorTheme = {
-      name = "material-cursors";
-      package = pkgs.material-cursors;
-      size = 24; # Affects gtk applications as the name suggests
+      package = pkgs.bibata-cursors;
+      name = "Bibata-Modern-Ice";
     };
+  };
 
-    # theme = {
-    #   name = "Catppuccin-Macchiato-Compact-Blue-dark";
-    #   package = pkgs.catppuccin-gtk.override {
-    #     size = "compact";
-    #     accents = ["blue"];
-    #     # tweaks = ["rimless" "black"]; # You can also specify multiple tweaks here
-    #     variant = "macchiato";
-    #   };
-    # };
-
-    catppuccin = {
-      enable = true;
-      flavor = "mocha";
-      accent = "blue";
-      size = "compact";
-      tweaks = ["rimless"];
-    };
-
-    # iconTheme = {
-    #   name = "Papirus-Dark";
-    #   package = pkgs.papirus-folders;
-    # };
-
-    # iconTheme = {
-    #   name = "Papirus-Dark";
-    #   package = pkgs.papirus-icon-theme;
-    # };
-
-    # theme = {
-    #   name = "whitesur-gtk-theme";
-    #   package = pkgs.whitesur-gtk-theme;
-    # };
-
-    iconTheme = {
-      name = "WhiteSur";
-      package = pkgs.whitesur-icon-theme;
-    };
+  catppuccin.gtk = {
+    enable = true;
+    flavor = "mocha";
+    accent = "blue";
+    size = "compact";
+    tweaks = ["rimless"];
   };
 }

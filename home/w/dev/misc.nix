@@ -22,6 +22,6 @@
     networkmanager
     # droidcam
 
-    # dbeaver-bin
+    dbeaver-bin
   ];
 }

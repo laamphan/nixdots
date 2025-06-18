@@ -1,6 +1,6 @@
 _: {
   imports = [
-    # ./nitch
+    ./nitch
     ./pfetch
     # ./neofetch
   ];

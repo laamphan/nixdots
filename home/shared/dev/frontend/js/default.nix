@@ -17,7 +17,7 @@
     tailwindcss
     # nodePackages.npm # Package manager
     #nodePackages_latest.pnpm
-    pnpm_8
+    pnpm
     biome
     nodePackages."@microsoft/rush"
     # nodePackages_latest.ts-node

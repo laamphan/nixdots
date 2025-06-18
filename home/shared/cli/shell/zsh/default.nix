@@ -16,7 +16,7 @@ in {
     enableCompletion = true;
     autosuggestion.enable = true;
     syntaxHighlighting.enable = true;
-    initExtra = ''
+    initContent = ''
       # Export PATHs for applications
       export PATH=$PATH:~/.local/bin/
       export PATH=/tmp/lazy-lvim/bin:$PATH
@@ -117,8 +117,6 @@ in {
        zstyle ':completion:*' file-sort modification
        zstyle ':completion:*:exa' sort false
        zstyle ':completion:files' sort false
-
-       eval "$(thefuck --alias)"
     '';
 
     shellAliases = {
@@ -126,6 +124,7 @@ in {
       cp = "cp -i";
       e = "emacsclient -c -a 'emacs'";
       f = "neofetch --sixel";
+      n = "nitch";
       p = "pfetch";
       fetch = "neofetch w3m";
       grep = "grep --color=auto";
@@ -148,6 +147,7 @@ in {
       gi = "git init";
       gp = "git pull";
       gs = "git status";
+      lzg = "lazygit";
       pn = "pnpm";
       chrome = "setsid google-chrome-stable  --enable-features=UseOzonePlatform --ozone-platform=wayland --enable-wayland-ime";
       obsidian = "setsid obsidian --enable-features=UseOzonePlatform --ozone-platform=wayland --enable-wayland-ime";

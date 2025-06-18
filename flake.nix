@@ -23,10 +23,7 @@
       url = "github:nix-community/home-manager/master";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    # aquamarine = {
-    #   url = "github:hyprwm/aquamarine?ref=v0.4.5";
-    #   inputs.nixpkgs.follows = "nixpkgs";
-    # };
+
     hyprland.url = "git+https://github.com/hyprwm/Hyprland?submodules=1&rev=a425fbebe4cf4238e48a42f724ef2208959d66cf";
     waybar-hyprland.url = "github:Alexays/Waybar";
     xdg-portal-hyprland.url = "github:hyprwm/xdg-desktop-portal-hyprland?ref=v1.3.7";

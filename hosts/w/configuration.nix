@@ -203,10 +203,7 @@
       vscode
       dotool
       lan-mouse
-      thefuck
       dotnet-sdk
-
-      figma-linux
       cloudflare-warp
     ];
   };
@@ -239,9 +236,9 @@
   };
 
   services = {
+    displayManager = {gdm.enable = true;};
     xserver = {
       enable = true;
-      displayManager = {gdm.enable = true;};
       desktopManager = {xfce.enable = true;};
       windowManager = {
         xmonad = {

@@ -143,13 +143,15 @@ in {
         "easyeffects --gapplication-service" # Starts easyeffects in the background
         "$HOME/.config/hypr/autostart"
         "dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP"
-        "hyprctl dispatch moveworkspacetomonitor 2 eDP-1"
-        "hyprctl dispatch moveworkspacetomonitor 1 HDMI-A-1"
+        # "hyprctl dispatch moveworkspacetomonitor 2 eDP-1"
+        # "hyprctl dispatch moveworkspacetomonitor 1 HDMI-A-1"
+        "hyprctl dispatch moveworkspacetomonitor 2 DP-1"
+        "hyprctl dispatch moveworkspacetomonitor 1 DP-3"
         "hyprctl dispatch workspace 1"
-        "hyprctl setcursor 'macOS-BigSur' 24"
+        "hyprctl setcursor Bibata-Modern-Ice 24"
         "kitty"
-        "kitty setsid lan-mouse -f cli -c ~/lan-mouse/config.toml"
-        # "hyprctl dispatch workspace 1,monitor:HDMI-A-1"
+        # "kitty setsid lan-mouse -f cli -c ~/lan-mouse/config.toml"
+        "hyprctl dispatch workspace 1,monitor:HDMI-A-1"
       ];
 
       bind = [
@@ -245,6 +247,7 @@ in {
         "$mainMod CTRL, right, exec, echo 'mouseto 1 1' | dotool"
         "$mainMod CTRL, R, exec, pkill lan-mouse; setsid lan-mouse -f cli -c ~/lan-mouse/config.toml"
         "$mainMod CTRL, R, exec, pkill lan-mouse; setsid lan-mouse -f cli -c ~/lan-mouse/config.toml"
+        "$mainMod,X,exec,sh -c 'pkill waybar || (nohup waybar > /dev/null 2>&1 &)'"
       ];
 
       bindm = [
