@@ -25,9 +25,9 @@ _: {
             enable = true;
             cmd = ["gopls"];
             filetypes = ["go" "gomod" "gowork" "gotmpl"];
-            rootDir =
-              #lua
-              ''require("lspconfig").util.root_pattern("go.work", "go.mod", ".git")'';
+            # rootDir =
+            #   #lua
+            #   ''require("lspconfig").util.root_pattern("go.work", "go.mod", ".git")'';
             settings = {
               gopls = {
                 completeUnimported = true;

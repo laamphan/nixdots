@@ -4,8 +4,6 @@ _: {
     extraConfig = ''
             local wezterm = require "wezterm"
             local act = wezterm.action
-            local xcursor_size = 32
-            local xcursor_theme = "macOS-BigSur"
             return {
               check_for_updates = false,
               font_size = 12,

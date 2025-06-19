@@ -61,6 +61,7 @@
 
   # Power Management
   powerManagement = {
+    # cpuFreqGovernor = "powersave";
     cpuFreqGovernor = "performance";
   };
 

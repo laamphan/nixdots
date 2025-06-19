@@ -7,11 +7,11 @@
 
   gtk = {
     enable = true;
-    cursorTheme = {
-      name = "material-cursors";
-      package = pkgs.material-cursors;
-      size = 24; # Affects gtk applications as the name suggests
-    };
+    # cursorTheme = {
+    #   name = "material-cursors";
+    #   package = pkgs.material-cursors;
+    #   size = 24; # Affects gtk applications as the name suggests
+    # };
 
     # theme = {
     #   name = "Catppuccin-Macchiato-Compact-Blue-dark";
@@ -42,6 +42,13 @@
     #   name = "WhiteSur";
     #   package = pkgs.whitesur-icon-theme;
     # };
+
+    cursorTheme = {
+      # package = pkgs.catppuccin-cursors.mochaSapphire;
+      # name = "catppuccin-mocha-sapphire-cursors";
+      package = pkgs.bibata-cursors;
+      name = "bibata-cursors";
+    };
   };
 
   catppuccin.gtk = {
@@ -50,5 +57,10 @@
     accent = "blue";
     size = "compact";
     tweaks = ["rimless"];
+    # cursor = {
+    #   enable = true;
+    #   flavor = "mocha";
+    #   accent = "sapphire";
+    # };
   };
 }

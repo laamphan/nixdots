@@ -147,7 +147,7 @@ in {
         "hyprctl dispatch moveworkspacetomonitor 2 eDP-1"
         "hyprctl dispatch moveworkspacetomonitor 1 HDMI-A-1"
         "hyprctl dispatch workspace 1"
-        "hyprctl setcursor 'macOS-BigSur' 24"
+        # "hyprctl setcursor 'macOS-BigSur' 24"
         "kitty"
         "kitty setsid lan-mouse -f cli -c ~/lan-mouse/config.toml"
         # "hyprctl dispatch workspace 1,monitor:HDMI-A-1"
@@ -245,6 +245,7 @@ in {
 
         "$mainMod CTRL, left, exec, echo 'mouseto 0 0' | dotool"
         "$mainMod CTRL, R, exec, pkill lan-mouse; setsid lan-mouse -f cli -c ~/lan-mouse/config.toml"
+        "$mainMod,X,exec,sh -c 'pkill waybar || (nohup waybar > /dev/null 2>&1 &)'"
       ];
 
       bindm = [
@@ -257,7 +258,7 @@ in {
         # Backlight Keys
         ",XF86MonBrightnessUp,exec,brightnessctl set 5%+"
         ",XF86MonBrightnessDown,exec,brightnessctl set 5%-"
-        # Volume Keys
+        # Volume Keysf
         ",XF86AudioRaiseVolume,exec,amixer -D pipewire sset Master 5%+"
         ",XF86AudioLowerVolume,exec,amixer -D pipewire sset Master 5%-"
       ];
