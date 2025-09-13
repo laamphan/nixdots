@@ -12,6 +12,7 @@ $scripts/tools/dynamic &
 # Wallpaper
 swww kill
 swww init
+setsid swww-daemon
 swww img ~/Downloads/black.jpeg
 
 # Dunst (Notifications)

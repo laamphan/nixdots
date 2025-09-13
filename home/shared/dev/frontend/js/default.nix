@@ -10,7 +10,7 @@
     bun
     yarn
     # deno
-    nodejs
+    nodejs_22
     # nodejs-18_x
     # node2nix
     # typescript

@@ -31,3 +31,4 @@ swaylockd \
 --fade-in "0.1" \
 --effect-blur 10x4 &
 
+# swaylockd is a dumb launcher to spawn swaylock and ensure it’s running no matter what — it immediately restarts swaylock if terminated by a signal (e.g. the process crashed) and also blocks all signals (except SIGKILL and SIGSTOP). It also ensures that only one instance per user is running.

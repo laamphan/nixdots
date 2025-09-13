@@ -4,7 +4,7 @@
   ...
 }: {
   imports = [
-    inputs.nixvim.homeManagerModules.nixvim
+    inputs.nixvim.homeModules.nixvim
     ./cmp.nix
     ./conform.nix
     ./lsp.nix

@@ -12,11 +12,11 @@
 in {
   programs.zsh = {
     enable = true;
-    dotDir = ".config/zsh";
+    # dotDir = ".config/zsh";
     enableCompletion = true;
     autosuggestion.enable = true;
     syntaxHighlighting.enable = true;
-    initExtra = ''
+    initContent = ''
       # Export PATHs for applications
       export PATH=$PATH:~/.local/bin/
       export PATH=/tmp/lazy-lvim/bin:$PATH
@@ -118,7 +118,7 @@ in {
        zstyle ':completion:*:exa' sort false
        zstyle ':completion:files' sort false
 
-       eval "$(thefuck --alias)"
+      #  eval "$(thefuck --alias)"
     '';
 
     shellAliases = {

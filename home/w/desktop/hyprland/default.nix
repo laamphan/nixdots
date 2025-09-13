@@ -31,8 +31,15 @@ in {
     settings = {
       "$mainMod" = "SUPER";
       monitor = [
+        # pcs
+        # "DP-1,1920x1080,0x0,1"
+        # "eDP-1,1920x1080,1920x0,1"
+
+        # maison
+        # "DP-1,3840x2160,0x0,1"
         "HDMI-A-1,1920x1080,0x0,1"
         "eDP-1,1920x1080,1920x0,1"
+
         # "Unknown-1,disable"
       ];
 
@@ -58,7 +65,7 @@ in {
       general = {
         gaps_in = 1;
         gaps_out = 2;
-        border_size = 3;
+        border_size = 1;
         "col.active_border" = "${catppuccin_border}";
         "col.inactive_border" = "${tokyonight_background}";
         layout = "dwindle";
@@ -148,6 +155,7 @@ in {
         "hyprctl dispatch moveworkspacetomonitor 1 HDMI-A-1"
         "hyprctl dispatch workspace 1"
         # "hyprctl setcursor 'macOS-BigSur' 24"
+        "hyprctl setcursor 'Bibata-Modern-Ice' 24"
         "kitty"
         "kitty setsid lan-mouse -f cli -c ~/lan-mouse/config.toml"
         # "hyprctl dispatch workspace 1,monitor:HDMI-A-1"

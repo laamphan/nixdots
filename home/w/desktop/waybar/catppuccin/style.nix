@@ -5,6 +5,7 @@ _: ''
     font-size: 14px;
     min-height: 24px;
     color: #cdd6f4;
+    border: none;
   }
   #window,
   #cpu,
@@ -23,7 +24,6 @@ _: ''
     padding: 3px;
   }
   #tray {
-  border: 2px solid #9999CC;
   padding-left: 5px;
   padding-right: 5px
   }
@@ -31,35 +31,22 @@ _: ''
   #memory,
   #custom-arch,
   #window {
-  border: 2px solid #9999CC ;
   border-radius: 10px 10px 10px 10px;
   }
   #custom-spotify {
   margin-left: 3px ;
-  border: 2px solid #9999CC ;
   border-radius: 10px 10px 10px 10px;
   }
   #workspaces {
-  border: 2px solid #9999CC ;
   color: #eeeeef;
   }
   #clock {
-  border-right: 2px solid #9999CC;
-  border-top: 2px solid #9999CC;
-  border-bottom: 2px solid #9999CC
   }
   #network {
-  border-left: 2px solid #9999CC;
-  border-top: 2px solid #9999CC;
-  border-bottom: 2px solid #9999CC
   }
   #battery {
-  border-top: 2px solid #9999CC;
-  border-bottom: 2px solid #9999CC
   }
   #pulseaudio {
-  border-top: 2px solid #9999CC;
-  border-bottom: 2px solid #9999CC
   }
   #tray {
     border-radius: 10px 10px 10px 10px;

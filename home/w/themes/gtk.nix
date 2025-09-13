@@ -51,16 +51,16 @@
     };
   };
 
-  catppuccin.gtk = {
-    enable = true;
-    flavor = "mocha";
-    accent = "blue";
-    size = "compact";
-    tweaks = ["rimless"];
-    # cursor = {
-    #   enable = true;
-    #   flavor = "mocha";
-    #   accent = "sapphire";
-    # };
-  };
+  # catppuccin.gtk = {
+  #   enable = true;
+  #   flavor = "mocha";
+  #   accent = "blue";
+  #   size = "compact";
+  #   tweaks = ["rimless"];
+  #   # cursor = {
+  #   #   enable = true;
+  #   #   flavor = "mocha";
+  #   #   accent = "sapphire";
+  #   # };
+  # };
 }

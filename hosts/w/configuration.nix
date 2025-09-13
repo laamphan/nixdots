@@ -54,9 +54,9 @@
   # Change systemd stop job timeout in NixOS configuration (Default = 90s)
   systemd = {
     services.NetworkManager-wait-online.enable = false;
-    extraConfig = ''
-      DefaultTimeoutStopSec=10s
-    '';
+    # settings.Manager = ''
+    # DefaultTimeoutStopSec=10s
+    # '';
   };
 
   # Power Management
@@ -125,6 +125,7 @@
       enable = true;
       xwayland = {enable = true;};
     };
+    localsend.enable = true;
   };
 
   # Allow unfree packages + use overlays
@@ -196,7 +197,7 @@
       dotool
       lan-mouse
       dotnet-sdk
-      thefuck
+      cloudflare-warp
     ];
   };
 
@@ -228,9 +229,9 @@
   };
 
   services = {
+    displayManager = {gdm.enable = true;};
     xserver = {
       enable = true;
-      displayManager = {gdm.enable = true;};
       desktopManager = {xfce.enable = true;};
       windowManager = {
         xmonad = {
@@ -282,6 +283,13 @@
       host all all ::1/128 trust
     '';
   };
+
+  services.cloudflare-warp = {
+    enable = true;
+    # mode = "warp";
+  };
+
+  services.teamviewer.enable = true;
 
   users = {
     users = {

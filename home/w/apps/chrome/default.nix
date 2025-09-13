@@ -1,8 +1,4 @@
 {pkgs, ...}: {
-  #   programs.google-chrome = {
-  #     enable = true;
-  #   };
-
   home.packages = with pkgs; [
     (google-chrome.override {
       commandLineArgs = [
