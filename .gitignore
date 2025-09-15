@@ -1,5 +1,1 @@
-# Add to your .gitignore
 secrets.json
-
-# Keep the example
-!secrets.example.nix

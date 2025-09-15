@@ -4,7 +4,9 @@
   inputs,
   username,
   ...
-}: {
+}: let
+  secrets = builtins.fromJSON (builtins.readFile ../../secrets.json);
+in {
   imports = [
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
@@ -57,9 +59,9 @@
   # Change systemd stop job timeout in NixOS configuration (Default = 90s)
   systemd = {
     services.NetworkManager-wait-online.enable = false;
-    extraConfig = ''
-      DefaultTimeoutStopSec=10s
-    '';
+    # extraConfig = ''
+    #   DefaultTimeoutStopSec=10s
+    # '';
   };
 
   # Power Management
@@ -111,6 +113,7 @@
       gtk4
       fcitx5-gtk
       fcitx5-unikey
+      fcitx5-bamboo
       fcitx5-chinese-addons
       fcitx5-anthy
       fcitx5-nord
@@ -127,6 +130,7 @@
       enable = true;
       xwayland = {enable = true;};
     };
+    localsend.enable = true;
   };
 
   # Allow unfree packages + use overlays
@@ -205,6 +209,8 @@
       lan-mouse
       dotnet-sdk
       cloudflare-warp
+
+      activate-linux
     ];
   };
 
@@ -260,12 +266,11 @@
     flatpak.enable = false;
     gnome.gnome-keyring.enable = true;
 
-    ollama = {
-      enable = true;
-      acceleration = "cuda";
-    };
-
-    open-webui.enable = true;
+    # ollama = {
+    #   enable = true;
+    #   acceleration = "cuda";
+    # };
+    # open-webui.enable = true;
   };
 
   hardware.bluetooth.enable = true; # enables support for Bluetooth
@@ -346,6 +351,9 @@
       substituters = ["https://hyprland.cachix.org"];
       trusted-public-keys = [
         "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="
+      ];
+      access-tokens = [
+        "github.com=${secrets.github_pcs_token}"
       ];
     };
     gc = {

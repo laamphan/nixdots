@@ -14,11 +14,11 @@
     };
   };
 
-  catppuccin.gtk = {
-    enable = true;
-    flavor = "mocha";
-    accent = "blue";
-    size = "compact";
-    tweaks = ["rimless"];
-  };
+  # catppuccin.gtk = {
+  #   enable = true;
+  #   flavor = "mocha";
+  #   accent = "blue";
+  #   size = "compact";
+  #   tweaks = ["rimless"];
+  # };
 }

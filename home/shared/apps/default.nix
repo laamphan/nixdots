@@ -1,12 +1,12 @@
 _: {
   imports = [
-    ./discord
+    # ./discord
     # ./matrix
     # ./edge
-    ./telegram
+    # ./telegram
     ./imagemagick
     ./gimp
-    ./spicetify
+    # ./spicetify
     # ./figma
   ];
 }

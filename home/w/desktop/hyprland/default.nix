@@ -57,7 +57,7 @@ in {
       general = {
         gaps_in = 1;
         gaps_out = 2;
-        border_size = 3;
+        border_size = 1;
         "col.active_border" = "${catppuccin_border}";
         "col.inactive_border" = "${tokyonight_background}";
         layout = "dwindle";
