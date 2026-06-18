@@ -19,7 +19,7 @@
     #nodePackages_latest.pnpm
     pnpm
     biome
-    nodePackages."@microsoft/rush"
+    # nodePackages."@microsoft/rush"
     # nodePackages_latest.ts-node
     # nodePackages_latest.prisma
     # nodePackages_latest.dotenv-cli

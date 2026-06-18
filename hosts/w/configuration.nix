@@ -108,8 +108,8 @@
     fcitx5.addons = with pkgs; [
       gtk4
       fcitx5-gtk
-      fcitx5-unikey
-      fcitx5-chinese-addons
+      qt6Packages.fcitx5-unikey
+      qt6Packages.fcitx5-chinese-addons
       fcitx5-anthy
       fcitx5-nord
       libsForQt5.fcitx5-qt
@@ -119,7 +119,7 @@
   # Enable programs
   programs = {
     zsh.enable = true;
-    steam.enable = true;
+    steam.enable = false;
     dconf.enable = true;
     hyprland = {
       enable = true;

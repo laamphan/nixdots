@@ -32,13 +32,16 @@ in {
       "$mainMod" = "SUPER";
       monitor = [
         # pcs
-        # "DP-1,1920x1080,0x0,1"
-        # "eDP-1,1920x1080,1920x0,1"
+        "DP-1,1920x1080,0x0,1"
+        "eDP-1,1920x1080,1920x0,1"
 
         # maison
         # "DP-1,3840x2160,0x0,1"
-        "HDMI-A-1,1920x1080,0x0,1"
-        "eDP-1,1920x1080,1920x0,1"
+        # "HDMI-A-1,1920x1080,0x0,1" # LG
+        # "eDP-1,1920x1080,1920x0,1" # Laptop
+
+        # "HDMI-A-1,1920x1080,0x0,1,transform,1" # LG - rotated 90 degrees
+        # "eDP-1,1920x1080,1080x0,1" # Laptop
 
         # "Unknown-1,disable"
       ];
@@ -140,7 +143,7 @@ in {
         # no_gaps_when_only = false;
       };
 
-      gestures = {workspace_swipe = false;};
+      # gestures = {workspace_swipe = false;};
 
       debug = {
         damage_tracking =
@@ -274,42 +277,115 @@ in {
         ",switch:on:Lid Switch, exec, swaylock -i ~/Downloads/black.jpeg &; systemctl suspend"
         ",switch:off:Lid Switch, exec, swaylock -i ~/Downloads/black.jpeg &; systemctl suspend"
       ];
-
-      windowrule = [
-        # Window rules
-        "tile,title:^(kitty)$"
-        "float,title:^(fly_is_kitty)$"
-        # "tile,^(Spotify)$"
-        # "tile,^(neovide)$"
-        # "tile,^(wps)$"
-      ];
-
-      windowrulev2 = [
-        "opacity ${opacity} ${opacity},class:^(thunar)$"
-        # "opacity ${custom.opacity} ${custom.opacity},class:^(WebCord)$"
-        "float,class:^(pavucontrol)$"
-        "float,class:^(file_progress)$"
-        "float,class:^(confirm)$"
-        "float,class:^(dialog)$"
-        "float,class:^(download)$"
-        "float,class:^(notification)$"
-        "float,class:^(error)$"
-        "float,class:^(confirmreset)$"
-        "float,title:^(Open File)$"
-        "float,title:^(branchdialog)$"
-        "float,title:^(Confirm to replace files)$"
-        "float,title:^(File Operation Progress)$"
-        "float,title:^(mpv)$"
-        "opacity 1.0 1.0,class:^(wofi)$"
-        "opacity 0.0 override 0.0 override,class:^(xwaylandvideobridge)$"
-        "noanim,class:^(xwaylandvideobridge)$"
-        "nofocus,class:^(xwaylandvideobridge)$"
-        "noinitialfocus,class:^(xwaylandvideobridge)$"
-      ];
     };
 
     # Submaps
     extraConfig = ''
+      # Window Rules (new block format for Hyprland 0.46+)
+      windowrule {
+        name = fly-is-kitty
+        match:title = ^(fly_is_kitty)$
+        float = true
+      }
+
+      windowrule {
+        name = thunar-opacity
+        match:class = ^(thunar)$
+        opacity = ${opacity} ${opacity}
+      }
+
+      windowrule {
+        name = float-pavucontrol
+        match:class = ^(pavucontrol)$
+        float = true
+      }
+
+      windowrule {
+        name = float-file-progress
+        match:class = ^(file_progress)$
+        float = true
+      }
+
+      windowrule {
+        name = float-confirm
+        match:class = ^(confirm)$
+        float = true
+      }
+
+      windowrule {
+        name = float-dialog
+        match:class = ^(dialog)$
+        float = true
+      }
+
+      windowrule {
+        name = float-download
+        match:class = ^(download)$
+        float = true
+      }
+
+      windowrule {
+        name = float-notification
+        match:class = ^(notification)$
+        float = true
+      }
+
+      windowrule {
+        name = float-error
+        match:class = ^(error)$
+        float = true
+      }
+
+      windowrule {
+        name = float-confirmreset
+        match:class = ^(confirmreset)$
+        float = true
+      }
+
+      windowrule {
+        name = float-open-file
+        match:title = ^(Open File)$
+        float = true
+      }
+
+      windowrule {
+        name = float-branchdialog
+        match:title = ^(branchdialog)$
+        float = true
+      }
+
+      windowrule {
+        name = float-confirm-replace
+        match:title = ^(Confirm to replace files)$
+        float = true
+      }
+
+      windowrule {
+        name = float-file-op-progress
+        match:title = ^(File Operation Progress)$
+        float = true
+      }
+
+      windowrule {
+        name = float-mpv
+        match:title = ^(mpv)$
+        float = true
+      }
+
+      windowrule {
+        name = wofi-opacity
+        match:class = ^(wofi)$
+        opacity = 1.0 1.0
+      }
+
+      windowrule {
+        name = xwaylandvideobridge
+        match:class = ^(xwaylandvideobridge)$
+        opacity = 0.0 override 0.0 override
+        no_focus = true
+        no_initial_focus = true
+      }
+
            # source = ~/.config/hypr/themes/catppuccin-macchiato.conf
            # source = ~/.config/hypr/themes/oxocarbon.conf
            env = XDG_SESSION_TYPE,wayland

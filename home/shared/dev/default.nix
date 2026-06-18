@@ -1,16 +1,16 @@
 _: {
   imports = [
     ./nix
-    ./markdown
+    # ./markdown
     ./frontend
     ./backend
-    ./databases
+    # ./databases
     # ./mobile
-    ./low-level
-    ./gamedev
+    # ./low-level
+    # ./gamedev
     ./tools
     ./editors
     ./misc.nix
-    ./cloud
+    # ./cloud
   ];
 }

@@ -18,7 +18,7 @@ _: ''
   #workspaces,
   #window,
   #custom-arch {
-    background-color:  #1e1e2e;
+    background-color:  black;
     margin-top: 2px;
     margin-bottom: 0px;
     padding: 3px;
